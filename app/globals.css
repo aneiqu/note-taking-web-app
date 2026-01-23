@@ -53,6 +53,31 @@
   --radius-24: 24px;
 }
 
+@theme {
+  --color-neutral-950: #0e121b;
+  --color-neutral-900: #191b25;
+  --color-neutral-800: #222530;
+  --color-neutral-700: #2b303b;
+  --color-neutral-600: #525866;
+  --color-neutral-500: #717784;
+  --color-neutral-400: #999aae;
+  --color-neutral-300: #cacfd8;
+  --color-neutral-200: #e0e4ea;
+  --color-neutral-100: #f3f5f8;
+  --color-neutral-50: #f5f7fa;
+  --color-neutral-0: #ffffff;
+
+  --color-blue-700: #2547d0;
+  --color-blue-500: #335cff;
+  --color-blue-50: #e8f1ff;
+
+  --color-green-500: #21c16b;
+  --color-green-100: #d1fbe9;
+
+  --color-red-500: #fb3748;
+  --color-red-100: #ffd5d8;
+}
+
 @layer utilities {
   .grid-desktop {
     @apply grid-cols-12 gap-6;

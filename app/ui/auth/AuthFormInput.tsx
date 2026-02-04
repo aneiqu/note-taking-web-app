@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+import HidePassword from "@/app/assets/icons/icon-hide-password.svg";
+import ShowPassword from "@/app/assets/icons/icon-show-password.svg";
 import { useRef, useState } from "react";
 
 interface InputTypes {
@@ -41,16 +42,19 @@ export function AuthFormPasswordInput() {
           ref={PasswordInput}
           id='passwordInput'
           type={visible ? "text" : "password"}
-          className='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-(--radius-8) w-full'
+          className='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-(--radius-8) w-full dark:text-neutral-400'
         />
-        <Image
-          src='./icons/icon-show-password.svg'
-          width={20}
-          height={20}
-          className='absolute right-4 cursor-pointer'
-          alt='Visibility toggle'
+
+        <div
+          className='flex items-center justify-center cursor-pointer'
           onClick={() => toggleVisibility()}
-        ></Image>
+        >
+          {visible ? (
+            <HidePassword className='absolute right-4 fill-neutral-500' />
+          ) : (
+            <ShowPassword className='absolute right-4 fill-neutral-500' />
+          )}
+        </div>
       </div>
     </div>
   );

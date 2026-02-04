@@ -9,7 +9,7 @@ export default function AuthForm({ children, buttonText }: FormTypes) {
       {children}
       <button
         type='submit'
-        className='text-preset-3 py-3 bg-blue-500 text-white rounded-(--radius-8)'
+        className='text-preset-3 py-3 bg-blue-500 text-white rounded-(--radius-8) cursor-pointer'
       >
         {buttonText}
       </button>

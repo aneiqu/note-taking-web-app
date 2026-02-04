@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
-export const middleware = () => {
+export function middleware() {
   const isLogged = false;
 
   if (!isLogged) redirect("/login");
-};
+}

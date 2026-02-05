@@ -2,6 +2,7 @@ import AuthForm from "@/app/ui/auth/AuthForm";
 import { AuthFormPasswordInput, AuthFormTextInput } from "@/app/ui/auth/AuthFormInput";
 import AuthHeader from "@/app/ui/auth/AuthHeader";
 import AuthLoginGoogle from "@/app/ui/auth/AuthLoginGoogle";
+import Link from "next/link";
 
 export default function Login() {
   return (
@@ -19,9 +20,9 @@ export default function Login() {
       <hr className='text-neutral-300 w-full my-4 dark:border-neutral-600' />
       <p className='text-preset-5 text-neutral-600 dark:text-neutral-300'>
         No account yet?{" "}
-        <a href='./' className='text-neutral-950 dark:text-white'>
+        <Link href='/signup' className='text-neutral-950 dark:text-white'>
           Sign Up
-        </a>
+        </Link>
       </p>
     </>
   );

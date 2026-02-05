@@ -2,6 +2,8 @@
 
 import HidePassword from "@/app/assets/icons/icon-hide-password.svg";
 import ShowPassword from "@/app/assets/icons/icon-show-password.svg";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 
 interface InputTypes {
@@ -26,6 +28,7 @@ export function AuthFormTextInput({ label, placeholder }: InputTypes) {
 }
 
 export function AuthFormPasswordInput() {
+  const pathname = usePathname();
   const PasswordInput = useRef<null | HTMLInputElement>(null);
   const [visible, setVisible] = useState<boolean>(false);
   const toggleVisibility = () => setVisible((prev) => !prev);
@@ -35,7 +38,14 @@ export function AuthFormPasswordInput() {
         <label htmlFor='passwordInput' className='text-preset-4 text-neutral-950 dark:text-white'>
           Password
         </label>
-        <p className='text-xs underline text-neutral-600 dark:text-neutral-400'>Forgot</p>
+        {pathname.includes("login") && (
+          <Link
+            href={"./forgot-password"}
+            className='text-xs underline text-neutral-600 dark:text-neutral-400'
+          >
+            Forgot
+          </Link>
+        )}
       </div>
       <div className='flex relative w-full items-center'>
         <input
@@ -50,7 +60,7 @@ export function AuthFormPasswordInput() {
           onClick={() => toggleVisibility()}
         >
           {visible ? (
-            <HidePassword className='absolute right-4 fill-neutral-500' />
+            <HidePassword className='absolute right-4 stroke-neutral-500' />
           ) : (
             <ShowPassword className='absolute right-4 fill-neutral-500' />
           )}

@@ -1,7 +1,6 @@
 import LogoFeather from "@/app/assets/icons/logo-feather.svg";
 import LogoTextDark from "@/app/assets/icons/logo-text-dark.svg";
 import LogoTextWhite from "@/app/assets/icons/logo-text-white.svg";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Layout({ children }: { children: React.ReactNode }) {

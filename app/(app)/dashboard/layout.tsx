@@ -1,12 +1,7 @@
-import ArchiveIcon from "@/app/assets/icons/icon-archive.svg";
-import HomeIcon from "@/app/assets/icons/icon-home.svg";
-import SearchIcon from "@/app/assets/icons/icon-search.svg";
-import SettingsIcon from "@/app/assets/icons/icon-settings.svg";
-import TagIcon from "@/app/assets/icons/icon-tag.svg";
 import LogoFeather from "@/app/assets/icons/logo-feather.svg";
 import LogoTextDark from "@/app/assets/icons/logo-text-dark.svg";
 import LogoTextWhite from "@/app/assets/icons/logo-text-white.svg";
-import IconContainer from "@/app/ui/dashboard/IconContainer";
+import Icons from "@/app/ui/dashboard/NavIcons";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,15 +11,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <LogoTextWhite className='dark:hidden' />
         <LogoTextDark className='hidden dark:block' />
       </div>
-      <div className='flex flex-col items-center bg-white my-12 px-4 gap-4  dark:bg-neutral-950 rounded-(--radius-12)'>
+      <div className='flex flex-col items-center bg-white px-4 gap-4  dark:bg-neutral-950 rounded-(--radius-12) rounded-b-0 h-full'>
         {children}
       </div>
-      <div className='flex h-fit py-3 px-4 justify-around bg-white'>
-        <HomeIcon className='my-1' />
-        <SearchIcon className='my-1' />
-        <ArchiveIcon className='my-1' />
-        <TagIcon className='my-1' />
-        <SettingsIcon className='my-1' />
+      <div className='flex h-fit py-3 px-4 justify-around bg-white shadow-[-2.5px_10px_15px_6px] shadow-neutral-200 outline-1 outline-neutral-200'>
+        <Icons />
       </div>
     </div>
   );

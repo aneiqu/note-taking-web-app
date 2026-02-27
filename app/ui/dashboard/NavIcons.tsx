@@ -18,7 +18,7 @@ interface IconProps {
 function IconContainer({ Icon, variant, isActive, label }: IconProps) {
   return (
     <div
-      className={`flex flex-col items-center w-[68.6px] md:w-[80px] py-1 gap-1 rounded-sm ${isActive ? "bg-blue-50" : ""}`}
+      className={`transition-all duration-200 flex flex-col items-center w-[68.6px]   md:w-[80px] py-1 gap-1 rounded-sm ${isActive ? "bg-blue-50" : ""}`}
     >
       <Icon
         className={`${variant === "fill" ? "**:fill-neutral-600" : "**:stroke-neutral-600"} ${isActive ? (variant === "fill" ? "**:fill-blue-500!" : "**:stroke-blue-500!") : ""}`}
@@ -32,7 +32,7 @@ function IconContainer({ Icon, variant, isActive, label }: IconProps) {
   );
 }
 
-export default function Icons() {
+export function Icons() {
   const pathname = usePathname();
   return (
     <>

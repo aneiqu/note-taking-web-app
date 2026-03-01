@@ -18,7 +18,7 @@ interface IconProps {
 function IconContainer({ Icon, variant, isActive, label }: IconProps) {
   return (
     <div
-      className={`transition-all duration-200 flex flex-col items-center w-[68.6px]   md:w-[80px] py-1 gap-1 rounded-sm ${isActive ? "bg-blue-50" : ""}`}
+      className={`transition-all duration-200 flex flex-col items-center w-[68.6px] md:w-20 py-1 gap-1 rounded-sm ${isActive ? "bg-blue-50" : ""}`}
     >
       <Icon
         className={`${variant === "fill" ? "**:fill-neutral-600" : "**:stroke-neutral-600"} ${isActive ? (variant === "fill" ? "**:fill-blue-500!" : "**:stroke-blue-500!") : ""}`}
@@ -34,49 +34,50 @@ function IconContainer({ Icon, variant, isActive, label }: IconProps) {
 
 export function Icons() {
   const pathname = usePathname();
+  const defaultPath = "/dashboard";
   return (
     <>
-      <Link href={"/dashboard"}>
+      <Link href={defaultPath}>
         <IconContainer
           Icon={HomeIcon}
           variant='fill'
-          isActive={pathname.endsWith("/dashboard")}
+          isActive={pathname.endsWith(`${defaultPath}`)}
           label='Home'
         />
       </Link>
       <div className='hidden md:block w-px h-full bg-neutral-100'></div>
-      <Link href={"/dashboard/search"}>
+      <Link href={`${defaultPath}/search`}>
         <IconContainer
           Icon={SearchIcon}
           variant='fill'
-          isActive={pathname.startsWith("/dashboard/search")}
+          isActive={pathname.startsWith(`${defaultPath}/search`)}
           label='Search'
         />
       </Link>
       <div className='hidden md:block w-px h-full bg-neutral-100'></div>
-      <Link href={"/dashboard/archived"}>
+      <Link href={`${defaultPath}/archived`}>
         <IconContainer
           Icon={ArchiveIcon}
           variant='stroke'
-          isActive={pathname.startsWith("/dashboard/archived")}
+          isActive={pathname.startsWith(`${defaultPath}/archived`)}
           label='Archived'
         />
       </Link>
       <div className='hidden md:block w-px h-full bg-neutral-100'></div>
-      <Link href={"/dashboard/tag"}>
+      <Link href={`${defaultPath}/tag`}>
         <IconContainer
           Icon={TagIcon}
           variant='stroke'
-          isActive={pathname.startsWith("/dashboard/tag")}
+          isActive={pathname.startsWith(`${defaultPath}/tag`)}
           label='Tags'
         />
       </Link>
       <div className='hidden md:block w-px h-full bg-neutral-100'></div>
-      <Link href={"/dashboard/settings"}>
+      <Link href={`${defaultPath}/settings`}>
         <IconContainer
           Icon={SettingsIcon}
           variant='fill'
-          isActive={pathname.startsWith("/dashboard/settings")}
+          isActive={pathname.startsWith(`${defaultPath}/settings`)}
           label='Settings'
         />
       </Link>

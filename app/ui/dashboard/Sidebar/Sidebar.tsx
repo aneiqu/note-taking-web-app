@@ -1,7 +1,6 @@
-import ArchiveIcon from "@/app/assets/icons/icon-archive.svg";
-import TagIcon from "@/app/assets/icons/icon-tag.svg";
 import Link from "next/link";
 import SidebarItem from "./SidebarItem";
+import SidebarTagItems from "./SidebarTagItems";
 
 export default function Sidebar() {
   return (
@@ -22,9 +21,7 @@ export default function Sidebar() {
       <hr className='w-full h-1 text-neutral-200' />
       <div className='px-2 text-preset-4 text-neutral-500'>Tags</div>
       <div className=''>
-        <Link href='/dashboard/tag'>
-          <SidebarItem icon={"tag"} label={"Dummy note"} activePath='/tag' variant='stroke' />
-        </Link>
+        <SidebarTagItems />
       </div>
     </div>
   );

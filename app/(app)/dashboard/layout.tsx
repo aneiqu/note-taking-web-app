@@ -35,7 +35,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <div className='hidden w-full h-full bg-white lg:block'>{children}</div>
       </div>
-      <div className='flex h-fit py-3 px-4 justify-around bg-white shadow-[-2.5px_10px_15px_6px] shadow-neutral-200 outline-1 outline-neutral-200 lg:hidden'>
+      <div className='flex  bottom-0 fixed h-fit py-3 px-4 justify-around bg-white shadow-[-2.5px_10px_15px_6px] shadow-neutral-200 outline-1 outline-neutral-200 lg:hidden'>
         <Icons />
       </div>
     </div>

@@ -1,3 +1,4 @@
+import PlusIcon from "@/app/assets/icons/icon-plus.svg";
 import SearchIcon from "@/app/assets/icons/icon-search.svg";
 import SettingsIcon from "@/app/assets/icons/icon-settings.svg";
 import LogoFeather from "@/app/assets/icons/logo-feather.svg";
@@ -33,9 +34,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <div className='lg:hidden'>{children}</div>
         </div>
-        <div className='hidden w-full h-full bg-white lg:block'>{children}</div>
+        <div className='hidden w-full h-full bg-white lg:block overflow-hidden'>{children}</div>
       </div>
-      <div className='flex  bottom-0 fixed h-fit py-3 px-4 justify-around bg-white shadow-[-2.5px_10px_15px_6px] shadow-neutral-200 outline-1 outline-neutral-200 lg:hidden'>
+      <div className='grid grid-flow-col auto-cols-fr w-screen bottom-0 items-center fixed h-fit py-3 px-4 bg-white shadow-[-2.5px_10px_15px_6px] shadow-neutral-200 outline-1 outline-neutral-200 lg:hidden'>
+        <div className='absolute w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-500 flex items-center justify-center right-4 md:right-8 bottom-full mb-4 md:mb-8'>
+          <PlusIcon className='**:fill-white' />
+        </div>
         <Icons />
       </div>
     </div>

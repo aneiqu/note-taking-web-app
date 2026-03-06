@@ -18,7 +18,7 @@ interface IconProps {
 function IconContainer({ Icon, variant, isActive, label }: IconProps) {
   return (
     <div
-      className={`transition-all duration-200 flex flex-col items-center w-[68.6px] md:w-20 py-1 gap-1 rounded-sm ${isActive ? "bg-blue-50" : ""}`}
+      className={`transition-all duration-200 flex flex-col items-center max-w-[68.6px] w-[clamp(48px,18vw,68.6px)] md:w-20 py-1 gap-1 rounded-sm ${isActive ? "bg-blue-50" : ""}`}
     >
       <Icon
         className={`${variant === "fill" ? "**:fill-neutral-600" : "**:stroke-neutral-600"} ${isActive ? (variant === "fill" ? "**:fill-blue-500!" : "**:stroke-blue-500!") : ""}`}
@@ -37,7 +37,7 @@ export function Icons() {
   const defaultPath = "/dashboard";
   return (
     <>
-      <Link href={defaultPath}>
+      <Link className='flex justify-center' href={defaultPath}>
         <IconContainer
           Icon={HomeIcon}
           variant='fill'
@@ -45,8 +45,8 @@ export function Icons() {
           label='Home'
         />
       </Link>
-      <div className='hidden md:block w-px h-full bg-neutral-100'></div>
-      <Link href={`${defaultPath}/search`}>
+      <hr className='hidden md:block w-px h-full bg-neutral-100'></hr>
+      <Link className='flex justify-center' href={`${defaultPath}/search`}>
         <IconContainer
           Icon={SearchIcon}
           variant='fill'
@@ -54,8 +54,8 @@ export function Icons() {
           label='Search'
         />
       </Link>
-      <div className='hidden md:block w-px h-full bg-neutral-100'></div>
-      <Link href={`${defaultPath}/archived`}>
+      <hr className='hidden md:block w-px h-full bg-neutral-100'></hr>
+      <Link className='flex justify-center' href={`${defaultPath}/archived`}>
         <IconContainer
           Icon={ArchiveIcon}
           variant='stroke'
@@ -63,8 +63,8 @@ export function Icons() {
           label='Archived'
         />
       </Link>
-      <div className='hidden md:block w-px h-full bg-neutral-100'></div>
-      <Link href={`${defaultPath}/tag`}>
+      <hr className='hidden md:block w-px h-full bg-neutral-100'></hr>
+      <Link className='flex justify-center' href={`${defaultPath}/tag`}>
         <IconContainer
           Icon={TagIcon}
           variant='stroke'
@@ -72,8 +72,8 @@ export function Icons() {
           label='Tags'
         />
       </Link>
-      <div className='hidden md:block w-px h-full bg-neutral-100'></div>
-      <Link href={`${defaultPath}/settings`}>
+      <hr className='hidden md:block w-px h-full bg-neutral-100'></hr>
+      <Link className='flex justify-center' href={`${defaultPath}/settings`}>
         <IconContainer
           Icon={SettingsIcon}
           variant='fill'

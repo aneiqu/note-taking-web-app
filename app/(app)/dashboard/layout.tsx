@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Sidebar />
       </div>
       <div className='flex flex-col w-full h-full '>
-        <div className='flex flex-col items-center bg-white px-4 gap-4  dark:bg-neutral-950 rounded-12 rounded-b-0 h-full lg:rounded-0 lg:h-fit lg:flex-row lg:px-8 lg:py-[18.5px] lg:items-center lg:border-b border-neutral-100'>
+        <div className='flex flex-col items-center bg-white px-4 gap-4 dark:bg-neutral-950 rounded-12 rounded-b-0 h-full lg:rounded-0 lg:h-fit lg:flex-row lg:px-8 lg:py-[18.5px] lg:items-center lg:border-b border-neutral-100'>
           <div className='hidden lg:flex items-center w-full gap-4'>
             <h2 className='text-preset-1'>All Notes</h2>
             <div className='relative flex items-center ml-auto'>
@@ -32,16 +32,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <SettingsIcon className='**:fill-neutral-500 cursor-pointer' />
           </div>
-          <div className='lg:hidden'>{children}</div>
+          <div className='lg:hidden h-full'>{children}</div>
         </div>
         <div className='hidden w-full h-full bg-white lg:block overflow-hidden'>{children}</div>
       </div>
-      <div className='grid grid-flow-col auto-cols-fr w-screen bottom-0 items-center fixed h-fit py-3 px-4 bg-white shadow-[-2.5px_10px_15px_6px] shadow-neutral-200 outline-1 outline-neutral-200 lg:hidden'>
+      <nav className='grid grid-flow-col auto-cols-fr w-screen bottom-0 items-center fixed h-fit py-3 px-4 bg-white shadow-[-2.5px_10px_15px_6px] shadow-neutral-200 outline-1 outline-neutral-200 lg:hidden'>
         <div className='absolute w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-500 flex items-center justify-center right-4 md:right-8 bottom-full mb-4 md:mb-8'>
           <PlusIcon className='**:fill-white' />
         </div>
         <Icons />
-      </div>
+      </nav>
     </div>
   );
 }

@@ -2,14 +2,7 @@ import data from "@/app/assets/data/data.json";
 import DashboardItem from "@/app/ui/dashboard/DashboardItem";
 
 export default function Home() {
-  const formatDate = (date: string) => {
-    const formatedDate = new Intl.DateTimeFormat("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    }).format(new Date(date));
-    return formatedDate;
-  };
+  const filteredNotes = data.notes.filter((note) => !note.isArchived);
 
   return (
     <div className='lg:grid lg:grid-cols-12 h-full'>
@@ -19,13 +12,8 @@ export default function Home() {
           + Create New Note
         </button>
         <div className='flex flex-col gap-1 h-full overflow-y-scroll'>
-          {data.notes.map((note) => (
-            <DashboardItem
-              key={note.title}
-              title={note.title}
-              tags={note.tags}
-              lastEdited={formatDate(note.lastEdited)}
-            />
+          {filteredNotes.map((note) => (
+            <DashboardItem note={note} key={note.id} />
           ))}
         </div>
       </div>

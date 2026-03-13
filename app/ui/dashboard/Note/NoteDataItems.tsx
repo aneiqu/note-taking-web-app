@@ -17,8 +17,8 @@ interface ContainerProps {
 
 function DataItemContainer({ title, data, Icon, greyedOut, variant }: ContainerProps) {
   return (
-    <div className='grid grid-cols-8 text-preset-6 items-center'>
-      <div className='flex col-span-3 gap-1.5 items-center'>
+    <div className='grid grid-cols-8 text-preset-6 lg:text-preset-5 items-center'>
+      <div className='flex col-span-3 md:col-span-1 lg:col-span-2 gap-1.5 items-center'>
         <Icon
           className={`${variant === "fill" ? "**:fill-neutral-700" : "**:stroke-neutral-700"}`}
         />

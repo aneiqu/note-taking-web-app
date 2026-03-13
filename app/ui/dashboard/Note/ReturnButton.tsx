@@ -8,7 +8,7 @@ export default function ReturnButton() {
   const redirectPath = searchParams.get("from") ?? "dashboard";
 
   return (
-    <Link href={`/${redirectPath}`} className='flex gap-1 items-center'>
+    <Link href={`/${redirectPath}`} className='flex gap-1 items-center lg:hidden'>
       <ArrowLeftIcon className='**:fill-neutral-600' />
       <p className='text-neutral-600'>Go Back</p>
     </Link>

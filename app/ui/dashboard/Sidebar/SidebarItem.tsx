@@ -19,7 +19,7 @@ export default function SidebarItem({ icon, label, activePath, variant }: ItemPr
   const fullPath = `${defaultPath}${activePath}`;
   const isActive =
     activePath === ""
-      ? pathname === defaultPath
+      ? pathname === defaultPath || pathname.startsWith(`${defaultPath}/n/`)
       : pathname === fullPath || pathname.startsWith(`${fullPath}/`);
   const classes = `${isActive ? (variant === "fill" ? "fill-blue-500" : "**:stroke-blue-500") : variant === "fill" ? "fill-neutral-700" : "stroke-neutral-700"}`;
   const icons = {

@@ -11,14 +11,10 @@ export default function ReturnButton({ noteHref, classes }: ReturnButtonProps) {
     .split("/")
     .filter((el) => el !== "n")
     .join("/");
-
   return (
-    <Link
-      href={fixedHref}
-      className={`flex gap-1 items-center lg:hidden ${noteHref.includes("tag") || fixedHref.split("/").length > 2 ? "" : "hidden"}`}
-    >
+    <Link href={fixedHref} className={`flex gap-1 items-center lg:hidden ${classes}`}>
       <ArrowLeftIcon className='**:fill-neutral-600' />
-      <p className={`text-neutral-600 ${classes}`}>Go Back</p>
+      <p className={`text-neutral-600 `}>Go Back</p>
     </Link>
   );
 }

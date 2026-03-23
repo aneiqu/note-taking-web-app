@@ -41,7 +41,7 @@ export function Icons() {
         <IconContainer
           Icon={HomeIcon}
           variant='fill'
-          isActive={pathname.endsWith(`${defaultPath}`)}
+          isActive={pathname.endsWith(`${defaultPath}`) || pathname.startsWith(`${defaultPath}/n`)}
           label='Home'
         />
       </Link>

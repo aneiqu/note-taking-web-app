@@ -11,9 +11,10 @@ interface NoteProps {
     id: string;
   };
   activeNoteId: string;
+  noteHref: string;
 }
 
-export default function DashboardItem({ note, activeNoteId }: NoteProps) {
+export default function DashboardItem({ note, activeNoteId, noteHref }: NoteProps) {
   const isActive = note.id === activeNoteId;
 
   const tagsFormatted = note.tags.map((tag) => (
@@ -25,8 +26,7 @@ export default function DashboardItem({ note, activeNoteId }: NoteProps) {
     <>
       <Link
         href={{
-          pathname: `/dashboard/n/${encodeURIComponent(note.id)}`,
-          query: { from: "dashboard" },
+          pathname: noteHref,
         }}
         className='nth-last-2:pb-14 md:nth-last-2:pb-18.5 lg:pb-0!'
       >

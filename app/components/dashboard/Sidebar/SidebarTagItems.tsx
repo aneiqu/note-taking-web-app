@@ -8,8 +8,7 @@ export default function SidebarTagItems() {
   return (
     <>
       {tags.map((tag) => {
-        const tagSlug = tag.toLowerCase();
-
+        const tagSlug = encodeURIComponent(tag).toLowerCase();
         return (
           <Link key={tag} href={`/dashboard/tag/${tagSlug}`}>
             <SidebarItem icon='tag' label={tag} activePath={`/tag/${tagSlug}`} variant='stroke' />

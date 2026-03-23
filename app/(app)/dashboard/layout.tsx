@@ -4,8 +4,9 @@ import SettingsIcon from "@/app/assets/icons/icon-settings.svg";
 import LogoFeather from "@/app/assets/icons/logo-feather.svg";
 import LogoTextDark from "@/app/assets/icons/logo-text-dark.svg";
 import LogoTextWhite from "@/app/assets/icons/logo-text-white.svg";
-import { Icons } from "@/app/ui/dashboard/NavIcons";
-import Sidebar from "@/app/ui/dashboard/Sidebar/Sidebar";
+import { Icons } from "@/app/components/dashboard/NavIcons";
+import PageHeader from "@/app/components/dashboard/PageHeader";
+import Sidebar from "@/app/components/dashboard/Sidebar/Sidebar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,7 +22,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className='flex flex-col w-full h-full'>
         <div className='flex flex-col items-center bg-white px-4 gap-4 dark:bg-neutral-950 rounded-12 rounded-b-0 h-full lg:rounded-0 lg:h-fit lg:shrink-0 lg:flex-row lg:px-8 lg:py-[18.5px] lg:items-center lg:border-b border-neutral-100'>
           <div className='hidden lg:flex items-center w-full gap-4'>
-            <h2 className='text-preset-1'>All Notes</h2>
+            <PageHeader />
             <div className='relative flex items-center ml-auto'>
               <SearchIcon className='fill-neutral-500 left-4 absolute' />
               <input

@@ -1,5 +1,5 @@
 import NotePageLayout from "@/app/components/dashboard/Note/NotePageLayout";
-import { filterTags } from "@/utils/filterTags";
+import { getNotesByTag } from "@/utils/getNotes";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,12 +7,12 @@ interface LayoutProps {
 }
 
 export default async function Layout({ children, params }: LayoutProps) {
-  const { tag } = await params;
+  const { tag: tagSlug } = await params;
   return (
     <NotePageLayout
-      filteredNotes={filterTags(tag)}
+      filteredNotes={getNotesByTag(tagSlug)}
       params={params}
-      noteHref={`/dashboard/tag/${encodeURIComponent(tag)}/n`}
+      noteHref={`/dashboard/tag/${tagSlug}/n`}
     >
       {children}
     </NotePageLayout>

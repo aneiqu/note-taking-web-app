@@ -1,9 +1,9 @@
-import data from "@/app/assets/data/data.json";
+import { getAllTags } from "@/utils/getNotes";
 import Link from "next/link";
 import SidebarItem from "./SidebarItem";
 
 export default function SidebarTagItems() {
-  const tags = Array.from(new Set(data.notes.flatMap((note) => note.tags)));
+  const tags = getAllTags();
 
   return (
     <>

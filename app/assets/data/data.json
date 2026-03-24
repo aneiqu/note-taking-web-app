@@ -3,39 +3,7 @@
     {
       "id": "f6eb14b0-0806-4ebf-9f65-d8a0cffac39b",
       "title": "React Performance Optimization",
-      "tags": ["Dev", "React"],
-      "content": "Key performance optimization techniques:\n\n1. Code Splitting\n- Use React.lazy() for route-based splitting\n- Implement dynamic imports for heavy components\n\n2. Memoization\n- useMemo for expensive calculations\n- useCallback for function props\n- React.memo for component optimization\n\n3. Virtual List Implementation\n- Use react-window for long lists\n- Implement infinite scrolling\n\nTODO: Benchmark current application and identify bottlenecks",
-      "lastEdited": "2024-10-29T10:15:00Z",
-      "isArchived": false
-    },
-    {
-      "id": "f6eb14b0-0806-4ebf-9f65-d8a0cffac39b2",
-      "title": "React Performance Optimization",
-      "tags": ["Dev", "React"],
-      "content": "Key performance optimization techniques:\n\n1. Code Splitting\n- Use React.lazy() for route-based splitting\n- Implement dynamic imports for heavy components\n\n2. Memoization\n- useMemo for expensive calculations\n- useCallback for function props\n- React.memo for component optimization\n\n3. Virtual List Implementation\n- Use react-window for long lists\n- Implement infinite scrolling\n\nTODO: Benchmark current application and identify bottlenecks",
-      "lastEdited": "2024-10-29T10:15:00Z",
-      "isArchived": false
-    },
-    {
-      "id": "f6eb14b0-0806-4ebf-9f65-d8a0cffac39b3",
-      "title": "React Performance Optimization",
-      "tags": ["Dev", "React"],
-      "content": "Key performance optimization techniques:\n\n1. Code Splitting\n- Use React.lazy() for route-based splitting\n- Implement dynamic imports for heavy components\n\n2. Memoization\n- useMemo for expensive calculations\n- useCallback for function props\n- React.memo for component optimization\n\n3. Virtual List Implementation\n- Use react-window for long lists\n- Implement infinite scrolling\n\nTODO: Benchmark current application and identify bottlenecks",
-      "lastEdited": "2024-10-29T10:15:00Z",
-      "isArchived": false
-    },
-    {
-      "id": "f6eb14b0-0806-4ebf-9f65-d8a0cffac39b4",
-      "title": "React Performance Optimization",
-      "tags": ["Dev", "React"],
-      "content": "Key performance optimization techniques:\n\n1. Code Splitting\n- Use React.lazy() for route-based splitting\n- Implement dynamic imports for heavy components\n\n2. Memoization\n- useMemo for expensive calculations\n- useCallback for function props\n- React.memo for component optimization\n\n3. Virtual List Implementation\n- Use react-window for long lists\n- Implement infinite scrolling\n\nTODO: Benchmark current application and identify bottlenecks",
-      "lastEdited": "2024-10-29T10:15:00Z",
-      "isArchived": false
-    },
-    {
-      "id": "f6eb14b0-0806-4ebf-9f65-d8a0cffac39b5",
-      "title": "React Performance Optimization",
-      "tags": ["Dev", "React"],
+      "tags": ["Dev test", "React"],
       "content": "Key performance optimization techniques:\n\n1. Code Splitting\n- Use React.lazy() for route-based splitting\n- Implement dynamic imports for heavy components\n\n2. Memoization\n- useMemo for expensive calculations\n- useCallback for function props\n- React.memo for component optimization\n\n3. Virtual List Implementation\n- Use react-window for long lists\n- Implement infinite scrolling\n\nTODO: Benchmark current application and identify bottlenecks",
       "lastEdited": "2024-10-29T10:15:00Z",
       "isArchived": false
@@ -59,7 +27,7 @@
     {
       "id": "1c9ea0f7-025c-471c-b571-1f60f8454f53",
       "title": "TypeScript Migration Guide",
-      "tags": ["Dev", "React", "TypeScript"],
+      "tags": ["Dev test", "React", "TypeScript"],
       "content": "Project migration steps:\n\n1. Initial Setup\n- Install TypeScript dependencies\n- Configure tsconfig.json\n- Set up build pipeline\n\n2. Migration Strategy\n- Start with newer modules\n- Add type definitions gradually\n- Use 'any' temporarily for complex cases\n\n3. Testing Approach\n- Update test configuration\n- Add type testing\n- Validate build process\n\nDeadline: End of Q4 2024",
       "lastEdited": "2024-10-26T09:20:00Z",
       "isArchived": true

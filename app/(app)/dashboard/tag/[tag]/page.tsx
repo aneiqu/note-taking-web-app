@@ -1,6 +1,6 @@
-import data from "@/app/assets/data/data.json";
 import NotesListPane from "@/app/components/dashboard/Note/NotesListPane";
 import ReturnButton from "@/app/components/dashboard/Note/ReturnButton";
+import { getActiveNotesByTag, getNotesByTag } from "@/utils/getNotes";
 
 interface TagPageProps {
   params: Promise<{
@@ -9,13 +9,7 @@ interface TagPageProps {
 }
 
 export default async function Tag({ params }: TagPageProps) {
-  const { tag } = await params;
-  const currentTag = decodeURIComponent(tag).toLowerCase();
-
-  const filteredNotes = data.notes.filter(
-    (note) => !note.isArchived && note.tags.some((tag) => tag.toLowerCase() === currentTag),
-  );
-
+  const { tag: tagSlug } = await params;
   return (
     <div className='lg:grid grid-cols-12 col-span-3 h-full dark:bg-black '>
       <>
@@ -25,9 +19,9 @@ export default async function Tag({ params }: TagPageProps) {
           title='All Tags'
         />
         <NotesListPane
-          filteredNotes={filteredNotes}
+          filteredNotes={getActiveNotesByTag(tagSlug)}
           activeNoteId=''
-          noteHref={`/dashboard/tag/${encodeURIComponent(tag)}/n`}
+          noteHref={`/dashboard/tag/${tagSlug}/n`}
         />
       </>
     </div>

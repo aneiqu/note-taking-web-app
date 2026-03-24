@@ -1,5 +1,5 @@
-import data from "@/app/assets/data/data.json";
 import NoteDataItems from "@/app/components/dashboard/Note/NoteDataItems";
+import { getNoteById } from "@/utils/getNotes";
 import { notFound } from "next/navigation";
 
 interface NotePageParams {
@@ -7,27 +7,30 @@ interface NotePageParams {
 }
 
 export default async function NotePageContent({ params }: NotePageParams) {
-  const { note: noteId, tag: noteTag } = await params;
-  console.log(noteTag ? "yes" : "no");
-  const currentNote = data.notes.find((n) => n.id === decodeURIComponent(noteId));
-  // &&
-  //     n.tags.some((tag) => tag.toLowerCase() === decodeURIComponent(noteTag).toLowerCase()),
-  if (!currentNote) notFound();
+  const { note: noteId, tag: tagSlug } = await params;
+  const note = getNoteById(noteId);
+  if (!note) notFound();
+  if (
+    tagSlug &&
+    !note.tags.some((tag) => tag.toLowerCase() === decodeURIComponent(tagSlug).toLowerCase())
+  ) {
+    notFound();
+  }
 
   return (
     <div className='flex flex-col gap-4 col-span-6 lg:py-5 lg:px-6 lg:border-r border-neutral-200 dark:border-neutral-800 h-full dark:bg-black'>
       <div>
         <div className='flex flex-col gap-3 lg:gap-4'>
-          <div className='text-preset-1 text-neutral-950 dark:text-white'>{currentNote.title}</div>
+          <div className='text-preset-1 text-neutral-950 dark:text-white'>{note.title}</div>
           <div className='flex flex-col gap-1'>
-            <NoteDataItems tags={currentNote.tags} date={currentNote.lastEdited} />
+            <NoteDataItems tags={note.tags} date={note.lastEdited} />
           </div>
         </div>
       </div>
       <hr className='text-neutral-200 dark:text-neutral-800' />
       <textarea
         className='whitespace-pre-wrap text-preset-5 dark:text-neutral-100 resize-none h-full'
-        defaultValue={currentNote.content}
+        defaultValue={note.content}
       ></textarea>
       <hr className='text-neutral-200 dark:text-neutral-800 hidden lg:block' />
       <div className='text-preset-4 hidden lg:flex gap-4 '>

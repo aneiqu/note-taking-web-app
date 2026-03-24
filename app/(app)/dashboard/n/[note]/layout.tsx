@@ -1,5 +1,5 @@
 import NotePageLayout from "@/app/components/dashboard/Note/NotePageLayout";
-import { filterArchieved } from "@/utils/filterArchieved";
+import { getActiveNotes } from "@/utils/getNotes";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ interface LayoutProps {
 
 export default async function Layout({ children, params }: LayoutProps) {
   return (
-    <NotePageLayout filteredNotes={filterArchieved()} params={params} noteHref='/dashboard/n'>
+    <NotePageLayout filteredNotes={getActiveNotes()} params={params} noteHref='/dashboard/n'>
       {children}
     </NotePageLayout>
   );

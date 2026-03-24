@@ -21,19 +21,23 @@ export default function SidebarItem({ icon, label, activePath, variant }: ItemPr
     activePath === ""
       ? pathname === defaultPath || pathname.startsWith(`${defaultPath}/n/`)
       : pathname === fullPath || pathname.startsWith(`${fullPath}/`);
-  const classes = `${isActive ? (variant === "fill" ? "fill-blue-500" : "**:stroke-blue-500") : variant === "fill" ? "fill-neutral-700" : "stroke-neutral-700"}`;
+  const classes = `${isActive ? (variant === "fill" ? "fill-blue-500" : "**:stroke-blue-500") : variant === "fill" ? "**:fill-neutral-700 dark:**:fill-neutral-300" : "**:stroke-neutral-700 dark:**:stroke-neutral-300"}`;
   const icons = {
     home: <HomeIcon className={classes} />,
     archive: <ArchiveIcon className={classes} />,
     tag: <TagIcon className={classes} />,
   };
   return (
-    <div
-      className={`flex gap-2 items-center py-2.5 px-3 rounded-lg ${isActive ? "bg-neutral-100" : ""}`}
-    >
-      {icons[icon]}
-      {label}
-      <ChevronRightIcon className={`ml-auto ${isActive ? "block" : "hidden"}`} />
-    </div>
+    <>
+      <div
+        className={`flex gap-2 items-center py-2.5 lg:px-3 rounded-lg dark:text-neutral-300 ${isActive ? "bg-neutral-100 dark:bg-neutral-800" : ""}`}
+      >
+        {icons[icon]}
+        {label}
+        <ChevronRightIcon
+          className={`ml-auto dark:**:fill-white ${isActive ? "block" : "hidden"}`}
+        />
+      </div>
+    </>
   );
 }

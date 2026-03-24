@@ -18,10 +18,10 @@ interface IconProps {
 function IconContainer({ Icon, variant, isActive, label }: IconProps) {
   return (
     <div
-      className={`transition-all duration-200 flex flex-col items-center max-w-[68.6px] w-[clamp(48px,18vw,68.6px)] md:w-20 py-1 gap-1 rounded-sm ${isActive ? "bg-blue-50" : ""}`}
+      className={`transition-all duration-200 flex flex-col items-center max-w-[68.6px] w-[clamp(48px,18vw,68.6px)] md:w-20 py-1 gap-1 rounded-sm ${isActive ? "bg-blue-50 dark:bg-neutral-700" : ""}`}
     >
       <Icon
-        className={`${variant === "fill" ? "**:fill-neutral-600" : "**:stroke-neutral-600"} ${isActive ? (variant === "fill" ? "**:fill-blue-500!" : "**:stroke-blue-500!") : ""}`}
+        className={`${variant === "fill" ? "**:fill-neutral-600 **:dark:fill-neutral-400" : "**:stroke-neutral-600 **:dark:stroke-neutral-400"} ${isActive ? (variant === "fill" ? "**:fill-blue-500!" : "**:stroke-blue-500!") : ""}`}
       />
       <p
         className={`hidden md:block text-preset-6 ${isActive ? "text-blue-500" : "text-neutral-600"}`}
@@ -32,7 +32,7 @@ function IconContainer({ Icon, variant, isActive, label }: IconProps) {
   );
 }
 
-export function Icons() {
+export function NavIcons() {
   const pathname = usePathname();
   const defaultPath = "/dashboard";
   return (
@@ -45,7 +45,7 @@ export function Icons() {
           label='Home'
         />
       </Link>
-      <hr className='hidden md:block w-px h-full bg-neutral-100'></hr>
+      <hr className='hidden md:block w-px h-full bg-neutral-100 dark:bg-neutral-800 md:justify-self-center'></hr>
       <Link className='flex justify-center' href={`${defaultPath}/search`}>
         <IconContainer
           Icon={SearchIcon}
@@ -54,7 +54,7 @@ export function Icons() {
           label='Search'
         />
       </Link>
-      <hr className='hidden md:block w-px h-full bg-neutral-100'></hr>
+      <hr className='hidden md:block w-px h-full bg-neutral-100 dark:bg-neutral-800 md:justify-self-center'></hr>
       <Link className='flex justify-center' href={`${defaultPath}/archived`}>
         <IconContainer
           Icon={ArchiveIcon}
@@ -63,7 +63,7 @@ export function Icons() {
           label='Archived'
         />
       </Link>
-      <hr className='hidden md:block w-px h-full bg-neutral-100'></hr>
+      <hr className='hidden md:block w-px h-full bg-neutral-100 dark:bg-neutral-800 md:justify-self-center'></hr>
       <Link className='flex justify-center' href={`${defaultPath}/tag`}>
         <IconContainer
           Icon={TagIcon}
@@ -72,7 +72,7 @@ export function Icons() {
           label='Tags'
         />
       </Link>
-      <hr className='hidden md:block w-px h-full bg-neutral-100'></hr>
+      <hr className='hidden md:block w-px h-full bg-neutral-100 dark:bg-neutral-800 md:justify-self-center'></hr>
       <Link className='flex justify-center' href={`${defaultPath}/settings`}>
         <IconContainer
           Icon={SettingsIcon}

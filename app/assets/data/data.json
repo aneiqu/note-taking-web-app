@@ -9,6 +9,38 @@
       "isArchived": false
     },
     {
+      "id": "f6eb14b0-0806-4ebf-9f65-d8a0cffac39b2",
+      "title": "React Performance Optimization",
+      "tags": ["Dev", "React"],
+      "content": "Key performance optimization techniques:\n\n1. Code Splitting\n- Use React.lazy() for route-based splitting\n- Implement dynamic imports for heavy components\n\n2. Memoization\n- useMemo for expensive calculations\n- useCallback for function props\n- React.memo for component optimization\n\n3. Virtual List Implementation\n- Use react-window for long lists\n- Implement infinite scrolling\n\nTODO: Benchmark current application and identify bottlenecks",
+      "lastEdited": "2024-10-29T10:15:00Z",
+      "isArchived": false
+    },
+    {
+      "id": "f6eb14b0-0806-4ebf-9f65-d8a0cffac39b3",
+      "title": "React Performance Optimization",
+      "tags": ["Dev", "React"],
+      "content": "Key performance optimization techniques:\n\n1. Code Splitting\n- Use React.lazy() for route-based splitting\n- Implement dynamic imports for heavy components\n\n2. Memoization\n- useMemo for expensive calculations\n- useCallback for function props\n- React.memo for component optimization\n\n3. Virtual List Implementation\n- Use react-window for long lists\n- Implement infinite scrolling\n\nTODO: Benchmark current application and identify bottlenecks",
+      "lastEdited": "2024-10-29T10:15:00Z",
+      "isArchived": false
+    },
+    {
+      "id": "f6eb14b0-0806-4ebf-9f65-d8a0cffac39b4",
+      "title": "React Performance Optimization",
+      "tags": ["Dev", "React"],
+      "content": "Key performance optimization techniques:\n\n1. Code Splitting\n- Use React.lazy() for route-based splitting\n- Implement dynamic imports for heavy components\n\n2. Memoization\n- useMemo for expensive calculations\n- useCallback for function props\n- React.memo for component optimization\n\n3. Virtual List Implementation\n- Use react-window for long lists\n- Implement infinite scrolling\n\nTODO: Benchmark current application and identify bottlenecks",
+      "lastEdited": "2024-10-29T10:15:00Z",
+      "isArchived": false
+    },
+    {
+      "id": "f6eb14b0-0806-4ebf-9f65-d8a0cffac39b5",
+      "title": "React Performance Optimization",
+      "tags": ["Dev", "React"],
+      "content": "Key performance optimization techniques:\n\n1. Code Splitting\n- Use React.lazy() for route-based splitting\n- Implement dynamic imports for heavy components\n\n2. Memoization\n- useMemo for expensive calculations\n- useCallback for function props\n- React.memo for component optimization\n\n3. Virtual List Implementation\n- Use react-window for long lists\n- Implement infinite scrolling\n\nTODO: Benchmark current application and identify bottlenecks",
+      "lastEdited": "2024-10-29T10:15:00Z",
+      "isArchived": false
+    },
+    {
       "id": "8ea7adfd-55f5-4e0c-bf47-72e7d4dd9f07",
       "title": "Japan Travel Planning",
       "tags": ["Travel", "Personal"],

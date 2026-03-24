@@ -20,11 +20,15 @@ function DataItemContainer({ title, data, Icon, greyedOut, variant }: ContainerP
     <div className='grid grid-cols-8 text-preset-6 lg:text-preset-5 items-center'>
       <div className='flex col-span-3 md:col-span-1 lg:col-span-2 gap-1.5 items-center'>
         <Icon
-          className={`${variant === "fill" ? "**:fill-neutral-700" : "**:stroke-neutral-700"}`}
+          className={`${variant === "fill" ? "**:fill-neutral-700 dark:**:fill-neutral-300" : "**:stroke-neutral-700 dark:**:stroke-neutral-300"}`}
         />
-        <p className='text-neutral-600'>{title}</p>
+        <p className='text-neutral-600 dark:text-neutral-300'>{title}</p>
       </div>
-      <p className={`col-span-5 ${greyedOut ? "text-neutral-700" : "text-neutral-950"}`}>{data}</p>
+      <p
+        className={`col-span-5 ${greyedOut ? "text-neutral-700 dark:text-neutral-300" : "text-neutral-950 dark:text-white"}`}
+      >
+        {data}
+      </p>
     </div>
   );
 }

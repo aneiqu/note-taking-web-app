@@ -1,7 +1,7 @@
 import InfoIcon from "@/app/assets/icons/icon-info.svg";
-import AuthForm from "@/app/ui/auth/AuthForm";
-import { AuthFormPasswordInput } from "@/app/ui/auth/AuthFormInput";
-import AuthHeader from "@/app/ui/auth/AuthHeader";
+import AuthForm from "@/app/components/auth/AuthForm";
+import { AuthFormPasswordInput } from "@/app/components/auth/AuthFormInput";
+import AuthHeader from "@/app/components/auth/AuthHeader";
 
 export default function ResetPassword() {
   return (

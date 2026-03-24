@@ -1,8 +1,23 @@
 import type { NextConfig } from "next";
 
+type SvgRule = {
+  test?: RegExp;
+  issuer?: unknown;
+  resourceQuery?: { not?: RegExp[] };
+  exclude?: RegExp;
+};
+
 const nextConfig: NextConfig = {
   webpack: (config) => {
-    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.(".svg"));
+    const rules = config.module.rules as SvgRule[];
+
+    const fileLoaderRule = rules.find(
+      (rule: SvgRule) => rule.test instanceof RegExp && rule.test.test(".svg"),
+    );
+
+    if (!fileLoaderRule) {
+      throw new Error("Default SVG rule not found");
+    }
 
     config.module.rules.push(
       {
@@ -13,16 +28,8 @@ const nextConfig: NextConfig = {
       {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
-        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] },
-        use: [
-          {
-            loader: "@svgr/webpack",
-            options: {
-              typescript: true,
-              ext: "tsx",
-            },
-          },
-        ],
+        resourceQuery: { not: [...(fileLoaderRule.resourceQuery?.not ?? []), /url/] },
+        use: ["@svgr/webpack"],
       },
     );
 

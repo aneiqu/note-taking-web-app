@@ -5,9 +5,7 @@ import ReturnButton from "@/app/components/dashboard/Note/ReturnButton";
 
 interface LayoutProps {
   children: React.ReactNode;
-  params: {
-    note: string;
-  };
+  params: Promise<{ note: string; tag?: string }>;
   noteHref: string;
   filteredNotes: {
     id: string;

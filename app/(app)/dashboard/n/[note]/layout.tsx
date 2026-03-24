@@ -3,9 +3,7 @@ import { filterArchieved } from "@/utils/filterArchieved";
 
 interface LayoutProps {
   children: React.ReactNode;
-  params: {
-    note: string;
-  };
+  params: Promise<{ note: string }>;
 }
 
 export default async function Layout({ children, params }: LayoutProps) {

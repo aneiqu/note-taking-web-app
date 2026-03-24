@@ -3,10 +3,7 @@ import { filterTags } from "@/utils/filterTags";
 
 interface LayoutProps {
   children: React.ReactNode;
-  params: {
-    note: string;
-    tag: string;
-  };
+  params: Promise<{ note: string; tag: string }>;
 }
 
 export default async function Layout({ children, params }: LayoutProps) {

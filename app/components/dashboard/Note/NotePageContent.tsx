@@ -3,7 +3,7 @@ import NoteDataItems from "@/app/components/dashboard/Note/NoteDataItems";
 import { notFound } from "next/navigation";
 
 interface NotePageParams {
-  params: Promise<{ note: string; tag: string }>;
+  params: Promise<{ note: string; tag?: string }>;
 }
 
 export default async function NotePageContent({ params }: NotePageParams) {

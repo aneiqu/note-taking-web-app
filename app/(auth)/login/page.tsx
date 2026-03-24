@@ -1,7 +1,7 @@
-import AuthForm from "@/app/ui/auth/AuthForm";
-import { AuthFormPasswordInput, AuthFormTextInput } from "@/app/ui/auth/AuthFormInput";
-import AuthHeader from "@/app/ui/auth/AuthHeader";
-import AuthLoginGoogle from "@/app/ui/auth/AuthLoginGoogle";
+import AuthForm from "@/app/components/auth/AuthForm";
+import { AuthFormPasswordInput, AuthFormTextInput } from "@/app/components/auth/AuthFormInput";
+import AuthHeader from "@/app/components/auth/AuthHeader";
+import AuthLoginGoogle from "@/app/components/auth/AuthLoginGoogle";
 import Link from "next/link";
 
 export default function Login() {

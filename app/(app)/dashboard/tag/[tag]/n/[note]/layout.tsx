@@ -10,7 +10,7 @@ export default async function Layout({ children, params }: LayoutProps) {
   const { tag: tagSlug } = await params;
   return (
     <NotePageLayout
-      filteredNotes={getNotesByTag(tagSlug)}
+      filteredNotes={await getNotesByTag(tagSlug)}
       params={params}
       noteHref={`/dashboard/tag/${tagSlug}/n`}
     >

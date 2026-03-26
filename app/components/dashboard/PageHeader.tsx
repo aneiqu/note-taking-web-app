@@ -11,7 +11,6 @@ export default function PageHeader({ classes }: PageHeaderProps) {
 
   return (
     <div className={`text-preset-1 ${classes}`}>
-      <div className='text-white'></div>
       {path.includes("tag") && path.split("/").length > 3 ? (
         <div className='text-neutral-600 dark:text-neutral-400'>
           Notes Tagged:
@@ -21,6 +20,8 @@ export default function PageHeader({ classes }: PageHeaderProps) {
               decodeURIComponent(path.split("/")[3]).slice(1)}
           </span>
         </div>
+      ) : path.includes("archived") ? (
+        <div className='dark:text-white'>Archived Notes</div>
       ) : (
         <div className='dark:text-white'>All Notes</div>
       )}

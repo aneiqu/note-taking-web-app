@@ -1,39 +1,6 @@
 {
   "notes": [
     {
-      "id": "f6eb14b0-0806-4ebf-9f65-d8a0cffac39b",
-      "title": "React Performance Optimization",
-      "tags": [
-        "Dev test",
-        "React"
-      ],
-      "content": "Key performance optimization techniques:\r\n\r\n1. Code Splitting\r\n- Use React.lazy() for route-based splitting\r\n- Implement dynamic imports for heavy components\r\n\r\n2. Memoization\r\n- useMemo for expensive calculations\r\n- useCallback for function props\r\n- React.memo for component optimization\r\n\r\n3. Virtual List Implementation\r\n- Use react-window for long lists\r\n- Implement infinite scrolling\r\n\r\nTODO: Benchmark current application and identify bottlenecks",
-      "lastEdited": "2026-03-25T15:21:38.154Z",
-      "isArchived": false
-    },
-    {
-      "id": "8ea7adfd-55f5-4e0c-bf47-72e7d4dd9f07",
-      "title": "Japan Travel Planning",
-      "tags": [
-        "Travel",
-        "Personal"
-      ],
-      "content": "Japan Trip Planning - Spring 2025\n\nItinerary Draft:\nWeek 1: Tokyo\n- Shibuya and Harajuku\n- TeamLab Digital Art Museum\n- Day trip to Mount Fuji\n\nWeek 2: Kyoto & Osaka\n- Traditional temples\n- Cherry blossom viewing\n- Food tour in Osaka\n\nBudget: $3000\nAccommodation: Mix of hotels and traditional ryokans\nJR Pass: 14 days\n\nTODO: Book flights 6 months in advance",
-      "lastEdited": "2024-10-28T16:45:00Z",
-      "isArchived": false
-    },
-    {
-      "id": "6018c2f1-5107-4d8f-92bc-c6f2d06bb2dd",
-      "title": "Favorite Pasta Recipes",
-      "tags": [
-        "Cooking",
-        "Recipes"
-      ],
-      "content": "Classic Italian Recipes:\n\n1. Carbonara\n- Eggs, pecorino, guanciale\n- No cream ever!\n- Save pasta water\n\n2. Cacio e Pepe\n- Pecorino Romano\n- Fresh black pepper\n- Technique is crucial\n\n3. Arrabbiata\n- San Marzano tomatoes\n- Fresh garlic\n- Red pepper flakes\n\nNote: Always use high-quality ingredients",
-      "lastEdited": "2024-10-27T14:30:00Z",
-      "isArchived": false
-    },
-    {
       "id": "1c9ea0f7-025c-471c-b571-1f60f8454f53",
       "title": "TypeScript Migration Guide",
       "tags": [
@@ -42,8 +9,8 @@
         "TypeScript"
       ],
       "content": "Project migration steps:\n\n1. Initial Setup\n- Install TypeScript dependencies\n- Configure tsconfig.json\n- Set up build pipeline\n\n2. Migration Strategy\n- Start with newer modules\n- Add type definitions gradually\n- Use 'any' temporarily for complex cases\n\n3. Testing Approach\n- Update test configuration\n- Add type testing\n- Validate build process\n\nDeadline: End of Q4 2024",
-      "lastEdited": "2024-10-26T09:20:00Z",
-      "isArchived": true
+      "lastEdited": "2026-03-26T15:07:31.016Z",
+      "isArchived": false
     },
     {
       "id": "4c4960ab-600f-4adf-a695-6db45c93f5a7",
@@ -64,8 +31,8 @@
         "Shopping"
       ],
       "content": "Birthday and Holiday Gift List:\n\nMom:\n- Cooking class subscription\n- Kindle Paperwhite\n- Spa day package\n\nDad:\n- Golf lessons\n- Wireless earbuds\n- BBQ accessories\n\nSister:\n- Art supplies set\n- Yoga mat kit\n- Coffee subscription\n\nBudget per person: $150-200",
-      "lastEdited": "2024-10-20T11:30:15Z",
-      "isArchived": true
+      "lastEdited": "2026-03-26T15:08:01.723Z",
+      "isArchived": false
     },
     {
       "id": "2f2687d8-df11-4349-bdb8-b4fc75d929dd",
@@ -74,9 +41,9 @@
         "Dev",
         "React"
       ],
-      "content": "Custom Component Library Structure:\n\n1. Basic Components\n- Button\n- Input\n- Card\n- Modal\n\n2. Form Components\n- FormField\n- Select\n- Checkbox\n- RadioGroup\n\n3. Layout Components\n- Container\n- Grid\n- Flex\n\nAll components need:\n- TypeScript definitions\n- Unit tests\n- Storybook documentation\n- Accessibility support",
-      "lastEdited": "2024-10-15T14:23:45Z",
-      "isArchived": true
+      "content": "Custom Component Library Structure:\r\n\r\n1. Basic Components\r\n- Button\r\n- Input\r\n- Card\r\n- Modal\r\n\r\n2. Form Components\r\n- FormField\r\n- Select\r\n- Checkbox\r\n- RadioGroup\r\n\r\n3. Layout Components\r\n- Container\r\n- Grid\r\n- Flex\r\n\r\nAll components need:\r\n- TypeScript definitions\r\n- Unit tests\r\n- Storybook documentation\r\n- Accessibility support",
+      "lastEdited": "2026-03-26T15:21:45.228Z",
+      "isArchived": false
     },
     {
       "id": "0e40f6eb-1d47-4dcf-aa76-5272f1734ef0",
@@ -87,7 +54,7 @@
         "Recipes"
       ],
       "content": "Weekly Meal Prep Plan:\n\nBreakfast Options:\n- Overnight oats\n- Egg muffins\n- Smoothie packs\n\nLunch Containers:\n- Greek chicken bowl\n- Buddha bowls\n- Tuna pasta salad\n\nSnacks:\n- Cut vegetables\n- Mixed nuts\n- Greek yogurt parfait\n\nPrep Time: Sunday 2-4pm\nStorage: Glass containers\nLasts: 4-5 days",
-      "lastEdited": "2024-10-12T09:45:15Z",
+      "lastEdited": "2026-03-26T15:25:33.687Z",
       "isArchived": false
     },
     {

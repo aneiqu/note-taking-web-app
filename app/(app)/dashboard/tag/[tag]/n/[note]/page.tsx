@@ -5,5 +5,7 @@ interface NotePageParams {
 }
 
 export default async function Note({ params }: NotePageParams) {
-  return <NotePageContent params={params} />;
+  const { tag: tagSlug } = await params;
+
+  return <NotePageContent params={params} cancelHref={`/dashboard/tag/${tagSlug}`} />;
 }

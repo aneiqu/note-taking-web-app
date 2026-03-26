@@ -8,7 +8,7 @@ interface LayoutProps {
 
 export default async function Layout({ children, params }: LayoutProps) {
   return (
-    <NotePageLayout filteredNotes={getActiveNotes()} params={params} noteHref='/dashboard/n'>
+    <NotePageLayout filteredNotes={await getActiveNotes()} params={params} noteHref='/dashboard/n'>
       {children}
     </NotePageLayout>
   );

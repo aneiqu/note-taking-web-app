@@ -5,5 +5,5 @@ interface NotePageParams {
 }
 
 export default async function Note({ params }: NotePageParams) {
-  return <NotePageContent params={params} />;
+  return <NotePageContent params={params} cancelHref={`/dashboard/`} />;
 }

@@ -19,7 +19,7 @@ export default async function Tag({ params }: TagPageProps) {
           title='All Tags'
         />
         <NotesListPane
-          filteredNotes={getActiveNotesByTag(tagSlug)}
+          filteredNotes={await getActiveNotesByTag(tagSlug)}
           activeNoteId=''
           noteHref={`/dashboard/tag/${tagSlug}/n`}
         />

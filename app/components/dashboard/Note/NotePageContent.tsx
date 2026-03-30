@@ -47,7 +47,7 @@ export default async function NotePageContent({ params, cancelHref }: NotePagePa
     <Form
       id='note-form'
       action={saveNoteContent}
-      className='flex flex-col gap-4 col-span-6 lg:py-5 lg:px-6 lg:border-r border-neutral-200 dark:border-neutral-800 h-full dark:bg-black'
+      className='flex flex-col gap-4 col-span-6 lg:py-5 lg:px-6 lg:border-r border-neutral-200 dark:border-neutral-800 h-full dark:bg-neutral-950'
     >
       <div>
         <div className='flex flex-col gap-3 lg:gap-4'>

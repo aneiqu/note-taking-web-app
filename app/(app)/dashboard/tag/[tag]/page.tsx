@@ -1,6 +1,6 @@
 import NotesListPane from "@/app/components/dashboard/Note/NotesListPane";
 import ReturnButton from "@/app/components/dashboard/Note/ReturnButton";
-import { getActiveNotesByTag, getNotesByTag } from "@/utils/getNotes";
+import { getActiveNotesByTag } from "@/utils/getNotes";
 
 interface TagPageProps {
   params: Promise<{
@@ -11,7 +11,7 @@ interface TagPageProps {
 export default async function Tag({ params }: TagPageProps) {
   const { tag: tagSlug } = await params;
   return (
-    <div className='lg:grid grid-cols-12 col-span-3 h-full dark:bg-black '>
+    <div className='lg:grid grid-cols-12 col-span-3 h-full dark:bg-neutral-950 '>
       <>
         <ReturnButton
           noteHref='/dashboard/tag'

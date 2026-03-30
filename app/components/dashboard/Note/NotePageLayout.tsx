@@ -89,7 +89,7 @@ export default async function NotePageLayout({
       <div className='col-span-3 hidden lg:block overflow-hidden'>
         <NotesListPane activeNoteId={noteId} noteHref={noteHref} filteredNotes={filteredNotes} />
       </div>
-      <div className='flex items-center lg:items-baseline justify-between text-preset-5 col-span-3 shrink-0 lg:order-3 dark:bg-black'>
+      <div className='flex items-center lg:items-baseline justify-between text-preset-5 col-span-3 shrink-0 lg:order-3 dark:bg-neutral-800'>
         <ReturnButton noteHref={noteHref} />
 
         <div className='flex gap-4 **:stroke-neutral-600 text-preset-4 text-neutral-950 lg:flex-col lg:w-full lg:py-8 lg:pl-5 lg:pr-8 items-center'>

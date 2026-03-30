@@ -14,9 +14,9 @@ interface PaneProps {
   }[];
 }
 
-export default function NotesListPane({ activeNoteId, noteHref, filteredNotes }: PaneProps) {
+export default async function NotesListPane({ activeNoteId, noteHref, filteredNotes }: PaneProps) {
   return (
-    <div className='flex flex-col w-screen lg:w-full lg:h-full py-5 px-4 gap-4 col-span-3 lg:pl-8 lg:pr-4 lg:pt-5 lg:border-r border-neutral-200 dark:border-neutral-800 dark:bg-black overflow-hidden '>
+    <div className='flex flex-col w-screen lg:w-full lg:h-full py-5 px-4 gap-4 col-span-3 lg:pl-8 lg:pr-4 lg:pt-5 lg:border-r border-neutral-200 dark:border-neutral-800 dark:bg-neutral-950 overflow-hidden '>
       <PageHeader classes='lg:hidden' />
       <button className='hidden lg:block rounded-lg text-preset-4 bg-blue-500 py-3 w-full text-white'>
         + Create New Note

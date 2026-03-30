@@ -22,6 +22,8 @@ export default function PageHeader({ classes }: PageHeaderProps) {
         </div>
       ) : path.includes("archived") ? (
         <div className='dark:text-white'>Archived Notes</div>
+      ) : path.includes("settings") ? (
+        <div className='dark:text-white'>Settings</div>
       ) : (
         <div className='dark:text-white'>All Notes</div>
       )}

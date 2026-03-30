@@ -1,0 +1,34 @@
+import FontIcon from "@/app/assets/icons/icon-font.svg";
+import LockIcon from "@/app/assets/icons/icon-lock.svg";
+import LogoutIcon from "@/app/assets/icons/icon-logout.svg";
+import SunIcon from "@/app/assets/icons/icon-sun.svg";
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className='text-neutral-950 lg:grid lg:grid-cols-12 h-full w-screen px-4 pt-6 lg:px-0 lg:pt-0 lg:w-full'>
+      <div className='flex flex-col col-span-3 lg:border-r border-neutral-200 gap-2 lg:pt-5 lg:pr-4 lg:pl-8'>
+        <h2 className='text-preset-1 dark:text-white pb-2 lg:hidden'>Settings</h2>
+        <div className='text-preset-4 flex flex-col gap-2'>
+          <div className='flex items-center gap-2 py-2'>
+            <SunIcon />
+            <p>Color Theme</p>
+          </div>
+          <div className='flex items-center gap-2 py-2'>
+            <FontIcon />
+            <p>Font Theme</p>
+          </div>
+          <div className='flex items-center gap-2 py-2'>
+            <LockIcon />
+            <p>Change Password</p>
+          </div>
+        </div>
+        <hr className='text-neutral-200' />
+        <div className='flex items-center gap-2 py-2'>
+          <LogoutIcon />
+          <p>Logout</p>
+        </div>
+      </div>
+      <div>{children}</div>
+    </div>
+  );
+}

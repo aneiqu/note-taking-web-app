@@ -14,7 +14,7 @@ export default async function SidebarTagItems() {
             <Link href={`/dashboard/tag/${tagSlug}`}>
               <SidebarItem icon='tag' label={tag} activePath={`/tag/${tagSlug}`} variant='stroke' />
             </Link>
-            <hr className='text-neutral-800 lg:hidden' />
+            <hr className='text-neutral-200 dark:text-neutral-800 lg:hidden' />
           </div>
         );
       })}

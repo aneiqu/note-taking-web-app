@@ -105,13 +105,13 @@ export default async function NotePageLayout({
           <button
             form='note-form'
             formAction={updateArchived}
-            className='lg:border cursor-pointer lg:border-neutral-300 dark:border-neutral-600 lg:rounded-lg lg:flex lg:px-4 lg:py-3 gap-2 items-center lg:w-full'
+            className='lg:border cursor-pointer lg:border-neutral-300 dark:border-neutral-600 lg:rounded-lg lg:flex lg:px-4 lg:py-3 gap-2 items-center lg:w-full hover:bg-neutral-100 hover:border-transparent duration-200 focus:border-neutral-950 focus:ring-offset-2 focus:ring-2 focus:ring-neutral-400 group'
           >
             <RestoreIcon
-              className={`**:stroke-neutral-950 **:fill-neutral-950 dark:**:stroke-neutral-300 dark:**:fill-neutral-300 ${isArchived ? "" : "hidden"}`}
+              className={`lg:**:stroke-neutral-950 **:fill-neutral-950 dark:**:stroke-neutral-300 dark:**:fill-neutral-300 group-hover:**:stroke-neutral-600 ${isArchived ? "" : "hidden"}`}
             />
             <ArchiveIcon
-              className={`**:stroke-neutral-950 dark:**:stroke-neutral-300 ${isArchived ? "hidden" : ""}`}
+              className={`lg:**:stroke-neutral-950 dark:**:stroke-neutral-300 group-hover:**:stroke-neutral-600 ${isArchived ? "hidden" : ""}`}
             />
             <p className='hidden lg:block dark:text-white'>
               {isArchived ? "Restore Note" : "Archive Note"}
@@ -120,15 +120,15 @@ export default async function NotePageLayout({
           <button
             form='note-form'
             formAction={removeNote}
-            className='lg:border cursor-pointer lg:border-neutral-300 dark:border-neutral-600 lg:rounded-lg lg:flex lg:px-4 lg:py-3 gap-2 items-center lg:w-full'
+            className='lg:border cursor-pointer lg:border-neutral-300 dark:border-neutral-600 lg:rounded-lg lg:flex lg:px-4 lg:py-3 gap-2 items-center lg:w-full hover:bg-neutral-100 hover:border-transparent duration-200 focus:border-neutral-950 focus:ring-offset-2 focus:ring-2 focus:ring-neutral-400 group'
           >
-            <TrashIcon className='lg:**:stroke-neutral-950 dark:**:stroke-neutral-300' />
+            <TrashIcon className='lg:**:stroke-neutral-950 dark:**:stroke-neutral-300 group-hover:**:stroke-neutral-600' />
             <p className='hidden lg:block dark:text-white'>Delete Note</p>
           </button>
-          <Link href={cancelHref} className='text-neutral-600 dark:text-neutral-300 lg:hidden'>
+          <Link href={cancelHref} className='text-neutral-600 dark:text-neutral-300 lg:hidden '>
             Cancel
           </Link>
-          <button type='submit' form='note-form' className='text-blue-500  lg:hidden'>
+          <button type='submit' form='note-form' className='text-blue-500  lg:hidden '>
             Save Note
           </button>
         </div>

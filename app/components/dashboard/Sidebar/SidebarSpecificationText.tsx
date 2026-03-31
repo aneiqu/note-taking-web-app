@@ -5,22 +5,26 @@ interface SpecificationTypes {
 
 export default function SpecificationText({ tagText, textType }: SpecificationTypes) {
   const formattedTag = tagText ? (
-    <span className='text-white'>”{tagText[0].toUpperCase() + tagText.slice(1)}”</span>
+    <span className='text-neutral-950 dark:text-white'>
+      ”{tagText[0].toUpperCase() + tagText.slice(1)}”
+    </span>
   ) : (
     ""
   );
 
   const text = {
     tag: (
-      <p className='dark:text-neutral-300'>All notes with the tag {formattedTag} are shown here.</p>
+      <p className='text-neutral-700 dark:text-neutral-300'>
+        All notes with the tag {formattedTag} are shown here.
+      </p>
     ),
     archived: (
-      <p className='text-neutral-200'>
+      <p className='text-neutral-700 dark:text-neutral-200'>
         All your archived notes are stored here. You can restore or delete them anytime.
       </p>
     ),
     search: (
-      <p className='dark:text-neutral-300'>
+      <p className='text-neutral-700 dark:text-neutral-300'>
         All notes matching {formattedTag} are displayed below.
       </p>
     ),

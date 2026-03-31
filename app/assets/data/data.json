@@ -1,28 +1,6 @@
 {
   "notes": [
     {
-      "id": "f6eb14b0-0806-4ebf-9f65-d8a0cffac39b",
-      "title": "React Performance Optimization",
-      "tags": [
-        "Dev test",
-        "React"
-      ],
-      "content": "Key performance optimization techniques:\r\n\r\n1. Code Splitting\r\n- Use React.lazy() for route-based splitting\r\n- Implement dynamic imports for heavy components\r\n\r\n2. Memoization\r\n- useMemo for expensive calculations\r\n- useCallback for function props\r\n- React.memo for component optimization\r\n\r\n3. Virtual List Implementation\r\n- Use react-window for long lists\r\n- Implement infinite scrolling\r\n\r\nTODO: Benchmark current application and identify bottlenecks",
-      "lastEdited": "2026-03-26T15:22:49.242Z",
-      "isArchived": false
-    },
-    {
-      "id": "8ea7adfd-55f5-4e0c-bf47-72e7d4dd9f07",
-      "title": "Japan Travel Planning",
-      "tags": [
-        "Travel",
-        "Personal"
-      ],
-      "content": "Japan Trip Planning - Spring 2025\n\nItinerary Draft:\nWeek 1: Tokyo\n- Shibuya and Harajuku\n- TeamLab Digital Art Museum\n- Day trip to Mount Fuji\n\nWeek 2: Kyoto & Osaka\n- Traditional temples\n- Cherry blossom viewing\n- Food tour in Osaka\n\nBudget: $3000\nAccommodation: Mix of hotels and traditional ryokans\nJR Pass: 14 days\n\nTODO: Book flights 6 months in advance",
-      "lastEdited": "2024-10-28T16:45:00Z",
-      "isArchived": false
-    },
-    {
       "id": "6018c2f1-5107-4d8f-92bc-c6f2d06bb2dd",
       "title": "Favorite Pasta Recipes",
       "tags": [

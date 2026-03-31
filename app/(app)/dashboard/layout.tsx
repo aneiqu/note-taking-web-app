@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <input
                 type='text'
                 placeholder='Search by title, content, or tags…'
-                className='border border-neutral-300 dark:border-neutral-600 px-4 py-3 text-preset-5 dark:text-neutral-400 rounded-lg w-75 pl-11'
+                className='border border-neutral-300 dark:border-neutral-600 px-4 py-3 text-preset-5 dark:text-neutral-400 rounded-lg w-75 pl-11 hover:bg-neutral-50 focus:outline-1 focus:outline-neutral-950 focus:ring-2 focus:ring-offset-3 focus:ring-neutral-400  duration-200'
               />
             </div>
             <Link href={"/dashboard/settings"}>

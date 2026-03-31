@@ -68,14 +68,15 @@ export default async function NotePageContent({ params, cancelHref }: NotePagePa
       <hr className='text-neutral-200 dark:text-neutral-800 hidden lg:block' />
       <div className='text-preset-4 hidden lg:flex gap-4 '>
         <button
-          className='py-3 px-4 bg-blue-500 text-white rounded-md cursor-pointer'
+          className='py-3 px-4 bg-blue-500 hover:bg-blue-700 focus:outline-offset-2 focus:ring-2 focus:ring-neutral-400 text-white rounded-md cursor-pointer duration-200'
           type='submit'
         >
           Save Note
         </button>
         <Link
           href={cancelHref}
-          className='py-3 px-4 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-md cursor-pointer'
+          className='py-3 px-4 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-md cursor-pointer hover:bg-white focus:ring-2 focus:ring-neutral-400 hover:ring-2 hover:ring-neutral-300 focus:ring-offset-3 focus:outline duration-200'
+          draggable='false'
         >
           Cancel
         </Link>

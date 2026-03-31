@@ -22,6 +22,8 @@ export default async function Tag({ params }: TagPageProps) {
           filteredNotes={await getActiveNotesByTag(tagSlug)}
           activeNoteId=''
           noteHref={`/dashboard/tag/${tagSlug}/n`}
+          tagSlug={tagSlug}
+          textType='tag'
         />
       </>
     </div>

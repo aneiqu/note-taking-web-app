@@ -3,11 +3,13 @@ import { getArchivedNotes } from "@/utils/getNotes";
 
 export default async function Archived() {
   return (
-    <div className='lg:grid grid-cols-12 col-span-3 h-full dark:bg-black'>
+    <div className='lg:grid grid-cols-12 col-span-3 h-full dark:bg-neutral-950'>
       <NotesListPane
         filteredNotes={await getArchivedNotes()}
         activeNoteId=''
         noteHref='/dashboard/archived/n'
+        textType='archived'
+        tagSlug='archived'
       />
     </div>
   );

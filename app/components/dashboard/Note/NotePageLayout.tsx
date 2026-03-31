@@ -35,6 +35,9 @@ export default async function NotePageLayout({
     .filter((el) => el !== "n")
     .join("/");
 
+  const specificationTypes = ["search", "archived", "tag"] as const;
+  const textType = specificationTypes.find((type) => noteHref.includes(type));
+
   const isArchived = (await getArchivedNotes()).some((note) => note.id === noteId);
   async function updateArchived() {
     "use server";
@@ -87,9 +90,15 @@ export default async function NotePageLayout({
   return (
     <div className='flex flex-col gap-3 py-5 w-screen px-4 overflow-hidden pb-16 md:pb-20 lg:w-full lg:grid lg:grid-cols-12 lg:p-0 lg:gap-0 h-full'>
       <div className='col-span-3 hidden lg:block overflow-hidden'>
-        <NotesListPane activeNoteId={noteId} noteHref={noteHref} filteredNotes={filteredNotes} />
+        <NotesListPane
+          activeNoteId={noteId}
+          noteHref={noteHref}
+          filteredNotes={filteredNotes}
+          textType={textType}
+          tagSlug={tagSlug}
+        />
       </div>
-      <div className='flex items-center lg:items-baseline justify-between text-preset-5 col-span-3 shrink-0 lg:order-3 dark:bg-neutral-800'>
+      <div className='flex items-center lg:items-baseline justify-between text-preset-5 col-span-3 shrink-0 lg:order-3 lg:dark:bg-neutral-950'>
         <ReturnButton noteHref={noteHref} />
 
         <div className='flex gap-4 **:stroke-neutral-600 text-preset-4 text-neutral-950 lg:flex-col lg:w-full lg:py-8 lg:pl-5 lg:pr-8 items-center'>

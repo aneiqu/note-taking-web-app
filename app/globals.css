@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @tailwind utilities;
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 /* Text presets */
 
@@ -117,7 +118,7 @@
   .dark .scrollbar-thin::-webkit-scrollbar-thumb {
     background-color: var(--color-neutral-700);
   }
-  }
+}
 
 .password-after::after {
   content: "";

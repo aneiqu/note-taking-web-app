@@ -1,10 +1,5 @@
-"use client";
-
-import HidePassword from "@/app/assets/icons/icon-hide-password.svg";
-import ShowPassword from "@/app/assets/icons/icon-show-password.svg";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import PasswordInput from "./PasswordInput";
 
 interface InputTypes {
   label: string;
@@ -27,45 +22,24 @@ export function AuthFormTextInput({ label, placeholder }: InputTypes) {
   );
 }
 
-export function AuthFormPasswordInput() {
-  const pathname = usePathname();
-  const PasswordInput = useRef<null | HTMLInputElement>(null);
-  const [visible, setVisible] = useState<boolean>(false);
-  const toggleVisibility = () => setVisible((prev) => !prev);
+export function AuthFormPasswordInput({ showForgetLink }: { showForgetLink: boolean }) {
   return (
     <div className='flex flex-col gap-1.5'>
       <div className='flex justify-between'>
         <label htmlFor='passwordInput' className='text-preset-4 text-neutral-950 dark:text-white'>
           Password
         </label>
-        {pathname.includes("login") && (
+
+        {showForgetLink ? (
           <Link
             href={"./forgot-password"}
             className='text-xs underline text-neutral-600 dark:text-neutral-400'
           >
             Forgot
           </Link>
-        )}
+        ) : null}
       </div>
-      <div className='flex relative w-full items-center'>
-        <input
-          ref={PasswordInput}
-          id='passwordInput'
-          type={visible ? "text" : "password"}
-          className='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-(--radius-8) w-full dark:text-neutral-400'
-        />
-
-        <div
-          className='flex items-center justify-center cursor-pointer'
-          onClick={() => toggleVisibility()}
-        >
-          {visible ? (
-            <HidePassword className='absolute right-4 stroke-neutral-500' />
-          ) : (
-            <ShowPassword className='absolute right-4 fill-neutral-500' />
-          )}
-        </div>
-      </div>
+      <PasswordInput classes='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg w-full dark:text-neutral-400' />
     </div>
   );
 }

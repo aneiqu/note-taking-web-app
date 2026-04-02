@@ -16,18 +16,21 @@ export default function ColorTheme() {
         optionTitle='Light Mode'
         optionDescription='Pick a clean and classic light theme'
         radioName='color-theme'
+        variant='stroke'
       />
       <SettingsOption
         Icon={MoonIcon}
         optionTitle='Dark Mode'
         optionDescription='Select a sleek and modern dark theme'
         radioName='color-theme'
+        variant='fill'
       />
       <SettingsOption
         Icon={SystemThemeIcon}
         optionTitle='System'
         optionDescription='Adapts to your device’s theme'
         radioName='color-theme'
+        variant='fill'
       />
     </SettingsPageContent>
   );

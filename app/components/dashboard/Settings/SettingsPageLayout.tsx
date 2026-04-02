@@ -15,16 +15,16 @@ export default function SettingsPageLayout({ children }: LayoutProps) {
       <div className='hidden lg:flex flex-col col-span-3 lg:border-r border-neutral-200 dark:border-neutral-800 gap-2 lg:pt-5 lg:pr-4 lg:pl-8'>
         <h2 className='text-preset-1 dark:text-white pb-2 lg:hidden'>Settings</h2>
         <div className='text-preset-4 flex flex-col gap-2'>
-          <Link href={"/dashboard/settings/theme"} className='flex items-center gap-2 py-2'>
+          <Link href={"/dashboard/settings/color-theme"} className='flex items-center gap-2 py-2'>
             <SunIcon className='dark:**:stroke-neutral-200' />
             <p>Color Theme</p>
           </Link>
-          <Link href={"/dashboard/settings/font"} className='flex items-center gap-2 py-2'>
+          <Link href={"/dashboard/settings/font-theme"} className='flex items-center gap-2 py-2'>
             <FontIcon className='dark:**:fill-neutral-200' />
             <p>Font Theme</p>
           </Link>
           <Link
-            href={"/dashboard/settings/update-password"}
+            href={"/dashboard/settings/change-password"}
             className='flex items-center gap-2 py-2'
           >
             <LockIcon className='dark:**:stroke-neutral-200' />
@@ -38,9 +38,9 @@ export default function SettingsPageLayout({ children }: LayoutProps) {
         </div>
       </div>
       <div className='lg:hidden'>
-        <ReturnButton noteHref={"/dashboard/settings"} />
+        <ReturnButton noteHref={"/dashboard/settings"} title='Settings' />
       </div>
-      <div className='col-span-5 pt-8 pl-8'>{children}</div>
+      <div className='lg:col-span-5 lg:pt-8 lg:pl-8'>{children}</div>
     </div>
   );
 }

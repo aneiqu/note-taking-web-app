@@ -11,14 +11,14 @@ export default function ResetPassword() {
         description='Choose a new password to secure your account.'
       />
       <AuthForm buttonText='Reset Password'>
-        <AuthFormPasswordInput />
+        <AuthFormPasswordInput showForgetLink={false} />
         <div className='-mt-2 flex items-center gap-2.5'>
           <InfoIcon className='stroke-neutral-600 dark:stroke-neutral-400' />
           <p className='text-preset-6 text-neutral-600 dark:text-neutral-400'>
             At least 8 characters
           </p>
         </div>
-        <AuthFormPasswordInput />
+        <AuthFormPasswordInput showForgetLink={false} />
       </AuthForm>
     </>
   );

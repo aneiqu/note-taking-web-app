@@ -9,6 +9,7 @@ interface OptionTypes {
   variant: "stroke" | "fill";
   value: string;
   changeTheme: Dispatch<SetStateAction<string>>;
+  currentTheme: string;
 }
 
 export default function SettingsOption({
@@ -19,7 +20,10 @@ export default function SettingsOption({
   variant,
   value,
   changeTheme,
+  currentTheme,
 }: OptionTypes) {
+  const checked = currentTheme === value;
+
   return (
     <label className='flex p-4 items-center gap-4 bg-neutral-100 rounded-xl border border-neutral-200 cursor-pointer dark:bg-neutral-950 dark:border-neutral-700'>
       <div className='p-2 bg-white rounded-xl border border-neutral-200 dark:bg-neutral-950 dark:border-neutral-700'>
@@ -34,9 +38,10 @@ export default function SettingsOption({
       <input
         onChange={(theme) => changeTheme(theme.target.value)}
         value={value}
+        checked={checked}
         type='radio'
         name={radioName}
-        className='appearance-none w-3 h-3 border-2 border-neutral-200 dark:border-neutral-600 rounded-full bg-white dark:bg-neutral-950 focus:border-blue-500 focus:border-4 duration-200 ml-auto'
+        className={`appearance-none w-3 h-3 border-2 border-neutral-200 dark:border-neutral-600 rounded-full bg-white dark:bg-neutral-950 duration-200 ml-auto ${checked ? "border-4 border-blue-500!" : ""}`}
       />
     </label>
   );

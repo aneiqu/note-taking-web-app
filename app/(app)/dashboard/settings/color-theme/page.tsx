@@ -22,7 +22,6 @@ export default function ColorTheme() {
       updateFunction={() => {
         setTheme(selectedTheme);
       }}
-      value={selectedTheme}
     >
       <SettingsOption
         Icon={SunIcon}
@@ -31,8 +30,8 @@ export default function ColorTheme() {
         radioName='color-theme'
         variant='stroke'
         value='light'
-        changeTheme={selectTheme}
-        currentTheme={selectedTheme}
+        changeData={selectTheme}
+        currentData={selectedTheme}
       />
       <SettingsOption
         Icon={MoonIcon}
@@ -41,8 +40,8 @@ export default function ColorTheme() {
         radioName='color-theme'
         variant='fill'
         value='dark'
-        changeTheme={selectTheme}
-        currentTheme={selectedTheme}
+        changeData={selectTheme}
+        currentData={selectedTheme}
       />
       <SettingsOption
         Icon={SystemThemeIcon}
@@ -51,8 +50,8 @@ export default function ColorTheme() {
         radioName='color-theme'
         variant='fill'
         value='system'
-        changeTheme={selectTheme}
-        currentTheme={selectedTheme}
+        changeData={selectTheme}
+        currentData={selectedTheme}
       />
     </SettingsPageContent>
   );

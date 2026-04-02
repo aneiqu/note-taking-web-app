@@ -8,8 +8,8 @@ interface OptionTypes {
   radioName: string;
   variant: "stroke" | "fill";
   value: string;
-  changeTheme: Dispatch<SetStateAction<string>>;
-  currentTheme: string;
+  changeData: Dispatch<SetStateAction<string>>;
+  currentData: string;
 }
 
 export default function SettingsOption({
@@ -19,11 +19,10 @@ export default function SettingsOption({
   radioName,
   variant,
   value,
-  changeTheme,
-  currentTheme,
+  changeData,
+  currentData,
 }: OptionTypes) {
-  const checked = currentTheme === value;
-
+  const checked = currentData === value;
   return (
     <label className='flex p-4 items-center gap-4 bg-neutral-100 rounded-xl border border-neutral-200 cursor-pointer dark:bg-neutral-950 dark:border-neutral-700'>
       <div className='p-2 bg-white rounded-xl border border-neutral-200 dark:bg-neutral-950 dark:border-neutral-700'>
@@ -36,7 +35,7 @@ export default function SettingsOption({
         <p className='text-preset-6 text-neutral-700 dark:text-neutral-300'>{optionDescription}</p>
       </div>
       <input
-        onChange={(theme) => changeTheme(theme.target.value)}
+        onChange={(theme) => changeData(theme.target.value)}
         value={value}
         checked={checked}
         type='radio'

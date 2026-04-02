@@ -1,11 +1,8 @@
-import { Dispatch, SetStateAction } from "react";
-
 interface NotePageParams {
   pageTitle: string;
   pageDescription: string;
   children: React.ReactNode;
-  updateFunction: Dispatch<SetStateAction<string>>;
-  value: string;
+  updateFunction: () => void;
 }
 
 export default function SettingsPageContent({
@@ -13,7 +10,6 @@ export default function SettingsPageContent({
   pageDescription,
   children,
   updateFunction,
-  value,
 }: NotePageParams) {
   return (
     <>
@@ -23,9 +19,7 @@ export default function SettingsPageContent({
       </div>
       <div className='flex flex-col gap-4'>{children}</div>
       <button
-        onClick={() => {
-          updateFunction(value);
-        }}
+        onClick={updateFunction}
         className='text-preset-4 px-4 py-3 bg-blue-500 text-white rounded-lg mt-6 justify-self-end flex'
       >
         Apply Changes

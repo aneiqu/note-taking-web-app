@@ -123,3 +123,15 @@
 .password-after::after {
   content: "";
 }
+
+.font-theme-sans {
+  font-family: var(--font-inter), sans-serif;
+}
+
+.font-theme-serif {
+  font-family: var(--font-noto-serif), serif;
+}
+
+.font-theme-mono {
+  font-family: var(--font-source-code-pro), monospace;
+}

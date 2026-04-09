@@ -7,9 +7,12 @@ import { useState } from "react";
 
 interface InputTypes {
   classes: string;
+  id?: string;
+  name?: string;
+  ariaLabel?: string;
 }
 
-export default function PasswordInput({ classes }: InputTypes) {
+export default function PasswordInput({ classes, id, name, ariaLabel }: InputTypes) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -19,8 +22,16 @@ export default function PasswordInput({ classes }: InputTypes) {
         type={showPassword ? "text" : "password"}
         minLength={8}
         required={true}
+        id={id}
+        name={name}
+        aria-label={ariaLabel}
       />
-      <button className='absolute right-4' type='button' onClick={() => setShowPassword((v) => !v)}>
+      <button
+        aria-label={showPassword ? "Hide password" : "Show password"}
+        className='absolute right-4'
+        type='button'
+        onClick={() => setShowPassword((v) => !v)}
+      >
         {showPassword ? (
           <HidePassword className='**:stroke-neutral-600' />
         ) : (

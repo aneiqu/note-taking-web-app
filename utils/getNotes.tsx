@@ -67,3 +67,9 @@ export async function getAllTags() {
     a.localeCompare(b),
   );
 }
+
+export async function addNote(note: Note) {
+  const data = await readNotesData();
+  console.log(note);
+  // data.notes.push()
+}

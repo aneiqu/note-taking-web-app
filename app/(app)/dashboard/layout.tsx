@@ -42,7 +42,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </div>
       <nav className='grid grid-flow-col auto-cols-fr w-screen bottom-0 items-center fixed py-3 px-4 bg-white dark:bg-neutral-950 outline-1 outline-neutral-200 dark:outline-neutral-800 lg:hidden'>
         <div className='absolute w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-500 flex items-center justify-center right-4 md:right-8 bottom-full mb-4 md:mb-8'>
-          <PlusIcon className='**:fill-white' />
+          <Link href={"/dashboard/create-new-note"}>
+            <PlusIcon className='**:fill-white' />
+          </Link>
         </div>
         <NavIcons />
       </nav>

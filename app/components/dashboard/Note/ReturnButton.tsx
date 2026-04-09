@@ -15,7 +15,7 @@ export default function ReturnButton({ noteHref, classes, title = "Go Back" }: R
   return (
     <Link href={fixedHref} className={`flex gap-1 items-center lg:hidden ${classes}`}>
       <ArrowLeftIcon className='**:fill-neutral-600 dark:**:fill-neutral-300' />
-      <p className={`text-neutral-600 dark:text-neutral-300`}>{title}</p>
+      <p className={`text-neutral-600 dark:text-neutral-300 text-preset-5`}>{title}</p>
     </Link>
   );
 }

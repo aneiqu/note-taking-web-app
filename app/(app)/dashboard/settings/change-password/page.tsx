@@ -14,25 +14,40 @@ export default function Theme() {
       <div className='flex flex-col gap-4'>
         <div className='flex flex-col gap-6'>
           <div className='flex flex-col gap-1.5'>
-            <label className='text-preset-4 text-neutral-950' htmlFor=''>
+            <label className='text-preset-4 text-neutral-950' htmlFor='current-password'>
               Old Password
             </label>
-            <PasswordInput classes='border rounded-lg px-4 py-3 border-neutral-300 w-full' />
+            <PasswordInput
+              id='current-password'
+              name='currentPassword'
+              ariaLabel='Old password'
+              classes='border rounded-lg px-4 py-3 border-neutral-300 w-full'
+            />
           </div>
           <div className='flex flex-col gap-1.5'>
-            <label className='text-preset-4 text-neutral-950' htmlFor=''>
+            <label className='text-preset-4 text-neutral-950' htmlFor='new-password'>
               New Password
             </label>
-            <PasswordInput classes='border rounded-lg px-4 py-3 border-neutral-300 w-full' />
-            <label className='text-neutral-600 text-preset-6' htmlFor=''>
+            <PasswordInput
+              id='new-password'
+              name='newPassword'
+              ariaLabel='New password'
+              classes='border rounded-lg px-4 py-3 border-neutral-300 w-full'
+            />
+            <label className='text-neutral-600 text-preset-6' htmlFor='new-password'>
               At least 8 characters
             </label>
           </div>
           <div className='flex flex-col gap-1.5'>
-            <label className='text-preset-4 text-neutral-950' htmlFor=''>
+            <label className='text-preset-4 text-neutral-950' htmlFor='confirm-new-password'>
               Confirm New Password
             </label>
-            <PasswordInput classes='border rounded-lg px-4 py-3 border-neutral-300 w-full' />
+            <PasswordInput
+              id='confirm-new-password'
+              name='confirmNewPassword'
+              ariaLabel='Confirm new password'
+              classes='border rounded-lg px-4 py-3 border-neutral-300 w-full'
+            />
           </div>
         </div>
       </div>

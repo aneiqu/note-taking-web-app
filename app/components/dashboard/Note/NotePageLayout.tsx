@@ -1,13 +1,11 @@
 import { deleteNote, toggleArchived } from "@/app/actions/notes";
-import ArchiveIcon from "@/app/assets/icons/icon-archive.svg";
-import TrashIcon from "@/app/assets/icons/icon-delete.svg";
-import RestoreIcon from "@/app/assets/icons/icon-restore.svg";
 import NotesListPane from "@/app/components/dashboard/Note/NotesListPane";
 import ReturnButton from "@/app/components/dashboard/Note/ReturnButton";
 import { getArchivedNotes } from "@/utils/getNotes";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { redirect, RedirectType } from "next/navigation";
+import NoteModal from "./NoteModal";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -102,29 +100,25 @@ export default async function NotePageLayout({
         <ReturnButton noteHref={noteHref} />
 
         <div className='flex gap-4 **:stroke-neutral-600 text-preset-4 text-neutral-950 lg:flex-col lg:w-full lg:py-8 lg:pl-5 lg:pr-8 items-center'>
-          <button
-            form='note-form'
-            formAction={updateArchived}
-            className='lg:border cursor-pointer lg:border-neutral-300 dark:border-neutral-600 lg:rounded-lg lg:flex lg:px-4 lg:py-3 gap-2 items-center lg:w-full hover:bg-neutral-100 hover:border-transparent duration-200 focus:border-neutral-950 focus:ring-offset-2 focus:ring-2 focus:ring-neutral-400 group'
-          >
-            <RestoreIcon
-              className={`lg:**:stroke-neutral-950 **:fill-neutral-950 dark:**:stroke-neutral-300 dark:**:fill-neutral-300 group-hover:**:stroke-neutral-600 ${isArchived ? "" : "hidden"}`}
+          <div className='lg:w-full'>
+            <NoteModal
+              formId='note-form'
+              formAction={updateArchived}
+              type='archive'
+              title={isArchived ? "Restore Note" : "Archive Note"}
+              description='Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.'
+              isArchived={isArchived}
             />
-            <ArchiveIcon
-              className={`lg:**:stroke-neutral-950 dark:**:stroke-neutral-300 group-hover:**:stroke-neutral-600 ${isArchived ? "hidden" : ""}`}
+          </div>
+          <div className='lg:w-full'>
+            <NoteModal
+              formId='note-form'
+              formAction={removeNote}
+              type='delete'
+              title='Delete Note'
+              description='Are you sure you want to permanently delete this note? This action cannot be undone.'
             />
-            <p className='hidden lg:block dark:text-white'>
-              {isArchived ? "Restore Note" : "Archive Note"}
-            </p>
-          </button>
-          <button
-            form='note-form'
-            formAction={removeNote}
-            className='lg:border cursor-pointer lg:border-neutral-300 dark:border-neutral-600 lg:rounded-lg lg:flex lg:px-4 lg:py-3 gap-2 items-center lg:w-full hover:bg-neutral-100 hover:border-transparent duration-200 focus:border-neutral-950 focus:ring-offset-2 focus:ring-2 focus:ring-neutral-400 group'
-          >
-            <TrashIcon className='lg:**:stroke-neutral-950 dark:**:stroke-neutral-300 group-hover:**:stroke-neutral-600' />
-            <p className='hidden lg:block dark:text-white'>Delete Note</p>
-          </button>
+          </div>
           <Link href={cancelHref} className='text-neutral-600 dark:text-neutral-300 lg:hidden '>
             Cancel
           </Link>

@@ -1,29 +1,6 @@
 {
   "notes": [
     {
-      "id": "6018c2f1-5107-4d8f-92bc-c6f2d06bb2dd",
-      "title": "Favorite Pasta Recipes",
-      "tags": [
-        "Cooking",
-        "Recipes"
-      ],
-      "content": "Classic Italian Recipes:\r\n\r\n1. Carbonara\r\n- Eggs, pecorino, guanciale\r\n- No cream ever!\r\n- Save pasta water\r\n\r\n2. Cacio e Pepe\r\n- Pecorino Romano\r\n- Fresh black pepper\r\n- Technique is crucial\r\n\r\n3. Arrabbiata\r\n- San Marzano tomatoes\r\n- Fresh garlic\r\n- Red pepper flakes\r\n\r\nNote: Always use high-quality ingredients",
-      "lastEdited": "2026-04-13T13:28:21.466Z",
-      "isArchived": false
-    },
-    {
-      "id": "1c9ea0f7-025c-471c-b571-1f60f8454f53",
-      "title": "TypeScript Migration Guide",
-      "tags": [
-        "Dev test",
-        "React",
-        "TypeScript"
-      ],
-      "content": "Project migration steps:\n\n1. Initial Setup\n- Install TypeScript dependencies\n- Configure tsconfig.json\n- Set up build pipeline\n\n2. Migration Strategy\n- Start with newer modules\n- Add type definitions gradually\n- Use 'any' temporarily for complex cases\n\n3. Testing Approach\n- Update test configuration\n- Add type testing\n- Validate build process\n\nDeadline: End of Q4 2024",
-      "lastEdited": "2026-03-26T15:07:31.016Z",
-      "isArchived": false
-    },
-    {
       "id": "4c4960ab-600f-4adf-a695-6db45c93f5a7",
       "title": "Weekly Workout Plan",
       "tags": [
@@ -33,17 +10,6 @@
       "content": "Monday: Upper Body\n- Bench Press 4x8\n- Rows 4x10\n- Shoulder Press 3x12\n- Pull-ups 3 sets\n\nWednesday: Lower Body\n- Squats 4x8\n- Romanian Deadlifts 3x10\n- Lunges 3x12 each\n- Calf Raises 4x15\n\nFriday: Full Body\n- Deadlifts 3x5\n- Push-ups 3x12\n- Leg Press 3x12\n- Core Work\n\nCardio: Tuesday/Thursday - 30 min run",
       "lastEdited": "2026-03-30T21:29:14.369Z",
       "isArchived": true
-    },
-    {
-      "id": "4d35f2cc-89d4-4990-84d8-9f22a6039edd",
-      "title": "Gift Ideas",
-      "tags": [
-        "Personal",
-        "Shopping"
-      ],
-      "content": "Birthday and Holiday Gift List:\n\nMom:\n- Cooking class subscription\n- Kindle Paperwhite\n- Spa day package\n\nDad:\n- Golf lessons\n- Wireless earbuds\n- BBQ accessories\n\nSister:\n- Art supplies set\n- Yoga mat kit\n- Coffee subscription\n\nBudget per person: $150-200",
-      "lastEdited": "2026-03-26T15:08:01.723Z",
-      "isArchived": false
     },
     {
       "id": "2f2687d8-df11-4349-bdb8-b4fc75d929dd",

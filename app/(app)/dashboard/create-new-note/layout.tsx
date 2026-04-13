@@ -1,13 +1,11 @@
-import NotePageLayout from "@/app/components/dashboard/Note/NotePageLayout";
 import NotesListPane from "@/app/components/dashboard/Note/NotesListPane";
 import { getActiveNotes } from "@/utils/getNotes";
 
 interface LayoutProps {
   children: React.ReactNode;
-  params: Promise<{ note: string }>;
 }
 
-export default async function Layout({ children, params }: LayoutProps) {
+export default async function Layout({ children }: LayoutProps) {
   return (
     <div className='lg:grid lg:grid-cols-12 h-full pb-20 lg:pb-0'>
       <div className='hidden lg:block col-span-3'>

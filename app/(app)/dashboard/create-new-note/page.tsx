@@ -1,21 +1,35 @@
+import { addNote } from "@/app/actions/notes";
 import ClockIcon from "@/app/assets/icons/icon-clock.svg";
 import TagIcon from "@/app/assets/icons/icon-tag.svg";
 import ReturnButton from "@/app/components/dashboard/Note/ReturnButton";
-import { addNote } from "@/utils/getNotes";
 import Form from "next/form";
 import Link from "next/link";
-interface NotePageParams {
-  params: Promise<{ note: string }>;
-}
 
-export default async function CreateNewNote({ params }: NotePageParams) {
-  async function createNote(formData) {
+export default async function CreateNewNote() {
+  async function createNote(formData: FormData) {
     "use server";
+
+    const title = formData.get("noteTitle");
+    const tags = formData.get("noteTags");
+    const content = formData.get("noteContent");
+
+    if (typeof title !== "string") {
+      throw new Error("Invalid note title");
+    }
+
+    if (typeof tags !== "string") {
+      throw new Error("Invalid note tags");
+    }
+
+    if (typeof content !== "string") {
+      throw new Error("Invalid note content");
+    }
+
     addNote({
       id: `${Math.random()}`,
-      title: formData.get("noteTitle"),
-      tags: formData.get("noteTags"),
-      content: formData.get("noteContent"),
+      title: title,
+      tags: tags.split(",").map((tag) => tag.trim()),
+      content: content,
       lastEdited: `${new Date().toISOString()}`,
       isArchived: false,
     });
@@ -45,6 +59,7 @@ export default async function CreateNewNote({ params }: NotePageParams) {
           type='text'
           className='text-preset-2 text-neutral-950 placeholder:text-neutral-950 outline-none w-full md:text-preset-1'
           aria-label='Note title'
+          required={true}
         />
       </div>
       <div className='flex text-preset-6 md:text-preset-5 items-center -mb-1 lg:-mb-2'>
@@ -57,6 +72,7 @@ export default async function CreateNewNote({ params }: NotePageParams) {
           aria-label='Note tags'
           placeholder='Add tags separated by commas (e.g. Work, Planning)'
           className='placeholder:text-neutral-400 w-full outline-none'
+          required={true}
         />
       </div>
       <div className='flex text-preset-6 md:text-preset-5 items-center'>
@@ -72,6 +88,7 @@ export default async function CreateNewNote({ params }: NotePageParams) {
         name='noteContent'
         className='whitespace-pre-wrap text-preset-6 md:text-preset-5 dark:text-neutral-100 resize-none h-full outline-none'
         placeholder='Start typing your note here…'
+        required={true}
       ></textarea>
       <hr className='text-neutral-200 hidden lg:block' />
       <div className='hidden lg:flex'>

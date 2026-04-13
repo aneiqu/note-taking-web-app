@@ -73,3 +73,12 @@ export async function deleteNote(noteId: string) {
   };
   await saveNotes(filePath, updatedData);
 }
+
+export async function addNote(note: Note) {
+  const data = await getNotes();
+
+  const updatedData: NotesData = {
+    notes: data.notes.concat([note]),
+  };
+  await saveNotes(filePath, updatedData);
+}

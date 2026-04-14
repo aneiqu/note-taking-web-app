@@ -1,3 +1,5 @@
+import toast from "react-hot-toast";
+
 interface NotePageParams {
   pageTitle: string;
   pageDescription: string;
@@ -11,6 +13,11 @@ export default function SettingsPageContent({
   children,
   updateFunction,
 }: NotePageParams) {
+  async function clickHandler() {
+    updateFunction();
+    toast.success("Settings updated successfully!");
+  }
+
   return (
     <>
       <div className='flex flex-col gap-2 mt-3 mb-5'>
@@ -19,7 +26,7 @@ export default function SettingsPageContent({
       </div>
       <div className='flex flex-col gap-4'>{children}</div>
       <button
-        onClick={updateFunction}
+        onClick={clickHandler}
         className='text-preset-4 px-4 py-3 bg-blue-500 text-white rounded-lg mt-6 justify-self-end flex'
       >
         Apply Changes

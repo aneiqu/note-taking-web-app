@@ -1,8 +1,12 @@
 import { deleteNote, toggleArchived } from "@/app/actions/notes";
+import ArchiveIcon from "@/app/assets/icons/icon-archive.svg";
+import TrashIcon from "@/app/assets/icons/icon-delete.svg";
+import RestoreIcon from "@/app/assets/icons/icon-restore.svg";
 import NotesListPane from "@/app/components/dashboard/Note/NotesListPane";
 import ReturnButton from "@/app/components/dashboard/Note/ReturnButton";
 import { getArchivedNotes } from "@/utils/getNotes";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect, RedirectType } from "next/navigation";
 import NoteModal from "./NoteModal";
@@ -40,7 +44,7 @@ export default async function NotePageLayout({
   async function updateArchived() {
     "use server";
 
-    await toggleArchived(noteId, !isArchived).then(() => {
+    await toggleArchived(noteId, !isArchived).then(async () => {
       if (tagSlug) {
         revalidatePath("/dashboard");
         revalidatePath(`/dashboard/tag/${tagSlug}`);
@@ -51,6 +55,21 @@ export default async function NotePageLayout({
         revalidatePath(`/dashboard/n/${noteId}`);
         revalidatePath("/dashboard/archived");
       }
+
+      const cookieStore = await cookies();
+
+      cookieStore.set(
+        "flash",
+        JSON.stringify({
+          type: "success",
+          message: isArchived ? "Note restored" : "Note archived",
+        }),
+        {
+          httpOnly: false,
+          maxAge: 1,
+        },
+      );
+
       if (isArchived) {
         redirect(`/dashboard/n/${noteId}`, RedirectType.replace);
       } else {
@@ -65,7 +84,7 @@ export default async function NotePageLayout({
 
   async function removeNote() {
     "use server";
-    await deleteNote(noteId).then(() => {
+    await deleteNote(noteId).then(async () => {
       if (tagSlug) {
         revalidatePath("/dashboard");
         revalidatePath(`/dashboard/tag/${tagSlug}`);
@@ -76,6 +95,19 @@ export default async function NotePageLayout({
         revalidatePath(`/dashboard/n/${noteId}`);
         revalidatePath("/dashboard/archived");
       }
+
+      const cookieStore = await cookies();
+      cookieStore.set(
+        "flash",
+        JSON.stringify({
+          type: "success",
+          message: "Note deleted",
+        }),
+        {
+          httpOnly: false,
+          maxAge: 10,
+        },
+      );
 
       if (tagSlug) {
         redirect(`/dashboard/tag/${tagSlug}`);
@@ -104,19 +136,36 @@ export default async function NotePageLayout({
             <NoteModal
               formId='note-form'
               formAction={updateArchived}
-              type='archive'
               title={isArchived ? "Restore Note" : "Archive Note"}
-              description='Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.'
-              isArchived={isArchived}
+              description={
+                isArchived
+                  ? "Are you sure you want to restore this note?"
+                  : "Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime."
+              }
+              icon={
+                isArchived ? (
+                  <RestoreIcon
+                    className={`lg:**:stroke-neutral-950 **:fill-neutral-950 dark:**:stroke-neutral-300 dark:**:fill-neutral-300 group-hover:**:stroke-neutral-600`}
+                  />
+                ) : (
+                  <ArchiveIcon
+                    className={`lg:**:stroke-neutral-950 dark:**:stroke-neutral-300 group-hover:**:stroke-neutral-600`}
+                  />
+                )
+              }
+              toastTitle={isArchived ? "Note restored to active notes." : "Note archived."}
             />
           </div>
           <div className='lg:w-full'>
             <NoteModal
               formId='note-form'
               formAction={removeNote}
-              type='delete'
               title='Delete Note'
               description='Are you sure you want to permanently delete this note? This action cannot be undone.'
+              icon={
+                <TrashIcon className='lg:**:stroke-neutral-950 dark:**:stroke-neutral-300 group-hover:**:stroke-neutral-600' />
+              }
+              toastTitle='Note permanently deleted.'
             />
           </div>
           <Link href={cancelHref} className='text-neutral-600 dark:text-neutral-300 lg:hidden '>

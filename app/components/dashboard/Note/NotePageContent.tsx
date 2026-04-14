@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { updateContent } from "@/app/actions/notes";
 import { revalidatePath } from "next/cache";
 import Form from "next/form";
+import { cookies } from "next/headers";
 import Link from "next/link";
 
 interface NotePageParams {
@@ -42,6 +43,19 @@ export default async function NotePageContent({ params, cancelHref }: NotePagePa
         revalidatePath(`/dashboard/n/archived/${noteId}`);
       }
     });
+    const cookieStore = await cookies();
+
+    cookieStore.set(
+      "flash",
+      JSON.stringify({
+        type: "success",
+        message: "Note saved successfully!",
+      }),
+      {
+        httpOnly: false,
+        maxAge: 1,
+      },
+    );
   }
 
   return (
@@ -75,7 +89,7 @@ export default async function NotePageContent({ params, cancelHref }: NotePagePa
         </button>
         <Link
           href={cancelHref}
-          className='py-3 px-4 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-md cursor-pointer hover:bg-white focus:ring-2 focus:ring-neutral-400 hover:ring-2 hover:ring-neutral-300 focus:ring-offset-3 focus:outline duration-200'
+          className='py-3 px-4 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-md cursor-pointer hover:bg-white focus:ring-2 focus:ring-neutral-400 hover:ring-2 hover:ring-neutral-300 focus:ring-offset-3 focus:outline duration-200 dark:hover:bg-neutral-900 dark:hover:ring-transparent'
           draggable='false'
         >
           Cancel

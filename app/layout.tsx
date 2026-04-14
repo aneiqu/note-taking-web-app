@@ -4,6 +4,7 @@ import "./globals.css";
 import { inter, noto_serif, source_code_pro } from "@/app/assets/fonts/fonts";
 import { fontClassFromKey, parseFontKey } from "@/utils/fontTheme";
 import { cookies } from "next/headers";
+import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "./components/theme-provider";
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster position='bottom-right' />
           {children}
         </ThemeProvider>
       </body>

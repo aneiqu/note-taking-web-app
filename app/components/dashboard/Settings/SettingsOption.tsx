@@ -35,7 +35,7 @@ export default function SettingsOption({
         <p className='text-preset-6 text-neutral-700 dark:text-neutral-300'>{optionDescription}</p>
       </div>
       <input
-        onChange={(theme) => changeData(theme.target.value)}
+        onChange={(data) => changeData(data.target.value)}
         value={value}
         checked={checked}
         type='radio'

@@ -7,8 +7,8 @@ interface LayoutProps {
 
 export default async function Layout({ children }: LayoutProps) {
   return (
-    <div className='lg:grid lg:grid-cols-12 h-full pb-20 lg:pb-0'>
-      <div className='hidden lg:block col-span-3'>
+    <div className='lg:grid lg:grid-cols-12 h-full pb-20 lg:pb-0 dark:bg-neutral-950'>
+      <div className='hidden lg:block col-span-3 overflow-hidden'>
         <NotesListPane
           activeNoteId={""}
           noteHref={"/dashboard/n"}

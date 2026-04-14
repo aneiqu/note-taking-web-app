@@ -38,7 +38,7 @@ export default async function CreateNewNote() {
   return (
     <Form
       action={createNote}
-      className='flex flex-col w-screen lg:w-full pt-5 px-4 lg:px-6 lg:pt-1 gap-3 lg:gap-4 h-full lg:border-r lg:border-neutral-200 lg:pb-5'
+      className='flex flex-col w-screen lg:w-full pt-5 px-4 lg:px-6 lg:pt-1 gap-3 lg:gap-4 h-full lg:border-r lg:border-neutral-200 dark:border-neutral-800 lg:pb-5 dark:bg-neutral-950'
     >
       <div className='flex justify-between'>
         <ReturnButton noteHref='/dashboard' />
@@ -51,20 +51,20 @@ export default async function CreateNewNote() {
           </button>
         </div>
       </div>
-      <hr className='text-neutral-200 w-full lg:hidden' />
+      <hr className='text-neutral-200 w-full lg:hidden dark:text-neutral-800' />
       <div>
         <input
           name='noteTitle'
           placeholder='Enter a title…'
           type='text'
-          className='text-preset-2 text-neutral-950 placeholder:text-neutral-950 outline-none w-full md:text-preset-1'
+          className='text-preset-2 text-neutral-950 placeholder:text-neutral-950 outline-none w-full md:text-preset-1 dark:text-white dark:placeholder:text-white'
           aria-label='Note title'
           required={true}
         />
       </div>
       <div className='flex text-preset-6 md:text-preset-5 items-center -mb-1 lg:-mb-2'>
         <div className='flex items-center gap-1.5 min-w-28.75'>
-          <TagIcon />
+          <TagIcon className='dark:**:stroke-neutral-300' />
           <p className='text-neutral-700 dark:text-neutral-300'>Tags</p>
         </div>
         <input
@@ -77,21 +77,21 @@ export default async function CreateNewNote() {
       </div>
       <div className='flex text-preset-6 md:text-preset-5 items-center'>
         <div className='flex items-center gap-1.5 min-w-28.75'>
-          <ClockIcon />
+          <ClockIcon className='dark:**:fill-neutral-300' />
           <p className='text-neutral-700 dark:text-neutral-300'>Last edited</p>
         </div>
         <p className='text-neutral-400'>Not yet saved</p>
       </div>
-      <hr className='text-neutral-200 w-full' />
+      <hr className='text-neutral-200 w-full dark:text-neutral-800' />
       <textarea
         aria-label='Note content'
         name='noteContent'
-        className='whitespace-pre-wrap text-preset-6 md:text-preset-5 dark:text-neutral-100 resize-none h-full outline-none'
+        className='whitespace-pre-wrap text-preset-6 md:text-preset-5 dark:text-neutral-100 resize-none h-2/3 outline-none'
         placeholder='Start typing your note here…'
         required={true}
       ></textarea>
-      <hr className='text-neutral-200 hidden lg:block' />
-      <div className='hidden lg:flex'>
+      <hr className='text-neutral-200 hidden lg:block dark:text-neutral-800' />
+      <div className='hidden lg:flex gap-4'>
         <button
           className='py-3 px-4 bg-blue-500 hover:bg-blue-700 focus:outline-offset-2 focus:ring-2 focus:ring-neutral-400 text-white rounded-md cursor-pointer duration-200'
           type='submit'
@@ -100,7 +100,7 @@ export default async function CreateNewNote() {
         </button>
         <Link
           href={"/dashboard"}
-          className='py-3 px-4 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-md cursor-pointer hover:bg-white focus:ring-2 focus:ring-neutral-400 hover:ring-2 hover:ring-neutral-300 focus:ring-offset-3 focus:outline duration-200'
+          className='py-3 px-4 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-md cursor-pointer hover:bg-white focus:ring-2 focus:ring-neutral-400 hover:ring-2 hover:ring-neutral-300 focus:ring-offset-3 focus:outline duration-200 dark:hover:bg-neutral-900 dark:hover:ring-transparent'
           draggable='false'
         >
           Cancel

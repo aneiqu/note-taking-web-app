@@ -8,30 +8,26 @@
         "React"
       ],
       "content": "Key performance optimization techniques:\r\n\r\n1. Code Splitting\r\n- Use React.lazy() for route-based splitting\r\n- Implement dynamic imports for heavy components\r\n\r\n2. Memoization\r\n- useMemo for expensive calculations\r\n- useCallback for function props\r\n- React.memo for component optimization\r\n\r\n3. Virtual List Implementation\r\n- Use react-window for long lists\r\n- Implement infinite scrolling\r\n\r\nTODO: Benchmark current application and identify bottlenecks",
-      "lastEdited": "2026-04-14T13:09:39.541Z",
+      "lastEdited": "2026-03-26T15:22:49.242Z",
       "isArchived": false
     },
     {
       "id": "8ea7adfd-55f5-4e0c-bf47-72e7d4dd9f07",
-      "title": "Japan Travel Planning",
+      "title": " ",
       "tags": [
-        "Travel",
-        "Personal"
+        "test"
       ],
-      "content": "Japan Trip Planning - Spring 2025\n\nItinerary Draft:\nWeek 1: Tokyo\n- Shibuya and Harajuku\n- TeamLab Digital Art Museum\n- Day trip to Mount Fuji\n\nWeek 2: Kyoto & Osaka\n- Traditional temples\n- Cherry blossom viewing\n- Food tour in Osaka\n\nBudget: $3000\nAccommodation: Mix of hotels and traditional ryokans\nJR Pass: 14 days\n\nTODO: Book flights 6 months in advance",
-      "lastEdited": "2026-04-14T13:03:54.247Z",
-      "isArchived": true
+      "content": " ",
+      "lastEdited": "2026-04-15T11:42:16.755Z",
+      "isArchived": false
     },
     {
       "id": "6018c2f1-5107-4d8f-92bc-c6f2d06bb2dd",
       "title": "Favorite Pasta Recipes",
-      "tags": [
-        "Cooking",
-        "Recipes"
-      ],
-      "content": "Classic Italian Recipes:\n\n1. Carbonara\n- Eggs, pecorino, guanciale\n- No cream ever!\n- Save pasta water\n\n2. Cacio e Pepe\n- Pecorino Romano\n- Fresh black pepper\n- Technique is crucial\n\n3. Arrabbiata\n- San Marzano tomatoes\n- Fresh garlic\n- Red pepper flakes\n\nNote: Always use high-quality ingredients",
-      "lastEdited": "2026-04-14T13:09:46.350Z",
-      "isArchived": true
+      "tags": [],
+      "content": "Classic Italian Recipes:\r\n\r\n1. Carbonara\r\n- Eggs, pecorino, guanciale\r\n- No cream ever!\r\n- Save pasta water\r\n\r\n2. Cacio e Pepe\r\n- Pecorino Romano\r\n- Fresh black pepper\r\n- Technique is crucial\r\n\r\n3. Arrabbiata\r\n- San Marzano tomatoes\r\n- Fresh garlic\r\n- Red pepper flakes\r\n\r\nNote: Always use high-quality ingredients",
+      "lastEdited": "2026-04-15T11:36:47.394Z",
+      "isArchived": false
     },
     {
       "id": "1c9ea0f7-025c-471c-b571-1f60f8454f53",
@@ -81,13 +77,9 @@
     {
       "id": "0e40f6eb-1d47-4dcf-aa76-5272f1734ef0",
       "title": "Meal Prep Ideas",
-      "tags": [
-        "Cooking",
-        "Health",
-        "Recipes"
-      ],
+      "tags": [],
       "content": "Weekly Meal Prep Plan:\r\n\r\nBreakfast Options:\r\n- Overnight oats\r\n- Egg muffins\r\n- Smoothie packs\r\n\r\nLunch Containers:\r\n- Greek chicken bowl\r\n- Buddha bowls\r\n- Tuna pasta salad\r\n\r\nSnacks:\r\n- Cut vegetables\r\n- Mixed nuts\r\n- Greek yogurt parfait\r\n\r\nPrep Time: Sunday 2-4pm\r\nStorage: Glass containers\r\nLasts: 4-5 days",
-      "lastEdited": "2026-04-14T13:13:35.082Z",
+      "lastEdited": "2026-04-15T11:37:03.632Z",
       "isArchived": false
     },
     {

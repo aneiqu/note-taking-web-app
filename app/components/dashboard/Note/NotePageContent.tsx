@@ -1,6 +1,6 @@
 import NoteDataItems from "@/app/components/dashboard/Note/NoteDataItems";
 import { getNoteById } from "@/utils/getNotes";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { updateContent } from "@/app/actions/notes";
 import { revalidatePath } from "next/cache";
@@ -26,24 +26,56 @@ export default async function NotePageContent({ params, cancelHref }: NotePagePa
 
   async function saveNoteContent(formData: FormData) {
     "use server";
+    const cookieStore = await cookies();
 
-    const newContent = formData.get("noteContent");
-    if (typeof newContent !== "string") {
-      throw new Error("Invalid note content");
+    function getRequiredString(formData: FormData, key: string): string {
+      const value = formData.get(key);
+      if (typeof value !== "string") {
+        throw new Error(`Invalid content in field: ${key}`);
+      }
+      return value;
     }
 
-    await updateContent(noteId, newContent).then(() => {
+    function normalizeTags(rawTags: string): string[] {
+      const seen = new Set<string>();
+      return rawTags
+        .split(",")
+        .map((tag) => tag.trim().replace(/\s+/g, " "))
+        .filter((tag) => tag.length > 0)
+        .filter((tag) => {
+          const normalizedTag = tag.toLowerCase();
+          if (seen.has(normalizedTag)) return false;
+          seen.add(normalizedTag);
+          return true;
+        });
+    }
+
+    const tags = normalizeTags(getRequiredString(formData, "noteSpecs"));
+
+    const newData = {
+      title: getRequiredString(formData, "noteTitle"),
+      content: getRequiredString(formData, "noteContent"),
+      tags: tags,
+    };
+
+    await updateContent(noteId, newData).then(() => {
       if (tagSlug) {
+        const isTagSlugPresent = newData.tags.some(
+          (tag) => tag.toLowerCase() === decodeURIComponent(tagSlug).toLowerCase(),
+        );
         revalidatePath("/dashboard");
         revalidatePath(`/dashboard/tag/${tagSlug}`);
         revalidatePath(`/dashboard/tag/${tagSlug}/n/${noteId}`);
+        if (!isTagSlugPresent) {
+          redirect(`/dashboard/tag/${encodeURIComponent(newData.tags[0])}/n/${noteId}`);
+        }
       } else {
         revalidatePath("/dashboard");
         revalidatePath(`/dashboard/n/${noteId}`);
         revalidatePath(`/dashboard/n/archived/${noteId}`);
+        revalidatePath(`/dashboard/tag/${tagSlug}`);
       }
     });
-    const cookieStore = await cookies();
 
     cookieStore.set(
       "flash",
@@ -66,7 +98,15 @@ export default async function NotePageContent({ params, cancelHref }: NotePagePa
     >
       <div>
         <div className='flex flex-col gap-3 lg:gap-4'>
-          <div className='text-preset-1 text-neutral-950 dark:text-white'>{note.title}</div>
+          <input
+            name='noteTitle'
+            aria-label='Note title'
+            className='text-preset-1 text-neutral-950 dark:text-white'
+            defaultValue={note.title}
+            required={true}
+            pattern={".*[^,\\s].*"}
+            title={"Your title must be a valid text."}
+          ></input>
           <div className='flex flex-col gap-1'>
             <NoteDataItems tags={note.tags} date={note.lastEdited} />
           </div>

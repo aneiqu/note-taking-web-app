@@ -46,11 +46,15 @@ async function updateNote(noteId: string, updater: (note: Note) => Note) {
   await saveNotes(filePath, updatedData);
 }
 
-export async function updateContent(noteId: string, newContent: string) {
+type noteUpdateTypes = Pick<Note, "title" | "content" | "tags">;
+
+export async function updateContent(noteId: string, newData: noteUpdateTypes) {
   await updateNote(noteId, (note) => {
     return {
       ...note,
-      content: newContent,
+      title: newData.title,
+      content: newData.content,
+      tags: newData.tags,
       lastEdited: new Date().toISOString(),
     };
   });

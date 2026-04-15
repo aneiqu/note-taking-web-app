@@ -13,9 +13,19 @@ interface ContainerProps {
   Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   greyedOut: boolean;
   variant: "stroke" | "fill";
+  editable: boolean;
+  label?: string;
 }
 
-function DataItemContainer({ title, data, Icon, greyedOut, variant }: ContainerProps) {
+function DataItemContainer({
+  title,
+  data,
+  Icon,
+  greyedOut,
+  variant,
+  editable,
+  label,
+}: ContainerProps) {
   return (
     <div className='grid grid-cols-8 text-preset-6 lg:text-preset-5 items-center'>
       <div className='flex col-span-3 md:col-span-1 lg:col-span-2 gap-1.5 items-center'>
@@ -24,11 +34,16 @@ function DataItemContainer({ title, data, Icon, greyedOut, variant }: ContainerP
         />
         <p className='text-neutral-600 dark:text-neutral-300'>{title}</p>
       </div>
-      <p
+      <input
+        required={editable}
+        name='noteSpecs'
+        aria-label={label}
+        disabled={!editable}
+        defaultValue={data}
+        pattern={editable ? ".*[^,\\s].*" : undefined}
+        title={editable ? "Add at least one tag. Use commas to separate tags." : undefined}
         className={`col-span-5 ${greyedOut ? "text-neutral-700 dark:text-neutral-300" : "text-neutral-950 dark:text-white"}`}
-      >
-        {data}
-      </p>
+      ></input>
     </div>
   );
 }
@@ -42,6 +57,8 @@ export default function NoteDataItems({ tags, date }: DataProps) {
         Icon={TagIcon}
         greyedOut={false}
         variant='stroke'
+        editable={true}
+        label='Note tags'
       />
       <DataItemContainer
         title='Last edited'
@@ -49,6 +66,7 @@ export default function NoteDataItems({ tags, date }: DataProps) {
         Icon={ClockIcon}
         greyedOut={true}
         variant='fill'
+        editable={false}
       />
     </>
   );

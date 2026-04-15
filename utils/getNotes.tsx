@@ -63,7 +63,7 @@ export async function getNoteById(noteId: string) {
 
 export async function getAllTags() {
   const data = await readNotesData();
-  return Array.from(new Set(data.notes.flatMap((note) => note.tags))).sort((a, b) =>
-    a.localeCompare(b),
-  );
+  return Array.from(
+    new Set(data.notes.flatMap((note) => note.tags.map((tag) => tag.toLowerCase()))),
+  ).sort((a, b) => a.localeCompare(b));
 }

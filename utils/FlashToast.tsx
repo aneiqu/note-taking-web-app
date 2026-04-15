@@ -1,7 +1,7 @@
 "use client";
 
 import { clearFlashMessage } from "@/app/actions/flash";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 
 export default function FlashToast({

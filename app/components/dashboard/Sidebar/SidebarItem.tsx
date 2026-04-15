@@ -33,7 +33,7 @@ export default function SidebarItem({ icon, label, activePath, variant }: ItemPr
         className={`flex gap-2 items-center py-2.5 lg:px-3 rounded-lg dark:text-neutral-300 ${isActive ? "bg-neutral-100 dark:bg-neutral-800" : ""}`}
       >
         {icons[icon]}
-        {label}
+        {label[0].toUpperCase() + label.slice(1)}
         <ChevronRightIcon
           className={`ml-auto dark:**:fill-white ${isActive ? "block" : "hidden"}`}
         />

@@ -60,6 +60,8 @@ export default async function CreateNewNote() {
           className='text-preset-2 text-neutral-950 placeholder:text-neutral-950 outline-none w-full md:text-preset-1 dark:text-white dark:placeholder:text-white'
           aria-label='Note title'
           required={true}
+          pattern={".*[^,\\s].*"}
+          title={"Your title must be a valid text."}
         />
       </div>
       <div className='flex text-preset-6 md:text-preset-5 items-center -mb-1 lg:-mb-2'>
@@ -73,6 +75,8 @@ export default async function CreateNewNote() {
           placeholder='Add tags separated by commas (e.g. Work, Planning)'
           className='placeholder:text-neutral-400 w-full outline-none'
           required={true}
+          pattern={".*[^,\\s].*"}
+          title={"Add at least one tag. Use commas to separate tags."}
         />
       </div>
       <div className='flex text-preset-6 md:text-preset-5 items-center'>

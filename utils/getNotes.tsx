@@ -67,3 +67,5 @@ export async function getAllTags() {
     new Set(data.notes.flatMap((note) => note.tags.map((tag) => tag.toLowerCase()))),
   ).sort((a, b) => a.localeCompare(b));
 }
+
+export async function gettNotesByContent() {}

@@ -17,6 +17,12 @@ interface NotesData {
 const filePath = path.join(process.cwd(), "app", "assets", "data", "data.json");
 
 async function readNotesData(): Promise<NotesData> {
+  if ((await fs.readFile(filePath, "utf8")).length <= 1) {
+    const data = {
+      notes: [],
+    };
+    return data;
+  }
   return JSON.parse(await fs.readFile(filePath, "utf8")) as NotesData;
 }
 
@@ -61,11 +67,32 @@ export async function getNoteById(noteId: string) {
   return data.notes.find((note) => note.id === normalizedId);
 }
 
-export async function getAllTags() {
+export async function getAllActiveTags() {
   const data = await readNotesData();
   return Array.from(
-    new Set(data.notes.flatMap((note) => note.tags.map((tag) => tag.toLowerCase()))),
+    new Set(
+      data.notes
+        .filter((note) => note.isArchived !== true)
+        .flatMap((note) => note.tags.map((tag) => tag.toLowerCase())),
+    ),
   ).sort((a, b) => a.localeCompare(b));
 }
 
-export async function gettNotesByContent() {}
+export async function getNotesByContent(value: string) {
+  const data = await readNotesData();
+
+  const keys = ["title", "tags", "content"] as const;
+
+  const filteredNotes = data.notes.filter((note: Note) => {
+    const foundValue: boolean[] = [];
+    keys.forEach((key) => {
+      if (typeof note[key] === "string") {
+        foundValue.push(note[key].toLowerCase().includes(value.toLowerCase()));
+      } else {
+        foundValue.push(note[key].map((el) => el.toLowerCase()).includes(value.toLowerCase()));
+      }
+    });
+    return foundValue.some((el) => el === true);
+  });
+  return filteredNotes;
+}

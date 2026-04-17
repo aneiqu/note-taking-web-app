@@ -17,6 +17,12 @@ interface NotesData {
 const filePath = path.join(process.cwd(), "app", "assets", "data", "data.json");
 
 async function getNotes() {
+  if ((await fs.readFile(filePath, "utf8")).length <= 1) {
+    const data = {
+      notes: [],
+    };
+    return data;
+  }
   const fileContents = await fs.readFile(filePath, "utf8");
   const data: NotesData = JSON.parse(fileContents);
   return data;
@@ -80,6 +86,7 @@ export async function deleteNote(noteId: string) {
 
 export async function addNote(note: Note) {
   const data = await getNotes();
+  console.log(data, note);
 
   const updatedData: NotesData = {
     notes: data.notes.concat([note]),

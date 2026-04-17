@@ -1,9 +1,9 @@
-import { getAllTags } from "@/utils/getNotes";
+import { getAllActiveTags } from "@/utils/getNotes";
 import Link from "next/link";
 import SidebarItem from "./SidebarItem";
 
 export default async function SidebarTagItems() {
-  const tags = await getAllTags();
+  const tags = await getAllActiveTags();
 
   return (
     <>

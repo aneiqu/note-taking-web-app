@@ -1,11 +1,11 @@
 import PlusIcon from "@/app/assets/icons/icon-plus.svg";
-import SearchIcon from "@/app/assets/icons/icon-search.svg";
 import SettingsIcon from "@/app/assets/icons/icon-settings.svg";
 import LogoFeather from "@/app/assets/icons/logo-feather.svg";
 import LogoTextDark from "@/app/assets/icons/logo-text-dark.svg";
 import LogoTextWhite from "@/app/assets/icons/logo-text-white.svg";
 import { NavIcons } from "@/app/components/dashboard/NavIcons";
 import PageHeader from "@/app/components/dashboard/PageHeader";
+import SearchComponent from "@/app/components/dashboard/SearchComponent";
 import Sidebar from "@/app/components/dashboard/Sidebar/Sidebar";
 import FlashToast from "@/utils/FlashToast";
 import { cookies } from "next/headers";
@@ -32,14 +32,7 @@ export default await async function Layout({ children }: { children: React.React
           <div className='flex flex-col items-center bg-white px-4 gap-4 dark:bg-neutral-950 rounded-8 rounded-b-0 h-full lg:rounded-0 lg:h-fit lg:shrink-0 lg:flex-row lg:px-8 lg:py-[18.5px] lg:items-center lg:border-b border-neutral-200 dark:border-neutral-800'>
             <div className='hidden lg:flex items-center w-full gap-4'>
               <PageHeader />
-              <div className='relative flex items-center ml-auto'>
-                <SearchIcon className='**:fill-neutral-500 dark:**:fill-neutral-400 left-4 absolute' />
-                <input
-                  type='text'
-                  placeholder='Search by title, content, or tags…'
-                  className='border border-neutral-300 dark:border-neutral-600 px-4 py-3 text-preset-5 dark:text-neutral-400 rounded-lg w-75 pl-11 hover:bg-neutral-50 focus:outline-1 focus:outline-neutral-950 focus:ring-2 focus:ring-offset-3 focus:ring-neutral-400  duration-200'
-                />
-              </div>
+              <SearchComponent />
               <Link href={"/dashboard/settings"}>
                 <SettingsIcon className='**:fill-neutral-500 dark:**:text-neutral-400 cursor-pointer' />
               </Link>

@@ -1,6 +1,7 @@
 import DashboardItem from "@/app/components/dashboard/DashboardItem";
 import Link from "next/link";
 import PageHeader from "../PageHeader";
+import SearchComponent from "../SearchComponent";
 import SpecificationText from "../Sidebar/SidebarSpecificationText";
 
 interface PaneProps {
@@ -16,6 +17,7 @@ interface PaneProps {
   }[];
   tagSlug?: string;
   textType?: "tag" | "search" | "archived";
+  sP?: { q: string };
 }
 
 export default async function NotesListPane({
@@ -24,11 +26,16 @@ export default async function NotesListPane({
   filteredNotes,
   tagSlug,
   textType,
+  sP,
 }: PaneProps) {
   const tagText = tagSlug ? decodeURIComponent(tagSlug) : null;
   return (
     <div className='flex flex-col w-screen lg:w-full lg:h-full py-5 px-4 gap-4 col-span-3 lg:pl-8 lg:pr-4 lg:pt-5 lg:border-r border-neutral-200 dark:border-neutral-800 dark:bg-neutral-950 overflow-hidden '>
       <PageHeader classes='lg:hidden' />
+      <div className='w-full lg:hidden'>
+        <SearchComponent />
+      </div>
+
       <Link
         href={"/dashboard/create-new-note"}
         className='hidden lg:block rounded-lg text-preset-4 bg-blue-500 py-3 w-full text-white text-center'
@@ -37,6 +44,8 @@ export default async function NotesListPane({
       </Link>
       {textType === "archived" ? (
         <SpecificationText tagText='' textType={textType} />
+      ) : textType === "search" ? (
+        <SpecificationText tagText={sP?.q ? sP.q : ""} textType={textType} />
       ) : textType && tagText ? (
         <SpecificationText tagText={tagText} textType={textType} />
       ) : null}
@@ -47,6 +56,7 @@ export default async function NotesListPane({
             key={note.id}
             activeNoteId={activeNoteId}
             noteHref={`${noteHref}/${encodeURIComponent(note.id)}`}
+            sP={sP}
           />
         ))}
       </div>

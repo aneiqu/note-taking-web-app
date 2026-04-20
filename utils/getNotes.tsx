@@ -89,7 +89,9 @@ export async function getNotesByContent(value: string) {
       if (typeof note[key] === "string") {
         foundValue.push(note[key].toLowerCase().includes(value.toLowerCase()));
       } else {
-        foundValue.push(note[key].map((el) => el.toLowerCase()).includes(value.toLowerCase()));
+        foundValue.push(
+          note[key].map((el) => el.toLowerCase().trim()).includes(value.toLowerCase()),
+        );
       }
     });
     return foundValue.some((el) => el === true);

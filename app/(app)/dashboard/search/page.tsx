@@ -8,7 +8,12 @@ export default async function Search({ searchParams }: { searchParams: { q: stri
     params.q == undefined ? await getNotesByContent("") : await getNotesByContent(params.q);
   return (
     <div className='lg:grid grid-cols-12 col-span-3 h-full dark:bg-neutral-950  '>
-      <NotesListPane activeNoteId='' noteHref='/dashboard/search/n' filteredNotes={filterValue} />
+      <NotesListPane
+        activeNoteId=''
+        noteHref='/dashboard/search/n'
+        filteredNotes={filterValue}
+        sP={params}
+      />
     </div>
   );
 }

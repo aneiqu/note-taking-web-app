@@ -15,6 +15,7 @@ interface LayoutProps {
   children: React.ReactNode;
   params: Promise<{ note: string; tag?: string }>;
   noteHref: string;
+  cancelHref?: string;
   filteredNotes: {
     id: string;
     title: string;
@@ -23,19 +24,24 @@ interface LayoutProps {
     lastEdited: string;
     isArchived: boolean;
   }[];
+  searchParams?: { q?: string };
 }
 
 export default async function NotePageLayout({
   children,
   params,
   noteHref,
+  cancelHref,
   filteredNotes,
+  searchParams,
 }: LayoutProps) {
   const { note: noteId, tag: tagSlug } = await params;
-  const cancelHref = noteHref
-    .split("/")
-    .filter((el) => el !== "n")
-    .join("/");
+  const resolvedCancelHref =
+    cancelHref ??
+    noteHref
+      .split("/")
+      .filter((el) => el !== "n")
+      .join("/");
 
   const specificationTypes = ["search", "archived", "tag"] as const;
   const textType = specificationTypes.find((type) => noteHref.includes(type));
@@ -126,10 +132,11 @@ export default async function NotePageLayout({
           filteredNotes={filteredNotes}
           textType={textType}
           tagSlug={tagSlug}
+          sP={searchParams?.q ? { q: searchParams.q } : undefined}
         />
       </div>
       <div className='flex items-center lg:items-baseline justify-between text-preset-5 col-span-3 shrink-0 lg:order-3 lg:dark:bg-neutral-950'>
-        <ReturnButton noteHref={noteHref} />
+        <ReturnButton noteHref={noteHref} href={resolvedCancelHref} />
 
         <div className='flex gap-4 **:stroke-neutral-600 text-preset-4 text-neutral-950 lg:flex-col lg:w-full lg:py-8 lg:pl-5 lg:pr-8 items-center'>
           <div className='lg:w-full'>
@@ -168,7 +175,10 @@ export default async function NotePageLayout({
               toastTitle='Note permanently deleted.'
             />
           </div>
-          <Link href={cancelHref} className='text-neutral-600 dark:text-neutral-300 lg:hidden '>
+          <Link
+            href={resolvedCancelHref}
+            className='text-neutral-600 dark:text-neutral-300 lg:hidden '
+          >
             Cancel
           </Link>
           <button type='submit' form='note-form' className='text-blue-500  lg:hidden '>

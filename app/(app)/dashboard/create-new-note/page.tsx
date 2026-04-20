@@ -2,6 +2,7 @@ import { addNote } from "@/app/actions/notes";
 import ClockIcon from "@/app/assets/icons/icon-clock.svg";
 import TagIcon from "@/app/assets/icons/icon-tag.svg";
 import ReturnButton from "@/app/components/dashboard/Note/ReturnButton";
+import { revalidatePath } from "next/cache";
 import Form from "next/form";
 import Link from "next/link";
 
@@ -25,7 +26,7 @@ export default async function CreateNewNote() {
       throw new Error("Invalid note content");
     }
 
-    addNote({
+    await addNote({
       id: `${Math.random()}`,
       title: title,
       tags: tags.split(",").map((tag) => tag.trim()),
@@ -33,6 +34,7 @@ export default async function CreateNewNote() {
       lastEdited: `${new Date().toISOString()}`,
       isArchived: false,
     });
+    revalidatePath("/dashboard");
   }
 
   return (

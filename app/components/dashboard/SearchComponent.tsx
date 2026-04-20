@@ -2,10 +2,11 @@
 
 import SearchIcon from "@/app/assets/icons/icon-search.svg";
 import Link from "next/link";
-import { redirect, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export default function SearchComponent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   const [searchValue, setSearchValue] = useState<string>(() => {
@@ -14,12 +15,14 @@ export default function SearchComponent() {
     return search;
   });
 
+  const handleUserActionSearch = (key: string) => {
+    if (key === "Enter") router.replace(`/dashboard/search?q=${searchValue}`);
+  };
+
   return (
     <div
       className='relative flex items-center ml-auto'
-      onKeyDown={(e) => {
-        if (e.code === "Enter") redirect(`/dashboard/search?q=${searchValue}`);
-      }}
+      onKeyDown={(e) => handleUserActionSearch(e.code)}
     >
       <Link
         href={{

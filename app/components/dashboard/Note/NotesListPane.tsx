@@ -50,15 +50,21 @@ export default async function NotesListPane({
         <SpecificationText tagText={tagText} textType={textType} />
       ) : null}
       <div className='flex flex-col gap-1 h-full overflow-y-scroll scrollbar-thin'>
-        {filteredNotes.map((note) => (
-          <DashboardItem
-            note={note}
-            key={note.id}
-            activeNoteId={activeNoteId}
-            noteHref={`${noteHref}/${encodeURIComponent(note.id)}`}
-            sP={sP}
-          />
-        ))}
+        {filteredNotes.length === 0 && !textType ? (
+          <div className='p-2 text-preset-5 text-neutral-950 bg-neutral-100 border border-neutral-200'>
+            You don’t have any notes yet. Start a new note to capture your thoughts and ideas.
+          </div>
+        ) : (
+          filteredNotes.map((note) => (
+            <DashboardItem
+              note={note}
+              key={note.id}
+              activeNoteId={activeNoteId}
+              noteHref={`${noteHref}/${encodeURIComponent(note.id)}`}
+              sP={sP}
+            />
+          ))
+        )}
       </div>
     </div>
   );

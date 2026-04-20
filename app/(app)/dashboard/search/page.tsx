@@ -13,6 +13,7 @@ export default async function Search({ searchParams }: { searchParams: { q: stri
         noteHref='/dashboard/search/n'
         filteredNotes={filterValue}
         sP={params}
+        textType='search'
       />
     </div>
   );

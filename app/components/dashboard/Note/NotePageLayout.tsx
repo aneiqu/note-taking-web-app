@@ -47,6 +47,7 @@ export default async function NotePageLayout({
   const textType = specificationTypes.find((type) => noteHref.includes(type));
 
   const isArchived = (await getArchivedNotes()).some((note) => note.id === noteId);
+
   async function updateArchived() {
     "use server";
 
@@ -81,8 +82,10 @@ export default async function NotePageLayout({
       } else {
         if (tagSlug) {
           redirect(`/dashboard/tag/${tagSlug}`);
+        } else if (searchParams) {
+          redirect(`/dashboard/search?q=${searchParams.q}`);
         } else {
-          redirect(`/dashboard`);
+          redirect("/dashboard");
         }
       }
     });
@@ -117,6 +120,8 @@ export default async function NotePageLayout({
 
       if (tagSlug) {
         redirect(`/dashboard/tag/${tagSlug}`);
+      } else if (searchParams) {
+        redirect(`/dashboard/search?q=${searchParams.q}`);
       } else {
         redirect(`/dashboard`);
       }

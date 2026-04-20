@@ -72,8 +72,6 @@ export default async function NotePageContent({ params, cancelHref }: NotePagePa
       } else {
         revalidatePath("/dashboard");
         revalidatePath(`/dashboard/n/${noteId}`);
-        revalidatePath(`/dashboard/n/archived/${noteId}`);
-        revalidatePath(`/dashboard/tag/${tagSlug}`);
       }
     });
 

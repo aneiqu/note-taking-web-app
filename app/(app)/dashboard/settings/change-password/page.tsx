@@ -2,7 +2,7 @@ import PasswordInput from "@/app/components/auth/PasswordInput";
 import Form from "next/form";
 
 export default function Theme() {
-  async function updatePassword(formData: FormData) {
+  async function updatePassword() {
     "use server";
   }
 

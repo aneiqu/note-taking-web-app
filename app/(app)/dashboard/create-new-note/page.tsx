@@ -27,7 +27,7 @@ export default async function CreateNewNote() {
     }
 
     await addNote({
-      id: `${Math.random()}`,
+      id: `${crypto.randomUUID()}`,
       title: title,
       tags: tags.split(",").map((tag) => tag.trim()),
       content: content,

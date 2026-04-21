@@ -39,7 +39,10 @@ export function AuthFormPasswordInput({ showForgetLink }: { showForgetLink: bool
           </Link>
         ) : null}
       </div>
-      <PasswordInput classes='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg w-full dark:text-neutral-400' />
+      <PasswordInput
+        id='passwordInput'
+        classes='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg w-full dark:text-neutral-400'
+      />
     </div>
   );
 }

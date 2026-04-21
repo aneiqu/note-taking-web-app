@@ -165,7 +165,7 @@ export default async function NotePageLayout({
                   />
                 )
               }
-              toastTitle={isArchived ? "Note restored to active notes." : "Note archived."}
+              ariaId='archive-modal'
             />
           </div>
           <div className='lg:w-full'>
@@ -177,7 +177,7 @@ export default async function NotePageLayout({
               icon={
                 <TrashIcon className='lg:**:stroke-neutral-950 dark:**:stroke-neutral-300 group-hover:**:stroke-neutral-600' />
               }
-              toastTitle='Note permanently deleted.'
+              ariaId='delete-modal'
             />
           </div>
           <Link

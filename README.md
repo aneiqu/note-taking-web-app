@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Note Taking Web App
 
-## Getting Started
+A note-taking application built with Next.js, React, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+This project is still in active development. The current build already includes the main dashboard flows, note browsing views, authentication screens, and user settings pages, while some behavior and data persistence are still being refined.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Overview
+
+The goal of this project is to build a polished note-taking experience with:
+
+- authentication flows
+- note browsing and note details
+- archived notes
+- tag-based navigation
+- search views
+- user settings for password, color theme, and font theme
+
+The app is structured with the Next.js App Router and split into route groups for authenticated app screens and auth-related pages.
+
+## Current Status
+
+This is a work in progress portfolio project.
+
+### Implemented
+
+- auth route group with login, signup, forgot password, and reset password pages
+- dashboard route group with note detail pages
+- archived notes flow
+- tag listing and tag detail note views
+- search route structure
+- settings pages for color theme, font theme, and password changes
+- theme switching support
+- toast-based flash messages
+- typed utilities for font theme handling
+
+### In Progress
+
+- polishing UI
+- finalizing settings interactions
+- tightening note creation and editing flows
+
+### Planned / Likely Next Steps
+
+- full CRUD flow improvements for notes
+- stronger empty, loading, and error states
+- backend or database-backed persistence
+- improved accessibility review across forms and dashboard interactions
+- test coverage for critical user flows
+
+## Tech Stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- `next-themes`
+- `react-hot-toast`
+- `@svgr/webpack`
+
+## Project Structure
+
+```text
+app/
+  (app)/          authenticated application routes
+  (auth)/         authentication routes
+  actions/        app actions such as flash message handling
+  assets/         local data and static assets
+  components/     reusable UI components
+utils/            shared utilities
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running Locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Install dependencies:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+pnpm install
+```
 
-## Learn More
+Start the development server:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+pnpm dev
+```

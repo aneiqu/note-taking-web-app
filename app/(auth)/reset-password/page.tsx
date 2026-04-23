@@ -2,15 +2,16 @@ import InfoIcon from "@/app/assets/icons/icon-info.svg";
 import AuthForm from "@/app/components/auth/AuthForm";
 import { AuthFormPasswordInput } from "@/app/components/auth/AuthFormInput";
 import AuthHeader from "@/app/components/auth/AuthHeader";
-
 export default function ResetPassword() {
+  async function formAction() {}
+
   return (
     <>
       <AuthHeader
         title='Reset Your Password'
         description='Choose a new password to secure your account.'
       />
-      <AuthForm buttonText='Reset Password'>
+      <AuthForm buttonText='Reset Password' formAction={formAction}>
         <AuthFormPasswordInput showForgetLink={false} />
         <div className='-mt-2 flex items-center gap-2.5'>
           <InfoIcon className='stroke-neutral-600 dark:stroke-neutral-400' />

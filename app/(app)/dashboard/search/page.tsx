@@ -1,7 +1,7 @@
 import NotesListPane from "@/app/components/dashboard/Note/NotesListPane";
 import { getNotesByContent } from "@/utils/getNotes";
 
-export default async function Search({ searchParams }: { searchParams: { q: string } }) {
+export default async function Search({ searchParams }: { searchParams: Promise<{ q: string }> }) {
   const params = await searchParams;
 
   const filterValue =

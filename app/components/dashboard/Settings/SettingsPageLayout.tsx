@@ -1,12 +1,22 @@
+import { destroySession } from "@/app/actions/auth";
 import FontIcon from "@/app/assets/icons/icon-font.svg";
 import LockIcon from "@/app/assets/icons/icon-lock.svg";
 import LogoutIcon from "@/app/assets/icons/icon-logout.svg";
 import SunIcon from "@/app/assets/icons/icon-sun.svg";
+import Form from "next/form";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import ReturnButton from "../Note/ReturnButton";
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+}
+
+async function handleForm() {
+  "use server";
+
+  await destroySession();
+  redirect("/login");
 }
 
 export default function SettingsPageLayout({ children }: LayoutProps) {
@@ -32,10 +42,12 @@ export default function SettingsPageLayout({ children }: LayoutProps) {
           </Link>
         </div>
         <hr className='text-neutral-200 dark:text-neutral-800' />
-        <div className='flex items-center gap-2 py-2'>
-          <LogoutIcon className='dark:**:stroke-neutral-200' />
-          <p>Logout</p>
-        </div>
+        <Form action={handleForm}>
+          <button type='submit' className='flex items-center gap-2 py-2'>
+            <LogoutIcon className='dark:**:stroke-neutral-200' />
+            <p>Logout</p>
+          </button>
+        </Form>
       </div>
       <div className='lg:hidden'>
         <ReturnButton noteHref={"/dashboard/settings"} title='Settings' />

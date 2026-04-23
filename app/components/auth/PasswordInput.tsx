@@ -7,9 +7,9 @@ import { useState } from "react";
 
 interface InputTypes {
   classes: string;
-  id?: string;
-  name?: string;
-  ariaLabel?: string;
+  id: string;
+  name: string;
+  ariaLabel: string;
 }
 
 export default function PasswordInput({ classes, id, name, ariaLabel }: InputTypes) {

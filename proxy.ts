@@ -1,10 +1,14 @@
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 const authPages = ["/login", "/reset-password", "/forgot-password", "/signup"];
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const isLogged = true;
+
+  const cookieStore = await cookies();
+
+  const isLogged = cookieStore.get("session");
 
   const isAuthRoute = authPages.includes(pathname);
 

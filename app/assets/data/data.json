@@ -75,8 +75,8 @@
         "React"
       ],
       "content": "Custom Component Library Structure:\r\n\r\n1. Basic Components\r\n- Button\r\n- Input\r\n- Card\r\n- Modal\r\n\r\n2. Form Components\r\n- FormField\r\n- Select\r\n- Checkbox\r\n- RadioGroup\r\n\r\n3. Layout Components\r\n- Container\r\n- Grid\r\n- Flex\r\n\r\nAll components need:\r\n- TypeScript definitions\r\n- Unit tests\r\n- Storybook documentation\r\n- Accessibility support",
-      "lastEdited": "2026-03-26T15:21:45.228Z",
-      "isArchived": false
+      "lastEdited": "2026-04-21T14:14:09.077Z",
+      "isArchived": true
     },
     {
       "id": "0e40f6eb-1d47-4dcf-aa76-5272f1734ef0",

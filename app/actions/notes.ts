@@ -86,7 +86,6 @@ export async function deleteNote(noteId: string) {
 
 export async function addNote(note: Note) {
   const data = await getNotes();
-  console.log(data, note);
 
   const updatedData: NotesData = {
     notes: data.notes.concat([note]),

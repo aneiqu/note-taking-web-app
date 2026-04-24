@@ -1,5 +1,6 @@
+import SaveIcon from "@/app/assets/icons/icon-checkmark.svg";
+import CloseIcon from "@/app/assets/icons/icon-cross.svg";
 import toast from "react-hot-toast";
-
 interface NotePageParams {
   pageTitle: string;
   pageDescription: string;
@@ -15,7 +16,19 @@ export default function SettingsPageContent({
 }: NotePageParams) {
   async function clickHandler() {
     updateFunction();
-    toast.success("Settings updated successfully!");
+    toast(
+      (t) => (
+        <div className='flex items-center'>
+          <p>Settings updated successfully!</p>
+          <button onClick={() => toast.dismiss(t.id)}>
+            <CloseIcon className='-mr-3 ml-5 cursor-pointer **:stroke-neutral-400 dark:**:stroke-neutral-800' />
+          </button>
+        </div>
+      ),
+      {
+        icon: <SaveIcon className='**:fill-green-500' />,
+      },
+    );
   }
 
   return (

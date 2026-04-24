@@ -30,7 +30,7 @@ export default async function NotesListPane({
 }: PaneProps) {
   const tagText = tagSlug ? decodeURIComponent(tagSlug) : null;
   return (
-    <div className='flex flex-col w-screen lg:w-full lg:h-full py-5 px-4 gap-4 col-span-3 lg:pl-8 lg:pr-4 lg:pt-5 lg:border-r border-neutral-200 dark:border-neutral-800 dark:bg-neutral-950 overflow-hidden '>
+    <div className='flex flex-col w-screen lg:w-full lg:h-full py-5 px-4 gap-4 col-span-3 lg:pl-8 lg:pr-4 lg:pt-5 lg:border-r border-neutral-200 dark:border-neutral-800 dark:bg-neutral-950 overflow-hidden rounded-t-xl lg:rounded-t-0'>
       <PageHeader classes='lg:hidden' />
       <div className='w-full lg:hidden'>
         <SearchComponent />

@@ -5,12 +5,5 @@ interface LayoutProps {
 }
 
 export default async function Layout({ children }: LayoutProps) {
-  return (
-    <>
-      <div className='hidden lg:block'>
-        <SettingsPageLayout>{children}</SettingsPageLayout>;
-      </div>
-      <div className='lg:hidden'>{children}</div>
-    </>
-  );
+  return <SettingsPageLayout hidden={true}>{children}</SettingsPageLayout>;
 }

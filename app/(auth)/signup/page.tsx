@@ -3,17 +3,39 @@ import AuthForm from "@/app/components/auth/AuthForm";
 import { AuthFormPasswordInput, AuthFormTextInput } from "@/app/components/auth/AuthFormInput";
 import AuthHeader from "@/app/components/auth/AuthHeader";
 import AuthLoginGoogle from "@/app/components/auth/AuthLoginGoogle";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function Signup() {
+  async function formAction() {
+    "use server";
+    const cookieStore = await cookies();
+    cookieStore.set(
+      "flash",
+      JSON.stringify({
+        type: "error",
+        message: `This function isn't implemented.
+           Use data below to log in: 
+           email: qwerty@notes.com
+           password: 12345678`,
+      }),
+      {
+        httpOnly: false,
+        maxAge: 20,
+      },
+    );
+    redirect("/login");
+  }
+
   return (
     <>
       <AuthHeader
         title='Create Your Account'
         description='Sign up to start organizing your notes and boost your productivity.'
       />
-      <AuthForm buttonText='Sign up'>
-        <AuthFormTextInput label='Email Address' placeholder='email@example.com' />
+      <AuthForm formAction={formAction} buttonText='Sign up'>
+        <AuthFormTextInput id='' label='Email Address' placeholder='email@example.com' />
         <AuthFormPasswordInput showForgetLink={false} />
         <div className='-mt-2 flex items-center gap-2.5'>
           <InfoIcon className='stroke-neutral-600 dark:stroke-neutral-400' />

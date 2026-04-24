@@ -25,7 +25,7 @@ export default function SettingsOption({
   const checked = currentData === value;
   return (
     <label
-      className={`flex p-4 items-center gap-4 rounded-xl border border-neutral-200 cursor-pointer  dark:border-neutral-700 duration-200 ${checked ? "bg-neutral-100 dark:bg-neutral-950" : ""}`}
+      className={`flex p-4 items-center gap-4 rounded-xl border border-neutral-200 cursor-pointer  dark:border-neutral-700 duration-200 ${checked ? "bg-neutral-100 dark:bg-neutral-800" : ""}`}
     >
       <div className='p-2 bg-white rounded-xl border border-neutral-200 dark:bg-neutral-950 dark:border-neutral-700'>
         <Icon

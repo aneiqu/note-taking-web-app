@@ -3,7 +3,7 @@ import { getActiveNotes } from "@/utils/getNotes";
 
 export default async function Home() {
   return (
-    <div className='lg:grid lg:grid-cols-12 h-full dark:bg-neutral-950 '>
+    <div className='lg:grid lg:grid-cols-12 h-full dark:bg-neutral-950 rounded-t-xl lg:rounded-t-0 '>
       <NotesListPane
         filteredNotes={await getActiveNotes()}
         activeNoteId=''

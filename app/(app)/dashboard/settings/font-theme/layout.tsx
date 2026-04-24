@@ -5,5 +5,5 @@ interface LayoutProps {
 }
 
 export default async function Layout({ children }: LayoutProps) {
-  return <SettingsPageLayout>{children}</SettingsPageLayout>;
+  return <SettingsPageLayout hidden={true}>{children}</SettingsPageLayout>;
 }

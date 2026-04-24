@@ -30,7 +30,7 @@ export default function SidebarItem({ icon, label, activePath, variant }: ItemPr
   return (
     <>
       <div
-        className={`flex gap-2 items-center py-2.5 lg:px-3 rounded-lg dark:text-neutral-300 ${isActive ? "bg-neutral-100 dark:bg-neutral-800" : ""}`}
+        className={`flex gap-2 items-center py-2.5 lg:px-3 rounded-lg dark:text-neutral-300 hover:bg-neutral-100 duration-75 dark:hover:bg-neutral-800 ${isActive ? "bg-neutral-100 dark:bg-neutral-800" : ""}`}
       >
         {icons[icon]}
         {label[0].toUpperCase() + label.slice(1)}

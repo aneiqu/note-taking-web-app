@@ -37,7 +37,7 @@ export default async function DashboardItem({ note, activeNoteId, noteHref, sP }
         className='nth-last-2:pb-14 md:nth-last-2:pb-18.5 lg:pb-0! dark:text-white'
       >
         <div
-          className={`flex flex-col p-2 gap-3 rounded-md ${isActive ? "bg-neutral-100 dark:bg-neutral-800" : ""}`}
+          className={`flex flex-col p-2 gap-3 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 ${isActive ? "bg-neutral-100 dark:bg-neutral-800" : ""}`}
         >
           <h3 className='text-preset-3'>{note.title}</h3>
           <div className='flex gap-1 flex-wrap '>{tagsFormatted}</div>

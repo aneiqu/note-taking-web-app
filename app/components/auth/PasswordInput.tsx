@@ -18,7 +18,7 @@ export default function PasswordInput({ classes, id, name, ariaLabel }: InputTyp
   return (
     <div className='relative flex items-center'>
       <input
-        className={`${classes}`}
+        className={`hover:bg-neutral-50 dark:hover:bg-neutral-800 duration-200 ${classes}`}
         type={showPassword ? "text" : "password"}
         minLength={8}
         required={true}
@@ -28,7 +28,7 @@ export default function PasswordInput({ classes, id, name, ariaLabel }: InputTyp
       />
       <button
         aria-label={showPassword ? "Hide password" : "Show password"}
-        className='absolute right-4'
+        className='absolute right-4 cursor-pointer'
         type='button'
         onClick={() => setShowPassword((v) => !v)}
       >

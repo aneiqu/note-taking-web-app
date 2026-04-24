@@ -38,7 +38,7 @@ export default async function NotesListPane({
 
       <Link
         href={"/dashboard/create-new-note"}
-        className='hidden lg:block rounded-lg text-preset-4 bg-blue-500 py-3 w-full text-white text-center'
+        className='hidden lg:block rounded-lg text-preset-4 bg-blue-500 py-3 w-full text-white text-center hover:bg-blue-700 duration-75'
       >
         + Create New Note
       </Link>

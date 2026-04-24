@@ -19,7 +19,7 @@ export function AuthFormTextInput({ label, placeholder, id }: InputTypes) {
         type='text'
         required={true}
         placeholder={placeholder}
-        className='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-(--radius-8) dark:text-neutral-500'
+        className='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-(--radius-8) dark:text-neutral-500 hover:bg-neutral-50 duration-200 dark:hover:bg-neutral-800'
       />
     </div>
   );
@@ -46,7 +46,7 @@ export function AuthFormPasswordInput({ showForgetLink }: { showForgetLink: bool
         name='passwordInput'
         id='passwordInput'
         ariaLabel='Password input'
-        classes='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg w-full dark:text-neutral-400'
+        classes='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg w-full dark:text-neutral-400 hover:bg-neutral-50 duration-200 dark:hover:bg-neutral-800'
       />
     </div>
   );

@@ -11,7 +11,7 @@ export default function Login() {
   async function formAction(formData: FormData) {
     "use server";
     const email = formData.get("emailInput");
-    const password = formData.get("passwordInput");
+    const password = formData.get("password-input");
     if (email == null || password == null) return;
     const logged = await authUser({
       email: email,

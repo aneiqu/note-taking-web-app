@@ -11,7 +11,7 @@ import FlashToast from "@/utils/FlashToast";
 import { cookies } from "next/headers";
 import Link from "next/link";
 
-export default await async function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies();
   const rawFlash = cookieStore.get("flash")?.value;
   const flash = rawFlash ? JSON.parse(rawFlash) : undefined;
@@ -52,4 +52,4 @@ export default await async function Layout({ children }: { children: React.React
       </div>
     </>
   );
-};
+}

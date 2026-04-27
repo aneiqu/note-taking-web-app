@@ -20,14 +20,21 @@ function SettingsLink({ linkHref, activeName, title, Icon, iconType = "fill" }: 
   const pathname = usePathname();
   const currentSettingsPage = pathname.split("/")[pathname.split("/").length - 1];
   const isActive = currentSettingsPage === activeName;
+
   return (
     <Link
       href={linkHref}
       className={`flex items-center gap-2 p-2 rounded-md ${isActive ? "bg-neutral-100 dark:bg-neutral-800" : ""} `}
     >
-      <Icon
-        className={`dark:**:${iconType}-neutral-200 ${isActive ? `dark:**:${iconType}-blue-500!` : ""}`}
-      />
+      {iconType === "stroke" ? (
+        <Icon
+          className={`**:stroke-neutral-950 dark:**:stroke-neutral-200 ${isActive ? "**:stroke-blue-500! dark:**:stroke-blue-500!" : ""}`}
+        />
+      ) : (
+        <Icon
+          className={`**:fill-neutral-950 dark:**:fill-neutral-200 ${isActive ? "**:fill-blue-500! dark:**:fill-blue-500!" : ""}`}
+        />
+      )}
       <p>{title}</p>
       <ChevronRightIcon
         className={`ml-auto **:fill-neutral-950 dark:**:fill-white ${isActive ? "" : "hidden"}`}

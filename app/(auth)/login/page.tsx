@@ -39,7 +39,7 @@ export default function Login() {
       <AuthHeader title='Welcome to Note' description='Please log in to continue' />
       <AuthForm buttonText='Login' formAction={formAction}>
         <AuthFormTextInput label='Email Address' placeholder='email@example.com' id='emailInput' />
-        <AuthFormPasswordInput showForgetLink={true} />
+        <AuthFormPasswordInput showForgetLink={true} id='password-input' label='Password input' />
       </AuthForm>
       <hr className='text-neutral-300 w-full dark:border-neutral-600' />
       <p className='text-preset-5 text-neutral-600 dark:text-neutral-300 mt-2'>Or log in with:</p>

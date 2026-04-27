@@ -36,7 +36,7 @@ export default function Signup() {
       />
       <AuthForm formAction={formAction} buttonText='Sign up'>
         <AuthFormTextInput id='' label='Email Address' placeholder='email@example.com' />
-        <AuthFormPasswordInput showForgetLink={false} />
+        <AuthFormPasswordInput showForgetLink={false} id='password-input' label='Password input' />
         <div className='-mt-2 flex items-center gap-2.5'>
           <InfoIcon className='stroke-neutral-600 dark:stroke-neutral-400' />
           <p className='text-preset-6 text-neutral-600 dark:text-neutral-400'>

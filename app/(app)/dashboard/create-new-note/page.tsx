@@ -39,6 +39,7 @@ export default async function CreateNewNote() {
 
   return (
     <Form
+      id='note-form'
       action={createNote}
       className='flex flex-col w-screen lg:w-full pt-5 px-4 lg:px-6 lg:pt-1 gap-3 lg:gap-4 h-full lg:border-r lg:border-neutral-200 dark:border-neutral-800 lg:pb-5 dark:bg-neutral-950'
     >

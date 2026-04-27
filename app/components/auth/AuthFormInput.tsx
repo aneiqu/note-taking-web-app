@@ -7,6 +7,12 @@ interface InputTypes {
   id: string;
 }
 
+interface InputPasswordTypes {
+  showForgetLink: boolean;
+  id: string;
+  label: string;
+}
+
 export function AuthFormTextInput({ label, placeholder, id }: InputTypes) {
   return (
     <div className='flex flex-col gap-1.5'>
@@ -25,12 +31,12 @@ export function AuthFormTextInput({ label, placeholder, id }: InputTypes) {
   );
 }
 
-export function AuthFormPasswordInput({ showForgetLink }: { showForgetLink: boolean }) {
+export function AuthFormPasswordInput({ showForgetLink, id, label }: InputPasswordTypes) {
   return (
     <div className='flex flex-col gap-1.5'>
       <div className='flex justify-between'>
-        <label htmlFor='passwordInput' className='text-preset-4 text-neutral-950 dark:text-white'>
-          Password
+        <label htmlFor={id} className='text-preset-4 text-neutral-950 dark:text-white'>
+          {label}
         </label>
 
         {showForgetLink ? (
@@ -43,9 +49,9 @@ export function AuthFormPasswordInput({ showForgetLink }: { showForgetLink: bool
         ) : null}
       </div>
       <PasswordInput
-        name='passwordInput'
-        id='passwordInput'
-        ariaLabel='Password input'
+        name={id}
+        id={id}
+        ariaLabel={label}
         classes='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg w-full dark:text-neutral-400 hover:bg-neutral-50 duration-200 dark:hover:bg-neutral-800'
       />
     </div>

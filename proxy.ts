@@ -1,14 +1,22 @@
-import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { validateSession } from "./app/actions/auth";
 
 const authPages = ["/login", "/reset-password", "/forgot-password", "/signup"];
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const cookieStore = await cookies();
+  const sessionToken = request.cookies.get("session")?.value ?? "";
 
-  const isLogged = cookieStore.get("session");
+  let isLogged = false;
+
+  if (sessionToken) {
+    try {
+      isLogged = Boolean(await validateSession(sessionToken));
+    } catch {
+      isLogged = false;
+    }
+  }
 
   const isAuthRoute = authPages.includes(pathname);
 

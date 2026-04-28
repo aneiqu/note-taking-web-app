@@ -1,10 +1,9 @@
-import { deleteNote, toggleArchived } from "@/app/actions/notes";
+import { deleteNote, getArchivedNotes, toggleArchived } from "@/app/actions/notes";
 import ArchiveIcon from "@/app/assets/icons/icon-archive.svg";
 import TrashIcon from "@/app/assets/icons/icon-delete.svg";
 import RestoreIcon from "@/app/assets/icons/icon-restore.svg";
 import NotesListPane from "@/app/components/dashboard/Note/NotesListPane";
 import ReturnButton from "@/app/components/dashboard/Note/ReturnButton";
-import { getArchivedNotes } from "@/utils/getNotes";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import Link from "next/link";

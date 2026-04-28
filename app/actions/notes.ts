@@ -1,94 +1,284 @@
-import { promises as fs } from "fs";
-import path from "path";
+import type { Prisma } from "@/generated/prisma/client";
+import { prisma } from "@/lib/prisma";
+import { cookies } from "next/headers";
+import { validateSession } from "./auth";
 
-interface Note {
-  id: string;
+interface NoteTypes {
   title: string;
-  tags: string[];
   content: string;
-  lastEdited: string;
-  isArchived: boolean;
+  tagInput: string;
 }
 
-interface NotesData {
-  notes: Note[];
+interface UpdateTypes {
+  title: string;
+  content: string;
+  tagInput: string;
+  noteId: string;
 }
 
-const filePath = path.join(process.cwd(), "app", "assets", "data", "data.json");
+const noteSelect = {
+  id: true,
+  title: true,
+  content: true,
+  isArchived: true,
+  updatedAt: true,
+  tags: {
+    select: {
+      tag: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  },
+};
 
-async function getNotes() {
-  if ((await fs.readFile(filePath, "utf8")).length <= 1) {
-    const data = {
-      notes: [],
-    };
-    return data;
-  }
-  const fileContents = await fs.readFile(filePath, "utf8");
-  const data: NotesData = JSON.parse(fileContents);
-  return data;
+export async function getUserId() {
+  const cookieStore = await cookies();
+  const sessionToken = cookieStore.get("session")?.value;
+
+  if (!sessionToken) return;
+  return await validateSession(sessionToken);
 }
-async function saveNotes(path: string, data: NotesData) {
-  await fs.writeFile(path, JSON.stringify(data, null, 2), "utf8");
+
+function normalizeTagName(tag: string) {
+  return decodeURIComponent(tag).split(" ").join("").toLowerCase().trim();
 }
 
-async function updateNote(noteId: string, updater: (note: Note) => Note) {
-  const data = await getNotes();
-
-  const noteExists = data.notes.some((note) => note.id === noteId);
-  if (!noteExists) {
-    throw new Error(`Note with id "${noteId}" was not found`);
-  }
-
-  const updatedData: NotesData = {
-    notes: data.notes.map((note) =>
-      note.id === noteId
-        ? {
-            ...updater(note),
-          }
-        : note,
-    ),
+function formatNote(note: Prisma.NoteGetPayload<{ select: typeof noteSelect }>) {
+  return {
+    id: note.id,
+    title: note.title,
+    tags: note.tags.map(({ tag }) => tag.name),
+    content: note.content,
+    lastEdited: note.updatedAt.toISOString(),
+    isArchived: note.isArchived,
   };
-
-  await saveNotes(filePath, updatedData);
 }
 
-type noteUpdateTypes = Pick<Note, "title" | "content" | "tags">;
+async function getNotes(where: Prisma.NoteWhereInput) {
+  const notes = await prisma.note.findMany({
+    where,
+    select: noteSelect,
+    orderBy: {
+      updatedAt: "desc",
+    },
+  });
 
-export async function updateContent(noteId: string, newData: noteUpdateTypes) {
-  await updateNote(noteId, (note) => {
-    return {
-      ...note,
-      title: newData.title,
-      content: newData.content,
-      tags: newData.tags,
-      lastEdited: new Date().toISOString(),
-    };
+  return notes.map(formatNote);
+}
+
+export async function createNote({ title, content, tagInput }: NoteTypes) {
+  const userId = await getUserId();
+  const tags = [
+    ...new Set(
+      tagInput
+        .split(",")
+        .map((tag: string) => tag.trim())
+        .filter(Boolean),
+    ),
+  ];
+
+  if (!userId) return;
+
+  const note = await prisma.note.create({
+    data: {
+      title: title,
+      content: content,
+      userId: userId,
+      tags: {
+        create: tags.map((name) => ({
+          tag: {
+            connectOrCreate: {
+              where: {
+                userId_normalizedName: {
+                  userId,
+                  normalizedName: name.split(" ").join("").toLowerCase().trim(),
+                },
+              },
+              create: {
+                userId,
+                name,
+                normalizedName: name.split(" ").join("").toLowerCase().trim(),
+              },
+            },
+          },
+        })),
+      },
+    },
+  });
+  return note;
+}
+
+export async function getActiveNotes() {
+  const userId = await getUserId();
+  if (!userId) return [];
+
+  return getNotes({
+    userId,
+    isArchived: false,
   });
 }
+
+export async function getNoteById(id: string) {
+  const userId = await getUserId();
+  if (!userId) return [];
+
+  return getNotes({
+    userId,
+    id: id,
+  });
+}
+
+export async function getArchivedNotes() {
+  const userId = await getUserId();
+  if (!userId) return [];
+
+  return getNotes({
+    userId,
+    isArchived: true,
+  });
+}
+
+export async function getActiveNotesByTag(tag: string) {
+  const userId = await getUserId();
+  if (!userId) return [];
+
+  return getNotes({
+    userId,
+    isArchived: false,
+    tags: {
+      some: {
+        tag: {
+          userId,
+          normalizedName: normalizeTagName(tag),
+        },
+      },
+    },
+  });
+}
+
+export async function getNotesByParams(params: string) {
+  const userId = await getUserId();
+  if (!userId) return [];
+
+  const searchText = params.trim();
+  if (!searchText) {
+    return getNotes({ userId });
+  }
+
+  return getNotes({
+    userId,
+    OR: [
+      {
+        title: {
+          contains: searchText,
+          mode: "insensitive",
+        },
+      },
+      {
+        content: {
+          contains: searchText,
+          mode: "insensitive",
+        },
+      },
+      {
+        tags: {
+          some: {
+            tag: {
+              userId,
+              name: {
+                contains: searchText,
+                mode: "insensitive",
+              },
+            },
+          },
+        },
+      },
+      {
+        tags: {
+          some: {
+            tag: {
+              userId,
+              normalizedName: {
+                contains: normalizeTagName(searchText),
+              },
+            },
+          },
+        },
+      },
+    ],
+  });
+}
+
+export async function updateNote({ noteId, title, content, tagInput }: UpdateTypes) {
+  const userId = await getUserId();
+
+  const tags = [
+    ...new Set(
+      tagInput
+        .split(",")
+        .map((tag: string) => tag.trim())
+        .filter(Boolean),
+    ),
+  ];
+
+  if (!userId) return;
+
+  const note = await prisma.note.update({
+    where: { id: noteId, userId: userId },
+    data: {
+      title: title,
+      content: content,
+      tags: {
+        deleteMany: {},
+        create: tags.map((name) => ({
+          tag: {
+            connectOrCreate: {
+              where: {
+                userId_normalizedName: {
+                  userId,
+                  normalizedName: name.split(" ").join("").toLowerCase().trim(),
+                },
+              },
+              create: {
+                userId,
+                name,
+                normalizedName: name.split(" ").join("").toLowerCase().trim(),
+              },
+            },
+          },
+        })),
+      },
+    },
+  });
+
+  return note;
+}
+
 export async function toggleArchived(noteId: string, isArchived: boolean) {
-  await updateNote(noteId, (note) => {
-    return {
-      ...note,
-      isArchived: isArchived,
-      lastEdited: new Date().toISOString(),
-    };
+  const userId = await getUserId();
+  if (!userId) return;
+
+  return await prisma.note.update({
+    where: {
+      id: noteId,
+      userId,
+    },
+    data: {
+      isArchived,
+    },
   });
 }
 
 export async function deleteNote(noteId: string) {
-  const data = await getNotes();
+  const userId = await getUserId();
+  if (!userId) return;
 
-  const updatedData: NotesData = {
-    notes: data.notes.filter((note) => note.id !== noteId),
-  };
-  await saveNotes(filePath, updatedData);
-}
-
-export async function addNote(note: Note) {
-  const data = await getNotes();
-
-  const updatedData: NotesData = {
-    notes: data.notes.concat([note]),
-  };
-  await saveNotes(filePath, updatedData);
+  return await prisma.note.delete({
+    where: {
+      id: noteId,
+      userId,
+    },
+  });
 }

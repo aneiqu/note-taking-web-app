@@ -1,5 +1,5 @@
+import { getActiveNotes } from "@/app/actions/notes";
 import NotesListPane from "@/app/components/dashboard/Note/NotesListPane";
-import { getActiveNotes } from "@/utils/getNotes";
 
 interface LayoutProps {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
+import { getActiveNotesByTag } from "@/app/actions/notes";
 import NotesListPane from "@/app/components/dashboard/Note/NotesListPane";
 import ReturnButton from "@/app/components/dashboard/Note/ReturnButton";
-import { getActiveNotesByTag } from "@/utils/getNotes";
 
 interface TagPageProps {
   params: Promise<{

@@ -1,5 +1,5 @@
+import { getArchivedNotes } from "@/app/actions/notes";
 import NotesListPane from "@/app/components/dashboard/Note/NotesListPane";
-import { getArchivedNotes } from "@/utils/getNotes";
 
 export default async function Archived() {
   return (

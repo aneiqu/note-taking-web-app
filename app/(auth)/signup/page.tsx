@@ -1,3 +1,4 @@
+import { createUser } from "@/app/actions/auth";
 import InfoIcon from "@/app/assets/icons/icon-info.svg";
 import AuthForm from "@/app/components/auth/AuthForm";
 import { AuthFormPasswordInput, AuthFormTextInput } from "@/app/components/auth/AuthFormInput";
@@ -6,26 +7,70 @@ import AuthLoginGoogle from "@/app/components/auth/AuthLoginGoogle";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import z from "zod";
 
 export default function Signup() {
-  async function formAction() {
+  async function formAction(formData: FormData) {
     "use server";
-    const cookieStore = await cookies();
-    cookieStore.set(
-      "flash",
-      JSON.stringify({
-        type: "error",
-        message: `This function isn't implemented.
-           Use data below to log in: 
-           email: qwerty@notes.com
-           password: 12345678`,
-      }),
-      {
-        httpOnly: false,
-        maxAge: 20,
-      },
-    );
-    redirect("/login");
+
+    console.log(formData.get("emailInput"));
+    const User = z.object({
+      email: z.email(),
+      password: z.string(),
+    });
+
+    const rawData = {
+      email: formData.get("emailInput"),
+      password: formData.get("passwordInput"),
+    };
+
+    try {
+      const parsedData = User.parse({
+        email: rawData.email,
+        password: rawData.password,
+      });
+      const result = await createUser(parsedData);
+
+      if (result.ok) {
+        const cookieStore = await cookies();
+        cookieStore.set("session", result.token, {
+          httpOnly: true,
+          sameSite: "lax",
+          path: "/",
+          maxAge: 60 * 60,
+        });
+      } else {
+        const cookieStore = await cookies();
+        cookieStore.set(
+          "flash",
+          JSON.stringify({
+            type: "error",
+            message: result.error,
+          }),
+          {
+            httpOnly: false,
+            maxAge: 10,
+          },
+        );
+        return;
+      }
+    } catch (error) {
+      console.error(error);
+      const cookieStore = await cookies();
+      cookieStore.set(
+        "flash",
+        JSON.stringify({
+          type: "error",
+          message: "Account with this email already exists",
+        }),
+        {
+          httpOnly: false,
+          maxAge: 10,
+        },
+      );
+      return;
+    }
+    redirect("/dashboard");
   }
 
   return (
@@ -35,8 +80,13 @@ export default function Signup() {
         description='Sign up to start organizing your notes and boost your productivity.'
       />
       <AuthForm formAction={formAction} buttonText='Sign up'>
-        <AuthFormTextInput id='' label='Email Address' placeholder='email@example.com' />
-        <AuthFormPasswordInput showForgetLink={false} id='password-input' label='Password input' />
+        <AuthFormTextInput
+          id='emailInput'
+          label='Email Address'
+          placeholder='email@example.com'
+          type='email'
+        />
+        <AuthFormPasswordInput showForgetLink={false} id='passwordInput' label='Password' />
         <div className='-mt-2 flex items-center gap-2.5'>
           <InfoIcon className='stroke-neutral-600 dark:stroke-neutral-400' />
           <p className='text-preset-6 text-neutral-600 dark:text-neutral-400'>

@@ -1,4 +1,4 @@
-import { getArchivedNotes, getNotesByContent, getNotesByTag } from "@/utils/getNotes";
+import { getActiveNotesByTag, getArchivedNotes, getNotesByParams } from "@/app/actions/notes";
 
 interface SpecificationTypes {
   tagText: string;
@@ -13,7 +13,7 @@ export default async function SpecificationText({ tagText, textType }: Specifica
   const text = {
     tag: (
       <p className='text-neutral-700 dark:text-neutral-300'>
-        {await getNotesByTag(tagText).then((notes) =>
+        {await getActiveNotesByTag(tagText).then((notes) =>
           notes.length === 0
             ? emptyState
             : `All notes with the tag ”${formattedTag}” are shown here.`,
@@ -31,7 +31,7 @@ export default async function SpecificationText({ tagText, textType }: Specifica
     ),
     search: (
       <p className='text-neutral-700 dark:text-neutral-300'>
-        {await getNotesByContent(formattedTag.toLowerCase()).then((notes) =>
+        {await getNotesByParams(formattedTag.toLowerCase()).then((notes) =>
           notes.length === 0
             ? emptyState
             : `All notes matching ”${formattedTag}” are displayed below.`,

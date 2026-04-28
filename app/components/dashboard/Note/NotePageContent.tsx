@@ -1,12 +1,12 @@
 import NoteDataItems from "@/app/components/dashboard/Note/NoteDataItems";
-import { getNoteById } from "@/utils/getNotes";
 import { notFound, redirect } from "next/navigation";
 
-import { updateContent } from "@/app/actions/notes";
+import { getNoteById, updateNote } from "@/app/actions/notes";
 import { revalidatePath } from "next/cache";
 import Form from "next/form";
 import { cookies } from "next/headers";
 import Link from "next/link";
+import z from "zod";
 
 interface NotePageParams {
   params: Promise<{ note: string; tag?: string }>;
@@ -15,7 +15,7 @@ interface NotePageParams {
 
 export default async function NotePageContent({ params, cancelHref }: NotePageParams) {
   const { note: noteId, tag: tagSlug } = await params;
-  const note = await getNoteById(noteId);
+  const note = (await getNoteById(noteId))[0];
   if (!note) notFound();
   if (
     tagSlug &&
@@ -28,52 +28,44 @@ export default async function NotePageContent({ params, cancelHref }: NotePagePa
     "use server";
     const cookieStore = await cookies();
 
-    function getRequiredString(formData: FormData, key: string): string {
-      const value = formData.get(key);
-      if (typeof value !== "string") {
-        throw new Error(`Invalid content in field: ${key}`);
-      }
-      return value;
-    }
+    const Note = z.object({
+      noteId: z.string(),
+      title: z.string(),
+      content: z.string(),
+      tagInput: z.string(),
+    });
 
-    function normalizeTags(rawTags: string): string[] {
-      const seen = new Set<string>();
-      return rawTags
-        .split(",")
-        .map((tag) => tag.trim().replace(/\s+/g, " "))
-        .filter((tag) => tag.length > 0)
-        .filter((tag) => {
-          const normalizedTag = tag.toLowerCase();
-          if (seen.has(normalizedTag)) return false;
-          seen.add(normalizedTag);
-          return true;
-        });
-    }
-
-    const tags = normalizeTags(getRequiredString(formData, "noteSpecs"));
-
-    const newData = {
-      title: getRequiredString(formData, "noteTitle"),
-      content: getRequiredString(formData, "noteContent"),
-      tags: tags,
+    const rawData = {
+      noteId: noteId,
+      title: formData.get("noteTitle"),
+      content: formData.get("noteContent"),
+      tagInput: formData.get("noteSpecs"),
     };
 
-    await updateContent(noteId, newData).then(() => {
+    try {
+      const parsedData = Note.parse(rawData);
+      await updateNote(parsedData);
+
       if (tagSlug) {
-        const isTagSlugPresent = newData.tags.some(
-          (tag) => tag.toLowerCase() === decodeURIComponent(tagSlug).toLowerCase(),
-        );
+        const isTagSlugPresent = parsedData.tagInput
+          .toLowerCase()
+          .split(" ")
+          .some((tag) => tag.trim() === decodeURIComponent(tagSlug).toLowerCase());
         revalidatePath("/dashboard");
         revalidatePath(`/dashboard/tag/${tagSlug}`);
         revalidatePath(`/dashboard/tag/${tagSlug}/n/${noteId}`);
         if (!isTagSlugPresent) {
-          redirect(`/dashboard/tag/${encodeURIComponent(newData.tags[0])}/n/${noteId}`);
+          redirect(
+            `/dashboard/tag/${encodeURIComponent(parsedData.tagInput.split(" ")[0])}/n/${noteId}`,
+          );
+        } else {
+          revalidatePath("/dashboard");
+          revalidatePath(`/dashboard/n/${noteId}`);
         }
-      } else {
-        revalidatePath("/dashboard");
-        revalidatePath(`/dashboard/n/${noteId}`);
       }
-    });
+    } catch (error) {
+      console.error(error);
+    }
 
     cookieStore.set(
       "flash",

@@ -1,46 +1,41 @@
-import { addNote } from "@/app/actions/notes";
+import { createNote } from "@/app/actions/notes";
 import ClockIcon from "@/app/assets/icons/icon-clock.svg";
 import TagIcon from "@/app/assets/icons/icon-tag.svg";
 import ReturnButton from "@/app/components/dashboard/Note/ReturnButton";
 import { revalidatePath } from "next/cache";
 import Form from "next/form";
 import Link from "next/link";
+import z from "zod";
 
 export default async function CreateNewNote() {
-  async function createNote(formData: FormData) {
+  async function formAction(formData: FormData) {
     "use server";
 
-    const title = formData.get("noteTitle");
-    const tags = formData.get("noteTags");
-    const content = formData.get("noteContent");
-
-    if (typeof title !== "string") {
-      throw new Error("Invalid note title");
-    }
-
-    if (typeof tags !== "string") {
-      throw new Error("Invalid note tags");
-    }
-
-    if (typeof content !== "string") {
-      throw new Error("Invalid note content");
-    }
-
-    await addNote({
-      id: `${crypto.randomUUID()}`,
-      title: title,
-      tags: tags.split(",").map((tag) => tag.trim()),
-      content: content,
-      lastEdited: `${new Date().toISOString()}`,
-      isArchived: false,
+    const rawData = {
+      title: formData.get("noteTitle"),
+      tagInput: formData.get("noteTags"),
+      content: formData.get("noteContent"),
+    };
+    const Note = z.object({
+      title: z.string(),
+      tagInput: z.string(),
+      content: z.string(),
     });
-    revalidatePath("/dashboard");
+
+    try {
+      const parsedData = Note.parse(rawData);
+      await createNote(parsedData);
+    } catch (error) {
+      console.error(error);
+    }
+
+    revalidatePath(`/dashboard/`);
   }
 
   return (
     <Form
       id='note-form'
-      action={createNote}
+      action={formAction}
       className='flex flex-col w-screen lg:w-full pt-5 px-4 lg:px-6 lg:pt-1 gap-3 lg:gap-4 h-full lg:border-r lg:border-neutral-200 dark:border-neutral-800 lg:pb-5 dark:bg-neutral-950'
     >
       <div className='flex justify-between'>
@@ -58,7 +53,7 @@ export default async function CreateNewNote() {
       <div>
         <input
           name='noteTitle'
-          placeholder='Enter a title…'
+          placeholder='Enter a title...'
           type='text'
           className='text-preset-2 text-neutral-950 placeholder:text-neutral-950 outline-none w-full md:text-preset-1 dark:text-white dark:placeholder:text-white'
           aria-label='Note title'
@@ -94,7 +89,7 @@ export default async function CreateNewNote() {
         aria-label='Note content'
         name='noteContent'
         className='whitespace-pre-wrap text-preset-6 md:text-preset-5 dark:text-neutral-100 resize-none h-2/3 outline-none'
-        placeholder='Start typing your note here…'
+        placeholder='Start typing your note here...'
         required={true}
       ></textarea>
       <hr className='text-neutral-200 hidden lg:block dark:text-neutral-800' />

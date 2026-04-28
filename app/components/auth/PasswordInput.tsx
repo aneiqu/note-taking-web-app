@@ -3,16 +3,18 @@
 import HidePassword from "@/app/assets/icons/icon-hide-password.svg";
 import ShowPassword from "@/app/assets/icons/icon-show-password.svg";
 
-import { useState } from "react";
+import { Ref, useState } from "react";
 
 interface InputTypes {
   classes: string;
   id: string;
   name: string;
   ariaLabel: string;
+  ref?: Ref<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export default function PasswordInput({ classes, id, name, ariaLabel }: InputTypes) {
+export default function PasswordInput({ classes, id, name, ariaLabel, ref, onChange }: InputTypes) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -25,6 +27,8 @@ export default function PasswordInput({ classes, id, name, ariaLabel }: InputTyp
         id={id}
         name={name}
         aria-label={ariaLabel}
+        ref={ref}
+        onChange={onChange}
       />
       <button
         aria-label={showPassword ? "Hide password" : "Show password"}

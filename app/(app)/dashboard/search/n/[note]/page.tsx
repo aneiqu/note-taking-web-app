@@ -1,6 +1,6 @@
+import { getNotesByParams } from "@/app/actions/notes";
 import NotePageContent from "@/app/components/dashboard/Note/NotePageContent";
 import NotePageLayout from "@/app/components/dashboard/Note/NotePageLayout";
-import { getNotesByContent } from "@/utils/getNotes";
 
 interface NotePageParams {
   params: Promise<{ note: string }>;
@@ -10,7 +10,7 @@ interface NotePageParams {
 export default async function Note({ params, searchParams }: NotePageParams) {
   const resolvedSearchParams = await searchParams;
   const searchQuery = resolvedSearchParams.q ?? "";
-  const filteredNotes = await getNotesByContent(searchQuery);
+  const filteredNotes = await getNotesByParams(searchQuery);
   const cancelHref = searchQuery
     ? `/dashboard/search?q=${encodeURIComponent(searchQuery)}`
     : "/dashboard/search";

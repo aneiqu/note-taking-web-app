@@ -51,8 +51,8 @@ export default async function NotesListPane({
       ) : null}
       <div className='flex flex-col gap-1 h-full overflow-y-scroll scrollbar-thin'>
         {filteredNotes.length === 0 && !textType ? (
-          <div className='p-2 text-preset-5 text-neutral-950 bg-neutral-100 border border-neutral-200'>
-            You don’t have any notes yet. Start a new note to capture your thoughts and ideas.
+          <div className='p-2 text-preset-5 text-neutral-950 bg-neutral-100 border border-neutral-200 rounded-lg dark:text-white dark dark:bg-neutral-800 dark:border-neutral-700'>
+            You don&rsquo;t have any notes yet. Start a new note to capture your thoughts and ideas.
           </div>
         ) : (
           filteredNotes.map((note) => (

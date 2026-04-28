@@ -5,6 +5,12 @@ import AuthHeader from "@/app/components/auth/AuthHeader";
 export default function ResetPassword() {
   async function formAction() {}
 
+  // -----------------------
+
+  // Not available in demo
+
+  // -----------------------
+
   return (
     <>
       <AuthHeader

@@ -5,6 +5,7 @@ interface InputTypes {
   label: string;
   placeholder: string;
   id: string;
+  type: string;
 }
 
 interface InputPasswordTypes {
@@ -13,7 +14,7 @@ interface InputPasswordTypes {
   label: string;
 }
 
-export function AuthFormTextInput({ label, placeholder, id }: InputTypes) {
+export function AuthFormTextInput({ label, placeholder, id, type }: InputTypes) {
   return (
     <div className='flex flex-col gap-1.5'>
       <label htmlFor={id} className='text-preset-4 text-neutral-950 dark:text-white'>
@@ -22,7 +23,7 @@ export function AuthFormTextInput({ label, placeholder, id }: InputTypes) {
       <input
         id={id}
         name={id}
-        type='text'
+        type={type}
         required={true}
         placeholder={placeholder}
         className='text-preset-5 px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-(--radius-8) dark:text-neutral-500 hover:bg-neutral-50 duration-200 dark:hover:bg-neutral-800'
@@ -41,6 +42,7 @@ export function AuthFormPasswordInput({ showForgetLink, id, label }: InputPasswo
 
         {showForgetLink ? (
           <Link
+            aria-disabled={true}
             href={"./forgot-password"}
             className='text-xs underline text-neutral-600 dark:text-neutral-400'
           >

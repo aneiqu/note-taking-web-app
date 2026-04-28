@@ -1,5 +1,5 @@
+import { getActiveNotesByTag } from "@/app/actions/notes";
 import NotePageLayout from "@/app/components/dashboard/Note/NotePageLayout";
-import { getActiveNotesByTag } from "@/utils/getNotes";
 
 interface LayoutProps {
   children: React.ReactNode;

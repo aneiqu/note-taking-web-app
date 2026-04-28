@@ -1,9 +1,17 @@
-import { getAllActiveTags } from "@/utils/getNotes";
+import { getActiveNotes } from "@/app/actions/notes";
 import Link from "next/link";
 import SidebarItem from "./SidebarItem";
 
 export default async function SidebarTagItems() {
-  const tags = await getAllActiveTags();
+  const activeNotes = await getActiveNotes();
+
+  const tags = Array.from(
+    new Set(
+      activeNotes
+        .filter((note) => note.isArchived !== true)
+        .flatMap((note) => note.tags.map((tag) => tag.toLowerCase())),
+    ),
+  ).sort((a, b) => a.localeCompare(b));
 
   return (
     <>

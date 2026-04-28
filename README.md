@@ -1,51 +1,37 @@
 # Note Taking Web App
 
-A note-taking application built with Next.js, React, TypeScript, and Tailwind CSS.
-
-This project is still in active development. The current build already includes the main dashboard flows, note browsing views, authentication screens, and user settings pages, while some behavior and data persistence are still being refined.
+A full-stack note-taking application built with Next.js, React, TypeScript, Tailwind CSS, Prisma, and PostgreSQL.
 
 ## Overview
 
-The goal of this project is to build a polished note-taking experience with:
-
-- authentication flows
-- note browsing and note details
-- archived notes
-- tag-based navigation
-- search views
-- user settings for password, color theme, and font theme
-
 The app is structured with the Next.js App Router and split into route groups for authenticated app screens and auth-related pages.
 
-## Current Status
+Users can:
 
-This is a work in progress portfolio project.
+- create an account and log in with email and password
+- create, edit, archive, restore, and delete notes
+- organize notes with comma-separated tags
+- browse active notes, archived notes, and notes filtered by tag
+- search notes by title, content, or tag
+- update their password
+- switch between light, dark, and system color themes
+- choose between sans-serif, serif, and monospace font themes
 
-### Implemented
+## Features
 
-- auth route group with login, signup, forgot password, and reset password pages
-- dashboard route group with note detail pages
-- archived notes flow
-- tag listing and tag detail note views
-- search route structure
-- settings pages for color theme, font theme, and password changes
-- theme switching support
-- toast-based flash messages
-- typed utilities for font theme handling
+- Session-based authentication with hashed passwords and secure session tokens
+- PostgreSQL persistence through Prisma
+- User-scoped notes, tags, and sessions
+- Responsive dashboard layout for mobile, tablet, and desktop
+- Server actions for auth and note mutations
+- Toast-based success and error feedback
+- Route protection for authenticated dashboard pages
+- Theme persistence with `next-themes` and cookies
 
-### In Progress
+## Demo Limitations
 
-- polishing UI
-- finalizing settings interactions
-- tightening note creation and editing flows
-
-### Planned / Likely Next Steps
-
-- full CRUD flow improvements for notes
-- stronger empty, loading, and error states
-- backend or database-backed persistence
-- improved accessibility review across forms and dashboard interactions
-- test coverage for critical user flows
+- Forgot-password and reset-password paths are disabled in the demo build.
+- Google authentication is shown as a disabled UI option only.
 
 ## Tech Stack
 
@@ -53,6 +39,10 @@ This is a work in progress portfolio project.
 - React 19
 - TypeScript
 - Tailwind CSS 4
+- Prisma 7
+- PostgreSQL
+- `bcrypt`
+- `zod`
 - `next-themes`
 - `react-hot-toast`
 - `@svgr/webpack`
@@ -61,24 +51,53 @@ This is a work in progress portfolio project.
 
 ```text
 app/
-  (app)/          authenticated application routes
+  (app)/          authenticated dashboard routes
   (auth)/         authentication routes
-  actions/        app actions such as flash message handling
-  assets/         local data and static assets
-  components/     reusable UI components
-utils/            shared utilities
+  actions/        server actions for auth, flash messages, and notes
+  assets/         icons, fonts, and starter data
+  components/     reusable auth and dashboard UI
+generated/        generated Prisma client
+lib/              shared server utilities
+prisma/           schema and migrations
+utils/            shared formatting, font, and toast helpers
+```
+
+## Environment Variables
+
+Create a `.env` file with a PostgreSQL connection string:
+
+```env
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
 ```
 
 ## Running Locally
 
 Install dependencies:
 
-```
+```bash
 pnpm install
+```
+
+Run database migrations:
+
+```bash
+pnpm prisma migrate dev
 ```
 
 Start the development server:
 
-```
+```bash
 pnpm dev
+```
+
+Create a production build:
+
+```bash
+pnpm build
+```
+
+Run the production server:
+
+```bash
+pnpm start
 ```

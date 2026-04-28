@@ -1,11 +1,64 @@
-import InfoIcon from "@/app/assets/icons/icon-info.svg";
+import { changePassword } from "@/app/actions/auth";
+import ChangePasswordFields from "@/app/components/auth/ChangePasswordFields";
 import PasswordInput from "@/app/components/auth/PasswordInput";
 import ReturnButton from "@/app/components/dashboard/Note/ReturnButton";
 import Form from "next/form";
+import { cookies } from "next/headers";
+import z from "zod";
 
 export default function Theme() {
-  async function updatePassword() {
+  async function updatePassword(formData: FormData) {
     "use server";
+
+    const rawData = {
+      oldPass: formData.get("currentPassword"),
+      newPass: formData.get("newPassword"),
+      confirmNewPass: formData.get("confirmNewPassword"),
+    };
+
+    const Password = z
+      .object({
+        oldPass: z.string(),
+        newPass: z.string().min(8),
+        confirmNewPass: z.string(),
+      })
+      .refine((data) => data.newPass === data.confirmNewPass, {
+        path: ["confirmNewPass"],
+        message: "Passwords do not match",
+      });
+    const parsedData = Password.parse(rawData);
+    const result = await changePassword({
+      oldPassword: parsedData.oldPass,
+      newPassword: parsedData.newPass,
+    });
+
+    if (result.ok) {
+      const cookieStore = await cookies();
+      cookieStore.set(
+        "flash",
+        JSON.stringify({
+          type: "success",
+          message: result.message,
+        }),
+        {
+          httpOnly: false,
+          maxAge: 10,
+        },
+      );
+    } else {
+      const cookieStore = await cookies();
+      cookieStore.set(
+        "flash",
+        JSON.stringify({
+          type: "error",
+          message: "Something went wrong, try again.",
+        }),
+        {
+          httpOnly: false,
+          maxAge: 10,
+        },
+      );
+    }
   }
 
   return (
@@ -32,46 +85,12 @@ export default function Theme() {
               classes='border rounded-lg px-4 py-3 border-neutral-300 dark:border-neutral-600 w-full'
             />
           </div>
-          <div className='flex flex-col gap-1.5'>
-            <label
-              className='text-preset-4 text-neutral-950 dark:text-neutral-100'
-              htmlFor='new-password'
-            >
-              New Password
-            </label>
-            <PasswordInput
-              id='new-password'
-              name='newPassword'
-              ariaLabel='New password'
-              classes='border rounded-lg px-4 py-3 border-neutral-300 dark:border-neutral-600 w-full'
-            />
-            <label
-              className='text-neutral-600 dark:text-neutral-400 text-preset-6 flex gap-2 items-center'
-              htmlFor='new-password'
-            >
-              <InfoIcon className='**:stroke-neutral-400' />
-              At least 8 characters
-            </label>
-          </div>
-          <div className='flex flex-col gap-1.5'>
-            <label
-              className='text-preset-4 text-neutral-950 dark:text-neutral-100'
-              htmlFor='confirm-new-password'
-            >
-              Confirm New Password
-            </label>
-            <PasswordInput
-              id='confirm-new-password'
-              name='confirmNewPassword'
-              ariaLabel='Confirm new password'
-              classes='border rounded-lg px-4 py-3 border-neutral-300 dark:border-neutral-600 w-full'
-            />
-          </div>
+          <ChangePasswordFields />
         </div>
       </div>
       <button
         type='submit'
-        className='text-preset-4 px-4 py-3 bg-blue-500 text-white rounded-lg mt-6 justify-self-end flex'
+        className='text-preset-4 px-4 py-3 bg-blue-500 text-white rounded-lg mt-6 justify-self-end flex cursor-pointer hover:bg-blue-700 duration-75'
       >
         Apply Changes
       </button>

@@ -13,7 +13,6 @@ export default function Signup() {
   async function formAction(formData: FormData) {
     "use server";
 
-    console.log(formData.get("emailInput"));
     const User = z.object({
       email: z.email(),
       password: z.string(),

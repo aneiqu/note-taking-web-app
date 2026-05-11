@@ -6,7 +6,7 @@ interface FormTypes {
   formAction: (formData: FormData) => Promise<void>;
 }
 
-export default async function AuthForm({ children, buttonText, formAction }: FormTypes) {
+export default function AuthForm({ children, buttonText, formAction }: FormTypes) {
   async function handleSubmit(formData: FormData) {
     "use server";
     await formAction(formData);

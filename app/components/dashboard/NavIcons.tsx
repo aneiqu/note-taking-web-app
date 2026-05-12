@@ -15,7 +15,7 @@ interface IconProps {
   label: string;
 }
 
-function IconContainer({ Icon, variant, isActive, label }: IconProps) {
+export function IconContainer({ Icon, variant, isActive, label }: IconProps) {
   return (
     <div
       className={`transition-all duration-200 flex flex-col items-center max-w-[68.6px] w-[clamp(48px,18vw,68.6px)] md:w-20 py-1 gap-1 rounded-sm ${isActive ? "bg-blue-50 dark:bg-neutral-700" : ""}`}
@@ -37,7 +37,7 @@ export function NavIcons() {
   const defaultPath = "/dashboard";
   return (
     <>
-      <Link className='flex justify-center' href={defaultPath}>
+      <Link className='flex justify-center' href={defaultPath} aria-label='Home'>
         <IconContainer
           Icon={HomeIcon}
           variant='fill'
@@ -46,7 +46,7 @@ export function NavIcons() {
         />
       </Link>
       <hr className='hidden md:block w-px h-full bg-neutral-100 dark:bg-neutral-800 md:justify-self-center'></hr>
-      <Link className='flex justify-center' href={`${defaultPath}/search`}>
+      <Link className='flex justify-center' href={`${defaultPath}/search`} aria-label='Search'>
         <IconContainer
           Icon={SearchIcon}
           variant='fill'
@@ -55,7 +55,7 @@ export function NavIcons() {
         />
       </Link>
       <hr className='hidden md:block w-px h-full bg-neutral-100 dark:bg-neutral-800 md:justify-self-center'></hr>
-      <Link className='flex justify-center' href={`${defaultPath}/archived`}>
+      <Link className='flex justify-center' href={`${defaultPath}/archived`} aria-label='Archived'>
         <IconContainer
           Icon={ArchiveIcon}
           variant='stroke'
@@ -64,7 +64,7 @@ export function NavIcons() {
         />
       </Link>
       <hr className='hidden md:block w-px h-full bg-neutral-100 dark:bg-neutral-800 md:justify-self-center'></hr>
-      <Link className='flex justify-center' href={`${defaultPath}/tag`}>
+      <Link className='flex justify-center' href={`${defaultPath}/tag`} aria-label='Tags'>
         <IconContainer
           Icon={TagIcon}
           variant='stroke'
@@ -73,7 +73,7 @@ export function NavIcons() {
         />
       </Link>
       <hr className='hidden md:block w-px h-full bg-neutral-100 dark:bg-neutral-800 md:justify-self-center'></hr>
-      <Link className='flex justify-center' href={`${defaultPath}/settings`}>
+      <Link className='flex justify-center' href={`${defaultPath}/settings`} aria-label='Settings'>
         <IconContainer
           Icon={SettingsIcon}
           variant='fill'

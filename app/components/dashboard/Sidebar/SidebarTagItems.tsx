@@ -1,17 +1,30 @@
 import { getActiveNotes } from "@/app/actions/notes";
 import Link from "next/link";
-import SidebarItem from "./SidebarItem";
+import SidebarItem from "./SidebarItem ";
 
-export default async function SidebarTagItems() {
-  const activeNotes = await getActiveNotes();
+interface NoteTypes {
+  id: string;
+  title: string;
+  tags: string[];
+  content: string;
+  lastEdited: string;
+  isArchived: boolean;
+}
 
-  const tags = Array.from(
+export function SidebarTags(notes: NoteTypes[]) {
+  return Array.from(
     new Set(
-      activeNotes
+      notes
         .filter((note) => note.isArchived !== true)
         .flatMap((note) => note.tags.map((tag) => tag.toLowerCase())),
     ),
   ).sort((a, b) => a.localeCompare(b));
+}
+
+export default async function SidebarTagItems() {
+  const activeNotes = await getActiveNotes();
+
+  const tags = SidebarTags(activeNotes);
 
   return (
     <>

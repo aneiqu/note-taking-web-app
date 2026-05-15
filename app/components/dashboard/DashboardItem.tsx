@@ -15,7 +15,7 @@ interface NoteProps {
   sP?: { q: string };
 }
 
-export default async function DashboardItem({ note, activeNoteId, noteHref, sP }: NoteProps) {
+export default function DashboardItem({ note, activeNoteId, noteHref, sP }: NoteProps) {
   const isActive = note.id === activeNoteId;
 
   const tagsFormatted = note.tags.map((tag) => (
@@ -32,9 +32,10 @@ export default async function DashboardItem({ note, activeNoteId, noteHref, sP }
       <Link
         href={{
           pathname: noteHref,
-          query: sP ? { q: sP.q } : "",
+          query: sP ? { q: encodeURIComponent(sP.q) } : "",
         }}
         className='nth-last-2:pb-14 md:nth-last-2:pb-18.5 lg:pb-0! dark:text-white'
+        aria-current={isActive ? "page" : undefined}
       >
         <div
           className={`flex flex-col p-2 gap-3 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 ${isActive ? "bg-neutral-100 dark:bg-neutral-800" : ""}`}

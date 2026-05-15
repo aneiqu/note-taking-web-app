@@ -23,9 +23,9 @@ export default function SidebarItem({ icon, label, activePath, variant }: ItemPr
       : pathname === fullPath || pathname.startsWith(`${fullPath}/`);
   const classes = `${isActive ? (variant === "fill" ? "fill-blue-500" : "**:stroke-blue-500") : variant === "fill" ? "**:fill-neutral-700 dark:**:fill-neutral-300" : "**:stroke-neutral-700 dark:**:stroke-neutral-300"}`;
   const icons = {
-    home: <HomeIcon className={classes} />,
-    archive: <ArchiveIcon className={classes} />,
-    tag: <TagIcon className={classes} />,
+    home: <HomeIcon className={classes} aria-label='Home' />,
+    archive: <ArchiveIcon className={classes} aria-label='Archive' />,
+    tag: <TagIcon className={classes} aria-label='Tag' />,
   };
   return (
     <>
@@ -34,9 +34,9 @@ export default function SidebarItem({ icon, label, activePath, variant }: ItemPr
       >
         {icons[icon]}
         {label[0].toUpperCase() + label.slice(1)}
-        <ChevronRightIcon
-          className={`ml-auto dark:**:fill-white ${isActive ? "block" : "hidden"}`}
-        />
+        {isActive && (
+          <ChevronRightIcon className='ml-auto dark:**:fill-white' aria-label='Chevron Right' />
+        )}
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SidebarItem from "./SidebarItem";
+import SidebarItem from "./SidebarItem ";
 import SidebarTagItems from "./SidebarTagItems";
 
 export default function Sidebar() {

@@ -41,11 +41,11 @@ export async function getUserId() {
   return await validateSession(sessionToken);
 }
 
-function normalizeTagName(tag: string) {
+export function normalizeTagName(tag: string) {
   return decodeURIComponent(tag).split(" ").join("").toLowerCase().trim();
 }
 
-function formatNote(note: Prisma.NoteGetPayload<{ select: typeof noteSelect }>) {
+export function formatNote(note: Prisma.NoteGetPayload<{ select: typeof noteSelect }>) {
   return {
     id: note.id,
     title: note.title,
@@ -56,7 +56,7 @@ function formatNote(note: Prisma.NoteGetPayload<{ select: typeof noteSelect }>) 
   };
 }
 
-async function getNotes(where: Prisma.NoteWhereInput) {
+export async function getNotes(where: Prisma.NoteWhereInput) {
   const notes = await prisma.note.findMany({
     where,
     select: noteSelect,
@@ -74,7 +74,7 @@ export async function createNote({ title, content, tagInput }: NoteTypes) {
     ...new Set(
       tagInput
         .split(",")
-        .map((tag: string) => tag.trim())
+        .map((tag: string) => tag.trim().toLowerCase())
         .filter(Boolean),
     ),
   ];
@@ -218,7 +218,7 @@ export async function updateNote({ noteId, title, content, tagInput }: UpdateTyp
     ...new Set(
       tagInput
         .split(",")
-        .map((tag: string) => tag.trim())
+        .map((tag: string) => tag.trim().toLowerCase())
         .filter(Boolean),
     ),
   ];

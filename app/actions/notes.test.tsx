@@ -5,6 +5,7 @@ import {
   createNote,
   deleteNote,
   formatNote,
+  getActiveNotes,
   getArchivedNotes,
   getNoteById,
   getNotes,
@@ -125,15 +126,20 @@ describe("Notes actions", () => {
   });
 
   it("doesnt return notes if user is not authenticated", async () => {
-    mockValidate.mockResolvedValue(undefined);
+    mockCookies.mockReturnValue({
+      get: vi.fn().mockReturnValue(undefined),
+    } as any);
 
-    const notes = await getNotes({ userId: "user-1" });
+    const notes = await getActiveNotes();
 
     expect(notes).toEqual([]);
+    expect(mockFindMany).not.toHaveBeenCalled();
   });
 
   it("doesnt create note if user is not authenticated", async () => {
-    mockValidate.mockResolvedValue(undefined);
+    mockCookies.mockReturnValue({
+      get: vi.fn().mockReturnValue(undefined),
+    } as any);
 
     await createNote({ title: "Test", content: "Test content", tagInput: "test" });
 
@@ -141,7 +147,9 @@ describe("Notes actions", () => {
   });
 
   it("doesnt update note if user is not authenticated", async () => {
-    mockValidate.mockResolvedValue(undefined);
+    mockCookies.mockReturnValue({
+      get: vi.fn().mockReturnValue(undefined),
+    } as any);
 
     await updateNote({
       noteId: "note-1",
